@@ -1,0 +1,9 @@
+"Data da Modelagem" 12_06_2020_11_51
+"Tipo de Modelagem" "Modelagem de prisma"
+"números de corpos" 3
+"Coordenadas do prisma 1 (x1, x2, y1, y2, z1, z2)" "[-2000.0, 2000.0, -2500.0, 2500.0, 500.0, 1000.0]"
+"Coordenadas do prisma 2 (x1, x2, y1, y2, z1, z2)" "[-2000.0, 2000.0, -500.0, 4500.0, 550.0, 1050.0]"
+"Coordenadas do prisma 3 (x1, x2, y1, y2, z1, z2)" "[-2000.0, 2000.0, 1500.0, 6500.0, 600.0, 1100.0]"
+inclinação positivo
+"Informação da fonte (Mag, Incl, Decl)" "[10.0, -30.0, -10.0]"
+"Informação regional (Camp.Geomag, Incl, Decl)" "[40000.0, -30.0, -23.0]"
