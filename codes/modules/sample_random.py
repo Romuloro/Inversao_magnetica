@@ -1,4 +1,7 @@
 import numpy as np
+import sys
+a = sys.path.append('../modules/') # endereco das funcoes implementadas por voce!
+import sphere
 
 def f_difference (dado_referencia, dado_calculado):
     """
@@ -43,7 +46,7 @@ def sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n):
     for i in range(n):
         sorted_x1, sorted_y1,sorted_z1 = (np.random.uniform(xmin, xmax),
                                       np.random.uniform(ymin, ymax),
-                                      np.random.uniform(0.0, zlim))
+                                      np.random.uniform(z_min, zlim))
         resultadox.append(sorted_x1)
         resultadoy.append(sorted_y1)
         resultadoz.append(sorted_z1)  
