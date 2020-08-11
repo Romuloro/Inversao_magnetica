@@ -42,11 +42,13 @@ def create_diretorio(dicionario, matriz):
     matriz.to_csv(pasta3, index = False, header = True)
 
 
-def reshape_matrix(dicionario):
+def reshape_matrix(X, Y, Z, ACTn, nx, ny):
     '''
     Criação de data frame para a organização dos dados.
-    
-    dicionario = dicionário com todos as entradas organizadas da seguinte forma.
+    As entradas da função é feita da forma clássica ou através de um dicionário que é descompactado.
+    O dicinário deve conter as chaves nomeadas de forma identica aos parâmetros de entrada da função.
+    Exemplo de entrada: reshape_matrix(**dicionario).
+
     dicionario = {'nx': número de observações no eixo X,
                   'ny': número de observações no eixo Y,
                   'X': observações no eixo X,
@@ -55,15 +57,7 @@ def reshape_matrix(dicionario):
                   'ACTn': volares da anomalia magnética calculada do corpo
                   }
     '''
-    
-    #Elementos da matriz:
-    X = dicionario.get('X')
-    Y = dicionario.get('Y')
-    Z = dicionario.get('Z')
-    ACTn = dicionario.get('ACTn')
-    ny = dicionario.get('ny')
-    nx = dicionario.get('nx')
-    #-----------------------------------
+
     #Reshape da Matriz:
     linha = nx * ny
     ACTn = numpy.reshape(ACTn, (linha, 1))

@@ -57,8 +57,12 @@ def plot_obs_3d(prism, size, view, x, y, z):
 
     plt.show()
     
-def creat_point (dicionario):
+def creat_point (n, x, y, z, deltay, deltaz, incl):
     '''
+    As entradas da função é feita da forma clássica ou através de um dicionário que é descompactado.
+    O dicinário deve conter as chaves nomeadas de forma identica aos parâmetros de entrada da função.
+    Exemplo de entrada: creat_point(**dicionario).
+
     dicionario = dicionário com todos as entradas organizadas da seguinte forma.
     dicionario = {'n': n, - número de interações
                   'x': [x1, x2], - primeiras coordenadas de x
@@ -68,14 +72,7 @@ def creat_point (dicionario):
                   'deltaz': 'deltaz', - valor de deltax
                   'incl': 'positivo' or 'negativo', - direção de mergulho da escada. Positivo(esquerda -> direta); Negativo(direta -> esquerda)}
     '''
-    n = dicionario.get('n')
-    xini = dicionario.get('x')
-    yini = dicionario.get('y')
-    zini = dicionario.get('z')
-    deltay = dicionario.get('deltay')
-    deltaz = dicionario.get('deltaz')
-    incl = dicionario.get('incl')
-    
+
     pointx = []
     pointy = []
     pointz = []
@@ -123,8 +120,12 @@ def vert_point (dicionario):
     
     return vert
 
-def create_aquisicao(dicionario):
+def create_aquisicao(nx, ny, xmin, xmax, ymin, ymax, z, color):
     '''
+    As entradas da função é feita da forma clássica ou através de um dicionário que é descompactado.
+    O dicinário deve conter as chaves nomeadas de forma identica aos parâmetros de entrada da função.
+    Exemplo de entrada: create_aquisicao(**dicionario).
+
     dicionario = dicionário com todos as entradas organizadas da seguinte forma.
     dicionario = {'nx': [nx], - número de observações em x
                   'ny': [ny], - número de observações em y
@@ -135,15 +136,7 @@ def create_aquisicao(dicionario):
                   'z': [z1], - altura de voo, em metros
                   'color': 'r', a cor escolhida para o plot da malha}
     '''
-    nx = dicionario.get('nx')
-    ny = dicionario.get('ny')
-    xmin = dicionario.get('xmin')
-    xmax = dicionario.get('xmax')
-    ymin = dicionario.get('ymin')
-    ymax = dicionario.get('ymax')
-    z = dicionario.get('z')
-    color = dicionario.get('color')
-    #----------------------------------------------------------------------------------------------------#
+
     x = numpy.linspace(xmin, xmax, nx, endpoint=True)
     y = numpy.linspace(ymin, ymax, ny, endpoint=True)
     #----------------------------------------------------------------------------------------------------#
@@ -156,4 +149,29 @@ def create_aquisicao(dicionario):
     plt.show()
     
     return x, y, X, Y, Z
-    
+
+def modelo_anomalia_3D(Yref, Xref, tfa_n_bolinhas, resulty, resultx, resultz, resultadoz):
+    """
+    Função com o objetivo de plotar todo o modelo 3D de bolinhas juntamente com a anomalia magnética
+    criada por elas.
+
+    As entradas da função é feita da forma clássica ou através de um dicionário que é descompactado.
+    O dicinário deve conter as chaves nomeadas de forma identica aos parâmetros de entrada da função.
+    Exemplo de entrada: modelo_anomalia_3D(**dicionario).
+
+    """
+
+    view = [190, 130]
+    fig = plt.figure(figsize=(15, 15))
+    ax = fig.gca(projection='3d')
+    plano = ax.contourf(Yref, Xref, tfa_n_bolinhas, offset=0, cmap=plt.cm.RdBu_r)
+    p = ax.scatter(resulty, resultx, resultz, c=resultadoz, depthshade=True, cmap='rainbow')
+    plt.xlim(-5000, 5000)
+    plt.ylim(-5000, 5000)
+    ax.set_xlabel('East (m)', fontsize=20)
+    ax.set_ylabel('North (m)', fontsize=20)
+    ax.set_zlabel('Depth (m)', fontsize=20)
+    plt.colorbar(plano, shrink=0.65)
+    plt.grid()
+    ax.view_init(view[0], view[1])
+    plt.show()
