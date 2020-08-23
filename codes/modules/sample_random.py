@@ -44,9 +44,9 @@ def sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n):
     resultadoz=[]
 #---------------------------------------------------------------------------------------------------------------------#
     for i in range(n):
-        sorted_x1, sorted_y1,sorted_z1 = (np.random.uniform(xmin, xmax),
-                                      np.random.uniform(ymin, ymax),
-                                      np.random.uniform(z_min, zlim))
+        sorted_x1, sorted_y1,sorted_z1 = (float("{0:.2f}".format(np.random.uniform(xmin, xmax))),
+                                      float("{0:.2f}".format(np.random.uniform(ymin, ymax))),
+                                      float("{0:.2f}".format(np.random.uniform(z_min, zlim))))
         resultadox.append(sorted_x1)
         resultadoy.append(sorted_y1)
         resultadoz.append(sorted_z1)  
@@ -80,20 +80,20 @@ def sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, hom
     mag=[]
 #---------------------------------------------------------------------------------------------------------------------#
     if homogeneo == True:
-        sorted_incl, sorted_decl, sorted_mag =(np.random.uniform(inclmax,inclmin),
-                                   np.random.uniform(declmax, declmin),
-                                   np.random.uniform(magmax, magmin))
-#---------------------------------------------------------------------------------------------------------------------#
-        for i in range(n):
+        sorted_incl, sorted_decl, sorted_mag =(float("{0:.2f}".format(np.random.uniform(inclmax,inclmin))),
+                                   float("{0:.2f}".format(np.random.uniform(declmax, declmin))),
+                                   float("{0:.2f}".format(np.random.uniform(magmax, magmin))))  
+#---------------------------------------------------------------------------------------------------------------------#        
+        for i in range(n):              
             incl.append(sorted_incl)
             decl.append(sorted_decl)
-            mag.append(sorted_mag)
+            mag.append(sorted_mag)       
 #---------------------------------------------------------------------------------------------------------------------#
     else:
         for i in range(n):
-            sorted_incl, sorted_decl, sorted_mag = (np.random.uniform(inclmax,inclmin),
-                                                    np.random.uniform(declmax, declmin),
-                                                    np.random.uniform(magmax, magmin))
+            sorted_incl, sorted_decl, sorted_mag =(float("{0:.2f}".format(np.random.uniform(inclmax,inclmin))),
+                                   float("{0:.2f}".format(np.random.uniform(declmax, declmin))),
+                                   float("{0:.2f}".format(np.random.uniform(magmax, magmin))))
             incl.append(sorted_incl)
             decl.append(sorted_decl)
             mag.append(sorted_mag)
