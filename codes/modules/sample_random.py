@@ -80,11 +80,11 @@ def sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, hom
     mag=[]
 #---------------------------------------------------------------------------------------------------------------------#
     if homogeneo == True:
-        sorted_incl, sorted_decl, sorted_mag =(float("{0:.2f}".format(np.random.uniform(inclmax,inclmin))),
-                                   float("{0:.2f}".format(np.random.uniform(declmax, declmin))),
-                                   float("{0:.2f}".format(np.random.uniform(magmax, magmin))))  
+        sorted_mag =(float("{0:.2f}".format(np.random.uniform(magmax, magmin))))  
 #---------------------------------------------------------------------------------------------------------------------#        
-        for i in range(n):              
+        for i in range(n):
+            sorted_incl, sorted_decl = (float("{0:.2f}".format(np.random.uniform(inclmax,inclmin))),
+                                   float("{0:.2f}".format(np.random.uniform(declmax, declmin))))
             incl.append(sorted_incl)
             decl.append(sorted_decl)
             mag.append(sorted_mag)       
