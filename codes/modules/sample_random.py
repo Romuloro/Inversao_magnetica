@@ -68,8 +68,8 @@ def sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, hom
                        magmax = Valor máximo da magnetização.
                        magmin = Valor mínimo da magnetização.
                        n - número de bolinhas desejadas.
-    :param homogeneo: True para valores de magnetização iguais para as n bolinhas.
-                      False é a opção default, onde os valores de magnetização é criada de forma randominca.
+    :param homogeneo: True para valores de inclinação, declinação e magnetização iguais para as n bolinhas.
+                      False é a opção default, onde os valores de inclinação, declinação e magnetização é criada de forma randômica.
     :return: incl - Lista com os valores de inclinação magnética.
              decl - Lista com os valores de declinação magnética.
              mag - Lista com os valores de magnetização.
@@ -80,11 +80,11 @@ def sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, hom
     mag=[]
 #---------------------------------------------------------------------------------------------------------------------#
     if homogeneo == True:
-        sorted_mag =(float("{0:.2f}".format(np.random.uniform(magmax, magmin))))  
+        sorted_incl, sorted_decl, sorted_mag =(float("{0:.2f}".format(np.random.uniform(inclmax,inclmin))),
+                                   float("{0:.2f}".format(np.random.uniform(declmax, declmin))),
+                                   float("{0:.2f}".format(np.random.uniform(magmax, magmin))))  
 #---------------------------------------------------------------------------------------------------------------------#        
         for i in range(n):
-            sorted_incl, sorted_decl = (float("{0:.2f}".format(np.random.uniform(inclmax,inclmin))),
-                                   float("{0:.2f}".format(np.random.uniform(declmax, declmin))))
             incl.append(sorted_incl)
             decl.append(sorted_decl)
             mag.append(sorted_mag)       
