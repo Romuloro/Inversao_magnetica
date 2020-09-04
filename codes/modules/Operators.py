@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import pandas as pd
 import sys
 a = sys.path.append('../modules/')  # endereco das funcoes implementadas por voce!
 import sphere, sample_random
@@ -94,20 +95,17 @@ def tournament_selection(pop, fit_cada):
     pop_1 = pop.copy()
     chosen = []
     capture_select = []
-    if int(0.2 * len(pop)) < 2:
-        print(f'Por favor faça uma população com mais de 10 indivíduos')
-    else:
-        for i in range(int(0.2 * len(pop))):
-            # ---------------------------- Escolhidos para o torneio ---------------------------------#
-            index_select = list(random.sample(range(0, len(pop_1)), k=(int(0.2 * len(pop)))))
-            capture = [index_select[i], fit_cada[index_select[i]]]
-            capture_select.append(capture)
-            # ---------------------------- Vencedor do torneio ---------------------------------#
-            escolhido = pop_1[min(capture_select)[0]]
-            # ------------------ Retirada do vencedor da população artificial ------------------------#
-            del (pop_1[min(capture_select)[0]])
-            # ---------------------------- Vencedores do torneio ---------------------------------#
-            chosen.append(escolhido)
+    for i in range(int(0.2 * len(pop))):
+        # ---------------------------- Escolhidos para o torneio ---------------------------------#
+        index_select = list(random.sample(range(0, len(pop_1)), k=(int(0.2 * len(pop)))))
+        capture = [index_select[i], fit_cada[index_select[i]]]
+        capture_select.append(capture)
+        # ---------------------------- Vencedor do torneio ---------------------------------#
+        escolhido = pop_1[min(capture_select)[0]]
+        # ------------------ Retirada do vencedor da população artificial ------------------------#
+        del (pop_1[min(capture_select)[0]])
+        # ---------------------------- Vencedores do torneio ---------------------------------#
+        chosen.append(escolhido)
 
     return chosen
 
@@ -159,20 +157,11 @@ def mutacao(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declma
 
 
 def elitismo(pop, filhos, fit_cada):
-    pop_fit = []
     n_fica = (len(pop) - len(filhos))
+    df = pd.DataFrame(fit_cada)
+    x = df.sort_values(0, ascending=True)
+    piores = x.index[n_fica:]
+    for index, pos in enumerate(piores):
+        pop[pos] = filhos[index]
 
-    for i in range(len(pop)):
-        fit_pop = [pop[i], fit_cada[i]]
-        pop_fit.append(fit_pop)
-        sort_pop = sorted(pop_fit, key=lambda pop_fit: pop_fit[:][1])
-
-    for i in range(len(sort_pop)):
-        del (sort_pop[i][1])
-
-    del (sort_pop[n_fica: len(pop)])
-    for i in range(len(filhos)):
-        new_individuo = filhos[i]
-        sort_pop.append(new_individuo)
-
-    return sort_pop
+    return pop

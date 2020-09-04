@@ -24,6 +24,34 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RunManager">
+    <configuration name="test_operators" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Inversao_magnetica" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/codes/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/codes/tests/test_operators.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.test_operators" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -40,9 +68,49 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="309" y="47" key="#Inspections/0.0.1366.738@0.0.1366.738" timestamp="1598961006023" />
-    <state x="184" y="14" key="SettingsEditor" timestamp="1598981031928">
+    <state x="506" y="122" key="#xdebugger.XInspectDialog" timestamp="1599228704980">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="184" y="14" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1598981031928" />
+    <state x="506" y="122" key="#xdebugger.XInspectDialog/0.0.1366.738@0.0.1366.738" timestamp="1599228704980" />
+    <state width="1345" height="204" key="GridCell.Tab.0.bottom" timestamp="1599243142899">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="204" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
+    <state width="1345" height="204" key="GridCell.Tab.0.center" timestamp="1599243142899">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="204" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
+    <state width="1345" height="204" key="GridCell.Tab.0.left" timestamp="1599243142899">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="204" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
+    <state width="1345" height="204" key="GridCell.Tab.0.right" timestamp="1599243142899">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="204" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
+    <state width="1345" height="204" key="GridCell.Tab.1.bottom" timestamp="1599243142899">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="204" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
+    <state width="1345" height="204" key="GridCell.Tab.1.center" timestamp="1599243142899">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="204" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
+    <state width="1345" height="204" key="GridCell.Tab.1.left" timestamp="1599243142899">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="204" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
+    <state width="1345" height="204" key="GridCell.Tab.1.right" timestamp="1599243142899">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="204" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
+    <state x="184" y="14" key="SettingsEditor" timestamp="1599226981525">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="184" y="14" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1599226981525" />
+    <state width="691" height="377" key="XDebugger.FullValuePopup" timestamp="1599234472123">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="691" height="377" key="XDebugger.FullValuePopup/0.0.1366.738@0.0.1366.738" timestamp="1599234472123" />
   </component>
 </project>
