@@ -125,13 +125,45 @@ def tfa_n_dots(incl, decl, mag, n, Xref, Yref, Zref, I, D, coodX, coodY, coodZ, 
     """
 
     sphere1 = []
-    n = n
     for i in range(n):
         sphere1.append((coodX[i], coodY[i], coodZ[i], raio))
 #---------------------------------------------------------------------------------------------------------------------#   
     tfa_n = 0
     for i in range(n):
         tfa_cada = sphere.sphere_tfa(Xref,Yref,Zref,sphere1[i],mag[i],I,D,incl[i],decl[i])
+        tfa_n += tfa_cada
+    
+    return tfa_n
+
+def tfa_n_dips(incl, decl, mag, n, Xref, Yref, Zref, I, D, spheres):
+    """
+    Função com o objetivo calcular a anomalia magnética de n bolinhas.
+
+    As entradas da função é feita da forma clássica ou através de um dicionário que é descompactado.
+    O dicinário deve conter as chaves nomeadas de forma identica aos parâmetros de entrada da função.
+    Exemplo de entrada: tfa_n_dots(**dicionario).
+
+    :param dicionario: incl - Lista com os valores de inclinação magnética.
+                       decl - Lista com os valores de declinação magnética.
+                       mag - Lista com os valores de magnetização.
+                       n - número de bolinhas desejadas.
+                       Xref - Matrix com as coordenadas em X.
+                       Yref - Matrix com as coordenadas em Y.
+                       Zref - Matrix com as coordenadas em Z.
+                       I - valor de inclinação regional.
+                       D - valor de declinação regional.
+                       spheres - Lista com os valores de coordenadas e raio de cada dipolo.
+                           spheres[0] - Coordenada no eixo X.
+                           spheres[1] - Coordenada no eixo Y.
+                           spheres[2] - Coordenada no eixo Z.
+                           spheres[3] - Raio do dipolo.
+    :return: Uma matrix com os valores de anomália magnética para cada ponto do local estudado.
+    """
+
+#---------------------------------------------------------------------------------------------------------------------#   
+    tfa_n = 0
+    for i in range(n):
+        tfa_cada = sphere.sphere_tfa(Xref,Yref,Zref,spheres[i],mag[i],I,D,incl[i],decl[i])
         tfa_n += tfa_cada
     
     return tfa_n

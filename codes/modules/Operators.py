@@ -77,8 +77,8 @@ def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
             mag.append(pop[i][j][5])
 
         tfa_dip = sample_random.tfa_n_dots(incl, decl, mag, len(pop[0]), X, Y, Z, I, D, coodx, coody, coodz, raio)
-        fit = sample_random.f_difference(tfa_n_dip, tfa_dip)
-        fit_cada.append(float("{0:.2f}".format(fit)))
+        fit_cada.append(float("{0:.2f}".format(sample_random.f_difference(tfa_n_dip, tfa_dip))))
+    
     return fit_cada
 
 
