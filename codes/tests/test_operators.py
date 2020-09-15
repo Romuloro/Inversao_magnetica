@@ -4,6 +4,7 @@ import random
 import sys
 import matplotlib.pyplot as plt
 import pandas as pd
+import time
 a = sys.path.append('../modules/')
 import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators
 
@@ -57,14 +58,14 @@ tfa_n_bolinhas = sample_random.tfa_n_dots(**balls_mag)
 
 plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 
-population = {'xmax': 10000.0,
-                'xmin': -10000.0,
-                'ymax': 10000.0,
-                'ymin': -10000.0,
+population = {'xmax': 5000.0,
+                'xmin': -5000.0,
+                'ymax': 5000.0,
+                'ymin': -5000.0,
                 'zlim': 150.0,
                 'z_min': 0.0,
-                'n_dip': 10,
-                'n_pop': 100,
+                'n_dip': 6,
+                'n_pop': 4,
                 'inclmax': -80.0,
                 'inclmin': 15.0,
                 'declmax': 172.0,
@@ -76,10 +77,10 @@ population = {'xmax': 10000.0,
 
 I, D = 30.0, 50.0
 
-filhos_mut = {'xmax': 10000.0,
-                'xmin': -10000.0,
-                'ymax': 10000.0,
-                'ymin': -10000.0,
+filhos_mut = {'xmax': 5000.0,
+                'xmin': -5000.0,
+                'ymax': 5000.0,
+                'ymin': -5000.0,
                 'zlim': 150.0,
                 'z_min': 0.0,
                 'n': 1,
@@ -91,6 +92,8 @@ filhos_mut = {'xmax': 10000.0,
                 'magmin': 0.5,
                 'homogeneo': True
                 }
+
+ini = time.time()
 
 populacao = Operators.create_population(**population)
 print("População Inicial: {}".format(populacao))
@@ -108,6 +111,9 @@ for t in range(1000):
     fit_cont = Operators.fit_value(X, Y, Z, I, D, populacao, tfa_n_bolinhas)
     min_fit = min(fit_cont)
     val_fit.append(min_fit)
+
+fim = time.time()
+print(f'Tempo do algoritmo genético: {fim-ini}')
 
 last_fit = Operators.fit_value(X, Y, Z, I, D, populacao, tfa_n_bolinhas)
 print(min(last_fit))

@@ -22,7 +22,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunManager">
     <configuration name="test_operators" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -72,45 +72,67 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="506" y="122" key="#xdebugger.XInspectDialog/0.0.1366.738@0.0.1366.738" timestamp="1599228704980" />
-    <state width="1345" height="204" key="GridCell.Tab.0.bottom" timestamp="1599243142899">
+    <state width="1345" height="183" key="GridCell.Tab.0.bottom" timestamp="1600121723810">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="204" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
-    <state width="1345" height="204" key="GridCell.Tab.0.center" timestamp="1599243142899">
+    <state width="1345" height="183" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1600121723810" />
+    <state width="1345" height="183" key="GridCell.Tab.0.center" timestamp="1600121723810">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="204" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
-    <state width="1345" height="204" key="GridCell.Tab.0.left" timestamp="1599243142899">
+    <state width="1345" height="183" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1600121723810" />
+    <state width="1345" height="183" key="GridCell.Tab.0.left" timestamp="1600121723809">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="204" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
-    <state width="1345" height="204" key="GridCell.Tab.0.right" timestamp="1599243142899">
+    <state width="1345" height="183" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1600121723809" />
+    <state width="1345" height="183" key="GridCell.Tab.0.right" timestamp="1600121723810">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="204" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
-    <state width="1345" height="204" key="GridCell.Tab.1.bottom" timestamp="1599243142899">
+    <state width="1345" height="183" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1600121723810" />
+    <state width="1345" height="183" key="GridCell.Tab.1.bottom" timestamp="1600121723811">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="204" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
-    <state width="1345" height="204" key="GridCell.Tab.1.center" timestamp="1599243142899">
+    <state width="1345" height="183" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1600121723811" />
+    <state width="1345" height="183" key="GridCell.Tab.1.center" timestamp="1600121723810">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="204" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
-    <state width="1345" height="204" key="GridCell.Tab.1.left" timestamp="1599243142899">
+    <state width="1345" height="183" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1600121723810" />
+    <state width="1345" height="183" key="GridCell.Tab.1.left" timestamp="1600121723810">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="204" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
-    <state width="1345" height="204" key="GridCell.Tab.1.right" timestamp="1599243142899">
+    <state width="1345" height="183" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1600121723810" />
+    <state width="1345" height="183" key="GridCell.Tab.1.right" timestamp="1600121723811">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="204" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1599243142899" />
-    <state x="184" y="14" key="SettingsEditor" timestamp="1599226981525">
+    <state width="1345" height="183" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1600121723811" />
+    <state x="184" y="14" key="SettingsEditor" timestamp="1600117571229">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="184" y="14" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1599226981525" />
+    <state x="184" y="14" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1600117571229" />
     <state width="691" height="377" key="XDebugger.FullValuePopup" timestamp="1599234472123">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="691" height="377" key="XDebugger.FullValuePopup/0.0.1366.738@0.0.1366.738" timestamp="1599234472123" />
+    <state x="245" y="98" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1600093516788">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="245" y="98" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.738@0.0.1366.738" timestamp="1600093516788" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/codes/tests/test_operators.py</url>
+          <line>105</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

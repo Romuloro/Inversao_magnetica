@@ -62,23 +62,18 @@ def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
     fit_cada = []
 
     for i in range(len(pop)):
-        coodx = []
-        coody = []
-        coodz = []
+        spheres = []
         incl = []
         decl = []
         mag = []
         for j in range(len(pop[0])):
-            coodx.append(pop[i][j][0])
-            coody.append(pop[i][j][1])
-            coodz.append(pop[i][j][2])
+            spheres.append((pop[i][j][0], pop[i][j][1], pop[i][j][2], raio))
             incl.append(pop[i][j][3])
             decl.append(pop[i][j][4])
             mag.append(pop[i][j][5])
 
-        tfa_dip = sample_random.tfa_n_dots(incl, decl, mag, len(pop[0]), X, Y, Z, I, D, coodx, coody, coodz, raio)
-        fit_cada.append(float("{0:.2f}".format(sample_random.f_difference(tfa_n_dip, tfa_dip))))
-    
+        tfa_dip = sample_random.tfa_n_dips(incl, decl, mag, len(pop[0]), X, Y, Z, I, D, spheres)
+        fit_cada.append(sample_random.f_difference(tfa_n_dip, tfa_dip))
     return fit_cada
 
 
@@ -94,16 +89,17 @@ def tournament_selection(pop, fit_cada):
 
     pop_1 = pop.copy()
     chosen = []
-    capture_select = []
     for i in range(int(0.2 * len(pop))):
+        capture_select = []
         # ---------------------------- Escolhidos para o torneio ---------------------------------#
         index_select = list(random.sample(range(0, len(pop_1)), k=(int(0.2 * len(pop)))))
-        capture = [index_select[i], fit_cada[index_select[i]]]
-        capture_select.append(capture)
+        for j in range(int(0.2 * len(pop))):
+            capture = [fit_cada[index_select[j]], index_select[j]]
+            capture_select.append(capture)
         # ---------------------------- Vencedor do torneio ---------------------------------#
-        escolhido = pop_1[min(capture_select)[0]]
+        escolhido = pop_1[min(capture_select[:])[1]]
         # ------------------ Retirada do vencedor da população artificial ------------------------#
-        del (pop_1[min(capture_select)[0]])
+        del (pop_1[min(capture_select[:])[1]])
         # ---------------------------- Vencedores do torneio ---------------------------------#
         chosen.append(escolhido)
 
@@ -130,28 +126,28 @@ def crossover(pais_torneio):
 def mutacao(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo):
 
     prob_mut = 0.01
-    for rand_mut, dipolo in enumerate(filho):
+    for index, rand_mut in enumerate(filho):
         rand_mut = random.random()
         if prob_mut > rand_mut:
-            n_select = random.randint(0, (len(filho) - 1))
             dip_select = random.randint(0, (len(filho[0]) - 1))
             param_select = random.randint(0, (len(filho[0][0]) - 1))
             if param_select <= 2:
                 coodX, coodY, coodZ = sample_random.sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n)
                 if param_select == 0:
-                    filho[n_select][dip_select][param_select] = float(coodX[0])
+                    filho[index][dip_select][param_select] = float(coodX[0])
                 elif param_select == 1:
-                    filho[n_select][dip_select][param_select] = float(coodY[0])
+                    filho[index][dip_select][param_select] = float(coodY[0])
                 elif param_select == 2:
-                    filho[n_select][dip_select][param_select] = float(coodZ[0])
+                    filho[index][dip_select][param_select] = float(coodZ[0])
             else:
-                incl, decl, mag = sample_random.sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo)
+                incl, decl, mag = sample_random.sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n,
+                                                                  homogeneo)
                 if param_select == 3:
-                    filho[n_select][dip_select][param_select] = float(incl[0])
+                    filho[index][dip_select][param_select] = float(incl[0])
                 elif param_select == 4:
-                    filho[n_select][param_select] = float(decl[0])
+                    filho[index][dip_select][param_select] = float(decl[0])
                 elif param_select == 5:
-                    filho[n_select][dip_select][param_select] = float(mag[0])
+                    filho[index][dip_select][param_select] = float(mag[0])
 
     return filho
 
