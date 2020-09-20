@@ -31,17 +31,21 @@ def create_population(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, dec
 
     :return pop: Lista com n indivíduos/dipolos criados de forma randômica.
     """
-    pop = []
-    n_par = 6
-    for j in range(n_pop):
-        individuo = np.zeros((n_dip, n_par))
-        coodX, coodY, coodZ = sample_random.sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n_dip)
-        incl, decl, mag = sample_random.sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n_dip, homogeneo)
-        for i in range(n_dip):
-            individuo[i][0], individuo[i][1], individuo[i][2], individuo[i][3], individuo[i][4], individuo[i][5] = coodX[i], coodY[i], coodZ[i], incl[i], decl[i], mag[i]
-        pop.append(individuo)
-    
-    return pop
+    if n_pop >= 10:
+        pop = []
+        n_par = 6
+        for j in range(n_pop):
+            individuo = np.zeros((n_dip, n_par))
+            coodX, coodY, coodZ = sample_random.sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n_dip)
+            incl, decl, mag = sample_random.sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n_dip, homogeneo)
+            for i in range(n_dip):
+                individuo[i][0], individuo[i][1], individuo[i][2], individuo[i][3], individuo[i][4], individuo[i][5] = coodX[i], coodY[i], coodZ[i], incl[i], decl[i], mag[i]
+            pop.append(individuo)
+        return pop
+    else:
+        return print('Por favor. Coloque o número de indivíduos maior ou igual a 10')
+
+
 
 
 def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
@@ -117,7 +121,7 @@ def crossover(pais_torneio):
 
     for j in range(n_filhos):
         num = (prob_pai * pai[j] + prob_mae * mae[j])
-        filho = num / den
+        filho = num / den # Verificar se os n filhos estão dentro dos limites de busca.
         filhos.append(filho)
 
     return filhos
@@ -129,8 +133,8 @@ def mutacao(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declma
     for index, rand_mut in enumerate(filho):
         rand_mut = random.random()
         if prob_mut > rand_mut:
-            dip_select = random.randint(0, (len(filho[0]) - 1))
-            param_select = random.randint(0, (len(filho[0][0]) - 1))
+            dip_select = random.randint(0, (len(filho[0]) - 1)) #Seleção qual dipolo será mutado.
+            param_select = random.randint(0, (len(filho[0][0]) - 1)) #Selecão qual parâmetro será mutado.
             if param_select <= 2:
                 coodX, coodY, coodZ = sample_random.sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n)
                 if param_select == 0:
@@ -151,6 +155,41 @@ def mutacao(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declma
 
     return filho
 
+def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo):
+
+    prob_mut = 0.01
+    for index, rand_mut in enumerate(filho):
+        rand_mut = random.random()
+        if prob_mut > rand_mut:
+            dip_select = random.randint(0, (len(filho[0]) - 1)) #Seleção qual dipolo será mutado.
+            param_select = random.randint(0, (len(filho[0][0]) - 1)) #Selecão qual parâmetro será mutado.
+            if param_select <= 2:
+                coodX, coodY, coodZ = sample_random.sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n)
+                if param_select == 0:
+                    filho[index][dip_select][param_select] = float(coodX[0])
+                elif param_select == 1:
+                    filho[index][dip_select][param_select] = float(coodY[0])
+                elif param_select == 2:
+                    filho[index][dip_select][param_select] = float(coodZ[0])
+            else:
+                incl, decl, mag = sample_random.sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n,
+                                                                  homogeneo)
+                if homogeneo == True:
+                    if param_select == 3:
+                        filho[index][:][param_select] = float(incl[0])
+                    elif param_select == 4:
+                        filho[index][:][param_select] = float(decl[0])
+                    elif param_select == 5:
+                        filho[index][:][param_select] = float(mag[0])
+                else:
+                    if param_select == 3:
+                        filho[index][dip_select][param_select] = float(incl[0])
+                    elif param_select == 4:
+                        filho[index][dip_select][param_select] = float(decl[0])
+                    elif param_select == 5:
+                        filho[index][dip_select][param_select] = float(mag[0])
+
+    return filho
 
 def elitismo(pop, filhos, fit_cada):
     n_fica = (len(pop) - len(filhos))

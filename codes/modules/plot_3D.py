@@ -79,19 +79,19 @@ def creat_point (n, x, y, z, deltay, deltaz, incl):
     
     # Criação dos pontos em X
     for i in range(n):
-        pointx.extend([xini[0],xini[1]])
+        pointx.extend([x[0],x[1]])
 
     # Criação dos pontos em Z
     for i in range(n):
-        pointz.extend([zini[0]+i*deltaz/2,zini[1]+i*deltaz/2])
+        pointz.extend([z[0]+i*deltaz/2,z[1]+i*deltaz/2])
     
     # Criação dos pontos em Y
     if incl == 'positivo':
         for i in range(n):
-            pointy.extend([yini[0]+i*deltay/2,yini[1]+i*deltay/2])
+            pointy.extend([y[0]+i*deltay/2,y[1]+i*deltay/2])
     else:
         for i in range(n):
-            pointy.extend([yini[0]-i*deltay/2,yini[1]-i*deltay/2])
+            pointy.extend([y[0]-i*deltay/2,y[1]-i*deltay/2])
     
     return pointx, pointy, pointz
 
