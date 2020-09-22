@@ -155,6 +155,7 @@ def mutacao(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declma
 
     return filho
 
+
 def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo):
 
     prob_mut = 0.01
@@ -176,11 +177,11 @@ def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, 
                                                                   homogeneo)
                 if homogeneo == True:
                     if param_select == 3:
-                        filho[index][:][param_select] = float(incl[0])
+                        filho[index][:, param_select] = float(incl[0])
                     elif param_select == 4:
-                        filho[index][:][param_select] = float(decl[0])
+                        filho[index][:, param_select] = float(decl[0])
                     elif param_select == 5:
-                        filho[index][:][param_select] = float(mag[0])
+                        filho[index][:, param_select] = float(mag[0])
                 else:
                     if param_select == 3:
                         filho[index][dip_select][param_select] = float(incl[0])

@@ -89,7 +89,7 @@ population = {'xmax': 5000.0,
                 'homogeneo': True
                 }
 
-I, D = 30.0, 50.0
+I, D = -30.0, -23.0
 
 filhos_mut = {'xmax': 5000.0,
                 'xmin': -5000.0,
@@ -98,10 +98,10 @@ filhos_mut = {'xmax': 5000.0,
                 'zlim': 1100.0,
                 'z_min': 900.0,
                 'n': 1,
-                'inclmax': -80.0,
-                'inclmin': 15.0,
-                'declmax': 172.0,
-                'declmin': -15.0,
+                'inclmax': -40.0,
+                'inclmin': -20.0,
+                'declmax': -20.0,
+                'declmin': 0.0,
                 'magmax': 5.0,
                 'magmin': 0.5,
                 'homogeneo': True
