@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import time
 a = sys.path.append('../modules/')
-import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators
+import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators, aux_operators
 
 acquisition = {'nx': 100,
                   'ny': 100,
@@ -115,13 +115,16 @@ print("\n")
 
 val_fit = []
 ind_better = []
+anomaly_better = []
 
 for t in range(15000):
-    fit_ = Operators.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
+    fit_ = Operators.fit_value_v2(X, Y, Z, I, D, populacao, anomaly_cubo)
     min_fit = fit_.index(min(fit_))
     ind_better.append(populacao[min_fit])
+    anomaly = aux_operators.caculation_onlyone_anomaly(X, Y, Z, I, D, populacao[min_fit])
+    anomaly_better.append(anomaly)
     pais_ = Operators.tournament_selection(populacao, fit_)
-    filho_ = Operators.crossover(pais_)
+    filho_ = Operators.crossover_eletista(pais_, X, Y, Z, I, D, anomaly_cubo)
     filho_ = Operators.mutacao_vhomo(filho_, **filhos_mut)
     populacao = Operators.elitismo(populacao, filho_, fit_)
 

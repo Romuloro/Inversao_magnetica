@@ -3,7 +3,7 @@ import random
 import pandas as pd
 import sys
 a = sys.path.append('../modules/')  # endereco das funcoes implementadas por voce!
-import sphere, sample_random
+import sphere, sample_random, aux_operators
 
 
 def create_population(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n_dip, n_pop, homogeneo):
@@ -81,6 +81,26 @@ def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
     return fit_cada
 
 
+def fit_value_v2(X, Y, Z, I, D, pop, tfa_n_dip):
+    """
+    Função que calcula o fitness de cada indivíduo da população.
+
+    :param X: Pontos de observação na coordenadas X.
+    :param Y: Pontos de observação na coordenadas Y.
+    :param Z: Pontos de observação na coordenadas Z.
+    :param I: Inclinação magnética regional.
+    :param D: Declinação magnética regional.
+    :param pop: População com n indivíduos.
+    :param tfa_n_dip: Anomalia magnética referência.
+
+    :return fit_cada: Lista com o valor de fitness de cara indivíduo da população.
+    """
+    fit_cada = []
+    anomalia = aux_operators.caculation_anomaly(X, Y, Z, I, D, pop)
+    for i in range(len(pop)):
+        fit_cada.append(sample_random.f_difference(tfa_n_dip, anomalia[i]))
+    return fit_cada
+
 def tournament_selection(pop, fit_cada):
     """
     Função com o objetivo de selecionar os futuros pais, pelo dinâmica do Torneio.
@@ -126,6 +146,19 @@ def crossover(pais_torneio):
 
     return filhos
 
+def crossover_eletista(pais_torneio,  X, Y, Z, I, D, tfa_n_bolinhas):
+    filhos = []
+    n_filhos = int(len(pais_torneio) / 2)
+    pai = np.array(pais_torneio[0:n_filhos])
+    mae = np.array(pais_torneio[n_filhos:len(pais_torneio)])
+    prob_pai, prob_mae, den = aux_operators.definition_prob(pais_torneio, X, Y, Z, I, D, n_filhos, tfa_n_bolinhas)
+
+    for j in range(n_filhos):
+        num = (prob_pai[j] * pai[j] + prob_mae[j] * mae[j])
+        filho = num / den[j] # Verificar se os n filhos estão dentro dos limites de busca.
+        filhos.append(filho)
+
+    return filhos
 
 def mutacao(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo):
 

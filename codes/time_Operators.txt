@@ -1,4 +1,4 @@
-Time in 07/09/2020
+Time in 07/09/2020  ERRADO
 
 create_population: 1.19 ms per loop
 
@@ -14,7 +14,7 @@ elitismo: 44.5 µs per loop
 
 
 
-Time in 08/09/2020
+Time in 08/09/2020  ERRADO
 
 create_population: 1.19 ms per loop
 
@@ -27,3 +27,19 @@ crossover: 11 µs per loop
 mutacao: 1.05 µs per loop
 
 elitismo: 44.5 µs per loop
+
+Time in 24/09/2020
+
+create_population: 684 µs ± 74.4 µs per loop
+
+fit_value: 78.2 ms ± 5.54 ms per loop**
+
+tournament_selection: 22.8 µs ± 4.39 µs per loop
+
+crossover: 23.5 µs ± 5.55 µs per loop
+
+crossover_eletista: 45 ms ± 2.73 ms per loop
+
+mutacao: 1.07 µs ± 71 ns per loop
+
+elitismo: 2.46 ms ± 231 µs per loop per loop
