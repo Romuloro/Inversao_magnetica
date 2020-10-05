@@ -133,5 +133,5 @@ for t in range(15000):
 fim = time.time()
 print(f'Tempo do algoritmo genético: {fim-ini}')
 
-last_fit = Operators.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
+last_fit = Operators.fit_value_v2(X, Y, Z, I, D, populacao, anomaly_cubo)
 print(min(last_fit))

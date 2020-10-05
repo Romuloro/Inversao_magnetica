@@ -1,3 +1,11 @@
+# --------------------------------------------------------------------------------------------------
+# Title: Mag Codes
+# Author: Rômulo Rodrigues de Oliveira
+# Description: Source codes
+# Collaboratores: Rodrigo Bijani
+# -----------------------------------------------------------------------------------------
+
+
 import numpy as np
 import random
 import pandas as pd
@@ -77,7 +85,7 @@ def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
             mag.append(pop[i][j][5])
 
         tfa_dip = sample_random.tfa_n_dips(incl, decl, mag, len(pop[0]), X, Y, Z, I, D, spheres)
-        fit_cada.append(sample_random.f_difference(tfa_n_dip, tfa_dip))
+        fit_cada.append(aux_operators.f_difference(tfa_n_dip, tfa_dip))
     return fit_cada
 
 
@@ -96,9 +104,9 @@ def fit_value_v2(X, Y, Z, I, D, pop, tfa_n_dip):
     :return fit_cada: Lista com o valor de fitness de cara indivíduo da população.
     """
     fit_cada = []
-    anomalia = aux_operators.caculation_anomaly(X, Y, Z, I, D, pop)
+    anomalia = aux_operators.caculation_anomaly(X, Y, Z, I, D, pop) #Cálculo da anomalia
     for i in range(len(pop)):
-        fit_cada.append(sample_random.f_difference(tfa_n_dip, anomalia[i]))
+        fit_cada.append(aux_operators.f_difference(tfa_n_dip, anomalia[i])) #Cálculo do fit
     return fit_cada
 
 def tournament_selection(pop, fit_cada):
@@ -151,11 +159,12 @@ def crossover_eletista(pais_torneio,  X, Y, Z, I, D, tfa_n_bolinhas):
     n_filhos = int(len(pais_torneio) / 2)
     pai = np.array(pais_torneio[0:n_filhos])
     mae = np.array(pais_torneio[n_filhos:len(pais_torneio)])
+    # Sorteio das probabilidades de forma randômica.
     prob_pai, prob_mae, den = aux_operators.definition_prob(pais_torneio, X, Y, Z, I, D, n_filhos, tfa_n_bolinhas)
 
     for j in range(n_filhos):
         num = (prob_pai[j] * pai[j] + prob_mae[j] * mae[j])
-        filho = num / den[j] # Verificar se os n filhos estão dentro dos limites de busca.
+        filho = num / den[j] # Cálculo do filho
         filhos.append(filho)
 
     return filhos
@@ -192,7 +201,7 @@ def mutacao(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declma
 def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo):
 
     prob_mut = 0.01
-    for index, rand_mut in enumerate(filho):
+    for index, rand_mut in enumerate(filho): #Index = qual será o indivíduo que será mutado.
         rand_mut = random.random()
         if prob_mut > rand_mut:
             dip_select = random.randint(0, (len(filho[0]) - 1)) #Seleção qual dipolo será mutado.
@@ -228,9 +237,9 @@ def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, 
 def elitismo(pop, filhos, fit_cada):
     n_fica = (len(pop) - len(filhos))
     df = pd.DataFrame(fit_cada)
-    x = df.sort_values(0, ascending=True)
+    x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
     piores = x.index[n_fica:]
-    for index, pos in enumerate(piores):
+    for index, pos in enumerate(piores): #Substituir os piores indivíduos pelos filhos
         pop[pos] = filhos[index]
 
     return pop
