@@ -24,7 +24,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Material_peruano/PFG_FallaLuza" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
-  <component name="RunManager" selected="Python.test_operators_crossover_mutation">
+  <component name="RunManager" selected="Python.test_operators_06_10_2020">
     <configuration name="test_operators" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Inversao_magnetica" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -38,6 +38,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/codes/tests/test_operators.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_operators_06_10_2020" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Inversao_magnetica" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/codes/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/codes/tests/test_operators_06_10_2020.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -69,6 +90,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_operators_06_10_2020" />
         <item itemvalue="Python.test_operators_crossover_mutation" />
         <item itemvalue="Python.test_operators" />
       </list>
@@ -90,6 +112,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="309" y="47" key="#Inspections/0.0.1366.738@0.0.1366.738" timestamp="1600621843558" />
+    <state x="363" y="105" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1603108686721">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="363" y="105" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1603108686721" />
     <state x="506" y="122" key="#xdebugger.XInspectDialog" timestamp="1599228704980">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -98,22 +124,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1601554886435" />
-    <state width="1345" height="132" key="GridCell.Tab.0.bottom" timestamp="1600731190098">
+    <state width="1345" height="172" key="GridCell.Tab.0.bottom" timestamp="1603131213746">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1600731190098" />
-    <state width="1345" height="132" key="GridCell.Tab.0.center" timestamp="1600731190098">
+    <state width="1345" height="172" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1603131213746" />
+    <state width="1345" height="172" key="GridCell.Tab.0.center" timestamp="1603131213746">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1600731190098" />
-    <state width="1345" height="132" key="GridCell.Tab.0.left" timestamp="1600731190098">
+    <state width="1345" height="172" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1603131213746" />
+    <state width="1345" height="172" key="GridCell.Tab.0.left" timestamp="1603131213746">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1600731190098" />
-    <state width="1345" height="132" key="GridCell.Tab.0.right" timestamp="1600731190098">
+    <state width="1345" height="172" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1603131213746" />
+    <state width="1345" height="172" key="GridCell.Tab.0.right" timestamp="1603131213746">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="132" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1600731190098" />
+    <state width="1345" height="172" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1603131213746" />
     <state width="1345" height="132" key="GridCell.Tab.1.bottom" timestamp="1600731190098">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

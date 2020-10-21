@@ -10,7 +10,7 @@ import numpy as np
 # Import my libraries
 import auxiliars as aux
 
-def sphere_bx(x, y, z, sphere, mag, incs, decs):
+def sphere_bx(x, y, z, sphere, radius, mag, incs, decs):
 
     '''    
     It is a Python implementation for a Fortran subroutine contained in Blakely (1995). 
@@ -45,7 +45,7 @@ def sphere_bx(x, y, z, sphere, mag, incs, decs):
     
     #Setting some constants
     xe, ye, ze = sphere[0], sphere[1], sphere[2]
-    radius = sphere[3]
+    #radius = sphere[3]
     
     # Distances in all axis directions - x, y e z
     rx = x - xe
@@ -71,7 +71,7 @@ def sphere_bx(x, y, z, sphere, mag, incs, decs):
     # Return the final output
     return bx
 
-def sphere_by(x, y, z, sphere, mag, incs, decs):
+def sphere_by(x, y, z, sphere, radius, mag, incs, decs):
 
     '''    
     It is a Python implementation for a Fortran subroutine contained in Blakely (1995). It 
@@ -106,7 +106,7 @@ def sphere_by(x, y, z, sphere, mag, incs, decs):
 
     #Setting some constants
     xe, ye, ze = sphere[0], sphere[1], sphere[2]
-    radius = sphere[3]
+    #radius = sphere[3]
     
     # Distances in all axis directions - x, y e z
     rx = x - xe
@@ -132,7 +132,7 @@ def sphere_by(x, y, z, sphere, mag, incs, decs):
     # Return the final output
     return by
 
-def sphere_bz(x, y, z, sphere, mag, incs, decs):
+def sphere_bz(x, y, z, sphere, radius, mag, incs, decs):
 
     '''    
     It is a Python implementation for a Fortran subroutine contained in Blakely (1995). It 
@@ -167,7 +167,7 @@ def sphere_bz(x, y, z, sphere, mag, incs, decs):
     
     #Setting some constants
     xe, ye, ze = sphere[0], sphere[1], sphere[2]
-    radius = sphere[3]
+    #radius = sphere[3]
     
     # Distances in all axis directions - x, y e z
     rx = x - xe
@@ -240,7 +240,7 @@ def sphere_tf(x, y, z, sphere, mag, F, incf, decf, incs = None, decs = None):
     # Return the final output
     return tf
 
-def sphere_tfa(x, y, z, sphere, mag, incf, decf, incs = None, decs = None):
+def sphere_tfa(x, y, z, sphere, radius, mag, incf, decf, incs = None, decs = None):
 
     '''    
     This function computes the total field anomaly produced due to a solid sphere, which has 
@@ -278,9 +278,9 @@ def sphere_tfa(x, y, z, sphere, mag, incf, decf, incs = None, decs = None):
         decs = decf
     
     # Computing the components and the regional field
-    bx = sphere_bx(x, y, z, sphere, mag, incs, decs)
-    by = sphere_by(x, y, z, sphere, mag, incs, decs)
-    bz = sphere_bz(x, y, z, sphere, mag, incs, decs)
+    bx = sphere_bx(x, y, z, sphere, radius, mag, incs, decs)
+    by = sphere_by(x, y, z, sphere, radius, mag, incs, decs)
+    bz = sphere_bz(x, y, z, sphere, radius, mag, incs, decs)
     
     # Final value for the total field anomaly
     tf_aprox = fx*bx + fy*by + fz*bz
