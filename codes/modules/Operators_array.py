@@ -74,7 +74,7 @@ def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
     return fit_cada, anomalia
 
 
-def tournament_selection(pop, fit_cada):
+def tournament_selection(pop, fit_cada, p_pop = 0.25):
     """
     Função com o objetivo de selecionar os futuros pais, pelo dinâmica do Torneio.
 
@@ -87,7 +87,7 @@ def tournament_selection(pop, fit_cada):
     pop_1 = pop.copy()
     chosen = []
     select = []
-    for i in range(int(0.2 * len(pop))):
+    for i in range(int(p_pop * len(pop))):
         capture_select = []
         # ---------------------------- Escolhidos para o torneio ---------------------------------#
         index_select = list(random.sample(range(0, len(pop_1)), k=(int(0.2 * len(pop)))))
@@ -111,11 +111,15 @@ def crossover_elitista(pais_torneio, escolhidos, fit):
     pai = np.array(pais_torneio[0:n_filhos])
     mae = np.array(pais_torneio[n_filhos:len(pais_torneio)])
     # Sorteio das probabilidades de forma randômica.
-    prob_pai, prob_mae, den = aux_operators_array.definition_prob(pais_torneio, escolhidos, fit, n_filhos)
+    #prob_pai, prob_mae, den = aux_operators_array.definition_prob(pais_torneio, escolhidos, fit, n_filhos)
+    prob_pai = random.random()
+    prob_mae = random.random()
+    den = prob_mae + prob_pai
 
     for j in range(n_filhos):
-        num = (prob_pai[j] * pai[j] + prob_mae[j] * mae[j])
-        filho = num / den[j] # Cálculo do filho
+        num = (prob_pai * pai[j] + prob_mae * mae[j])
+        filho = num / den # Cálculo do filho
+        print('Filho=', j, filho)
         filhos.append(filho)
 
     return filhos
@@ -123,7 +127,7 @@ def crossover_elitista(pais_torneio, escolhidos, fit):
 
 def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo):
 
-    prob_mut = 0.01
+    prob_mut = 0.05
     for index, rand_mut in enumerate(filho): #Index = qual será o indivíduo que será mutado.
         rand_mut = random.random()
         if prob_mut > rand_mut:
@@ -150,7 +154,8 @@ def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, 
 
 
 def elitismo(pop, filhos, fit_cada):
-    n_fica = (len(pop) - len(filhos))
+    n_fica = int(len(pop) - (len(filhos)-(0.2*len(pop))))
+    #print(n_fica)
     df = pd.DataFrame(fit_cada)
     x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
     piores = x.index[n_fica:]
@@ -159,3 +164,41 @@ def elitismo(pop, filhos, fit_cada):
 
     return pop
 
+def crossover_polyamory(pais_torneio, escolhidos, fit):
+    filhos = []
+    n_filhos = int(len(pais_torneio) / 2)
+    pai = np.array(pais_torneio[0:n_filhos])
+    inv_pai = pai[::-1]
+    mae = np.array(pais_torneio[n_filhos:len(pais_torneio)])
+    # Sorteio das probabilidades de forma randômica.
+    #prob_pai, prob_mae, den = aux_operators_array.definition_prob(pais_torneio, escolhidos, fit, n_filhos)
+    probs = np.random.rand(2,3)
+
+    for j in range(n_filhos):
+        num0 = (probs[0,0] * pai[j] + probs[0,1] * mae[j])
+        filho0 = num0 / (probs[0,0] + probs[0,1]) # Cálculo do filho
+        #print('Filho=', j, filho)
+        num1 = (probs[1,0] * pai[j] + probs[1,1] * mae[j])
+        filho1 = num1 / (probs[1,0] + probs[1,1]) # Cálculo do filho
+        
+        num2 = (probs[0,0] * inv_pai[j] + probs[0,1] * mae[j])
+        filho2 = num2 / (probs[0,0] + probs[0,1])
+        
+        num3 = (probs[1,0] * inv_pai[j] + probs[1,1] * mae[j])
+        filho3 = num3 / (probs[1,0] + probs[1,1])
+        
+        num4 = (probs[0,2] * inv_pai[j] + probs[1,2] * mae[j])
+        filho4 = num4 / (probs[0,2] + probs[1,2])
+        
+        num5 = (probs[0,1] * inv_pai[j] + probs[1,2] * mae[j])
+        filho5 = num5 / (probs[0,1] + probs[1,2])
+        
+        num6 = (probs[1,1] * inv_pai[j] + probs[0,2] * mae[j])
+        filho6 = num6 / (probs[1,1] + probs[0,2])
+        
+        num7 = (probs[0,0] * inv_pai[j] + probs[1,2] * mae[j])
+        filho7 = num7 / (probs[0,0] + probs[1,2])
+        
+        filhos += [filho0, filho1, filho2, filho3, filho4, filho5, filho6, filho7]
+
+    return filhos

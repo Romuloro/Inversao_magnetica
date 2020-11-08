@@ -44,7 +44,7 @@ def tfa_n_dips(incl, decl, mag, n, Xref, Yref, Zref, I, D, spheres):
 
     # ---------------------------------------------------------------------------------------------------------------------#
     tfa_n = 0
-    raio = 100.0
+    raio = 500.0
     for i in range(n):
         tfa_cada = sphere.sphere_tfa(Xref, Yref, Zref, spheres[i], raio, mag, I, D, incl, decl)
         tfa_n += tfa_cada
