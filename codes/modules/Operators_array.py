@@ -154,15 +154,17 @@ def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, 
 
 
 def elitismo(pop, filhos, fit_cada):
-    n_fica = int(len(pop) - (len(filhos)-(0.2*len(pop))))
-    #print(n_fica)
+    n_pop = pop.copy()
+    n_fica = int(len(pop) - (len(filhos)-(0.8*len(pop))))
+    #print('N fica é =', n_fica)
     df = pd.DataFrame(fit_cada)
     x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
     piores = x.index[n_fica:]
     for index, pos in enumerate(piores): #Substituir os piores indivíduos pelos filhos
-        pop[pos] = filhos[index]
+        n_pop[pos] = filhos[index]
 
-    return pop
+    return n_pop
+
 
 def crossover_polyamory(pais_torneio, escolhidos, fit):
     filhos = []
@@ -199,6 +201,12 @@ def crossover_polyamory(pais_torneio, escolhidos, fit):
         num7 = (probs[0,0] * inv_pai[j] + probs[1,2] * mae[j])
         filho7 = num7 / (probs[0,0] + probs[1,2])
         
-        filhos += [filho0, filho1, filho2, filho3, filho4, filho5, filho6, filho7]
+        num8 = (probs[1,1] * pai[j] + probs[1,2] * mae[j])
+        filho8 = num8 / (probs[1,1] + probs[1,2])
+        
+        num9 = (probs[0,2] * pai[j] + probs[1,2] * mae[j])
+        filho9 = num9 / (probs[0,2] + probs[1,2])
+        
+        filhos += [filho0, filho1, filho2, filho3, filho4, filho5, filho6, filho7, filho8, filho9]
 
     return filhos
