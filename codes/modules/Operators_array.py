@@ -210,3 +210,47 @@ def crossover_polyamory(pais_torneio, escolhidos, fit):
         filhos += [filho0, filho1, filho2, filho3, filho4, filho5, filho6, filho7, filho8, filho9]
 
     return filhos
+
+
+def crossover_mix_doubles(pais_torneio, escolhidos, fit):
+    filhos = []
+    n_filhos = int(len(pais_torneio) / 2)
+    n1_4_filhos = int(len(pais_torneio)/4)
+    pai = np.array(pais_torneio[0:n_filhos])
+    inv_pai = pai[::-1]
+    mae = np.array(pais_torneio[n_filhos:len(pais_torneio)])
+    m_pai = np.array(pais_torneio[n1_4_filhos:n_filhos])
+    m_mae = np.array(pais_torneio[n_filhos:(n_filhos+n1_4_filhos)])
+    m_pai = np.concatenate((m_pai, m_mae), axis=0)
+    # Sorteio das probabilidades de forma randômica.
+    probs = np.random.rand(4)
+
+    for j in range(n_filhos):
+        num0 = (probs[0] * pai[j] + probs[1] * mae[j])
+        filho0 = num0 / (probs[0] + probs[1]) # Cálculo do filho
+        #print('Filho=', j, filho)
+        num1 = (probs[2] * pai[j] + probs[3] * mae[j])
+        filho1 = num1 / (probs[2] + probs[3]) # Cálculo do filho
+        
+        num2 = (probs[0] * inv_pai[j] + probs[1] * mae[j])
+        filho2 = num2 / (probs[0] + probs[1])
+        
+        num3 = (probs[2] * inv_pai[j] + probs[3] * mae[j])
+        filho3 = num3 / (probs[2] + probs[3])
+        
+        num4 = (probs[0] * pai[j] + probs[1] * m_pai[j])
+        filho4 = num4 / (probs[0] + probs[1])
+        
+        num5 = (probs[2] * pai[j] + probs[3] * m_pai[j])
+        filho5 = num5 / (probs[2] + probs[3])
+        
+        num6 = (probs[0] * mae[j] + probs[1] * m_pai[j])
+        filho6 = num6 / (probs[0] + probs[1])
+        
+        num7 = (probs[2] * mae[j] + probs[3] * m_pai[j])
+        filho7 = num7 / (probs[2] + probs[3])
+        
+        
+        filhos += [filho0, filho1, filho2, filho3, filho4, filho5, filho6, filho7]
+
+    return filhos
