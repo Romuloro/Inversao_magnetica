@@ -25,14 +25,14 @@ data_cubo = pd.read_table('Logfile/30_10_2020_11_59/data_mag.cvs', sep =',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
 
-'''plt.figure(figsize=(9,10))
+plt.figure(figsize=(9,10))
 plt.contourf(Y, X, anomaly_cubo, 20, cmap = plt.cm.RdBu_r)
 plt.title('Anomalia de Campo Total(nT)', fontsize = 20)
 plt.xlabel('East (m)', fontsize = 20)
 plt.ylabel('North (m)', fontsize = 20)
 plt.colorbar()
 #plt.savefig('prisma_anomalia.pdf', format='pdf')
-plt.show()'''
+plt.show()
 
 
 #plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
@@ -76,7 +76,7 @@ ini = time.time()
 
 populacao = Operators_array.create_population(**population)
 #print("População Inicial: {}".format(populacao))
-print("\n")
+#print("\n")
 
 val_fit = []
 ind_better = []
@@ -90,7 +90,8 @@ for t in range(2000):
     anomaly_better.append(anomaly[min_fit])
     val_fit.append(min(fit_))
     pais_, escolhidos = Operators_array.tournament_selection(populacao, fit_)
-    filho_ = Operators_array.crossover_polyamory(pais_, escolhidos, fit_)
+    filho_ = Operators_array.crossover_polyamory(pais_, escolhidos, fit_) #Operators_array.uniform_crossover(pais_)
+    print(len(filho_))
     filho_ = Operators_array.mutacao_vhomo(filho_, **filhos_mut)
     populacao = Operators_array.elitismo(populacao, filho_, fit_)
     print('geracao', t)

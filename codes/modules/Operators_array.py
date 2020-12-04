@@ -74,7 +74,7 @@ def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
     return fit_cada, anomalia
 
 
-def tournament_selection(pop, fit_cada, p_pop = 0.25):
+def tournament_selection(pop, fit_cada, p_pop = 1.0, n_pai = 0.4):
     """
     Função com o objetivo de selecionar os futuros pais, pelo dinâmica do Torneio.
 
@@ -87,11 +87,13 @@ def tournament_selection(pop, fit_cada, p_pop = 0.25):
     pop_1 = pop.copy()
     chosen = []
     select = []
-    for i in range(int(p_pop * len(pop))):
+    k=(int(n_pai * len(pop)))
+    print(k)
+    for i in range(k):#(int(p_pop * len(pop))):
         capture_select = []
         # ---------------------------- Escolhidos para o torneio ---------------------------------#
-        index_select = list(random.sample(range(0, len(pop_1)), k=(int(0.2 * len(pop)))))
-        for j in range(int(0.2 * len(pop))):
+        index_select = list(random.sample(range(0, len(pop_1)), k=(int(p_pop * len(pop_1)))))
+        for j in range(int(p_pop * len(pop_1))):
             capture = [fit_cada[index_select[j]], index_select[j]]
             capture_select.append(capture)
         # ---------------------------- Vencedor do torneio ---------------------------------#
@@ -155,7 +157,8 @@ def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, 
 
 def elitismo(pop, filhos, fit_cada):
     n_pop = pop.copy()
-    n_fica = int(len(pop) - (len(filhos)-(0.8*len(pop))))
+    n_fica = 4
+    #n_fica = int(len(pop) - (len(filhos)-(0.2*len(pop)))) Colocar o if!!!
     #print('N fica é =', n_fica)
     df = pd.DataFrame(fit_cada)
     x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
@@ -253,4 +256,26 @@ def crossover_mix_doubles(pais_torneio, escolhidos, fit):
         
         filhos += [filho0, filho1, filho2, filho3, filho4, filho5, filho6, filho7]
 
+    return filhos
+
+
+def uniform_crossover(pop_inicial):
+    p_shape = tuple(pop_inicial[0].shape) #tuple(mae1.shape)
+    filhos = []
+    n_filhos = int(len(pop_inicial) / 2)
+    pai = pop_inicial[0:n_filhos]
+    mae = pop_inicial[n_filhos:len(pop_inicial)]
+    for k in range(n_filhos):
+        probs = np.random.rand(p_shape[0], p_shape[1])
+        i_pai = pai[k]
+        i_mae = mae[k]
+        m_mae = np.zeros(p_shape)
+        m_pai = np.zeros(p_shape)
+        for i in range(p_shape[0]):
+            for j in range(p_shape[1]):
+                if probs[i,j] < 0.5:
+                    m_pai[i,j], m_mae[i,j] = i_mae[i,j], i_pai[i,j]
+                else:
+                    m_pai[i, j], m_mae[i, j] = i_pai[i, j], i_mae[i, j]
+        filhos +=[m_pai, m_mae]
     return filhos

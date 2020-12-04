@@ -72,7 +72,7 @@ def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, n, homogeneo):
     for index, rand_mut in enumerate(filho): #Index = qual será o indivíduo que será mutado.
         rand_mut = random.random()
         if prob_mut > rand_mut:
-            param_select = random.randint(0, len(filho[0][0])) #Selecão qual parâmetro será mutado.
+            param_select = random.randint(0, 1) #Selecão qual parâmetro será mutado.
             coodX, coodY, coodZ = sample_random.sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n)
             if param_select == 0:
                 filho[index][0, param_select] = coodX[0]
@@ -97,6 +97,22 @@ def function_alphina_normal(X, Y):
     f = f.real
     return f
 
+def single_p_crossover(pop_inicial, X = 1):
+    filhos = []
+    n_filhos = int(len(pop_inicial) / 2)
+    pai = np.array(pop_inicial[0:n_filhos])
+    inv_pai = pai[::-1]
+    mae = np.array(pop_inicial[n_filhos:len(pop_inicial)])
+    for i in range(n_filhos):
+        pai_new = np.zeros((1,2))
+        mae_new = np.zeros((1,2))
+        invpai_new = np.zeros((1,2))
+        pai_new[0,0], pai_new[0,1] = pai[i][0,:X], mae[i][0,X:]
+        mae_new[0,0], mae_new[0,1] = mae[i][0,:X], pai[i][0,X:]
+        invpai_new[0,0], invpai_new[0,1] = inv_pai[i][0,:X], mae[i][0,X:]
+        filhos +=[pai_new, mae_new, invpai_new]
+    return filhos
+
 
 def ag(populacao, **filhos_mut):
     ind_better = []
@@ -105,9 +121,10 @@ def ag(populacao, **filhos_mut):
     ind_better.append(populacao[min_fit])
     val_fit = min(fit_)
     pais_, escolhidos = Operators_array.tournament_selection(populacao, fit_)
-    filho_ = Operators_array.crossover_polyamory(pais_, escolhidos, fit_)
+    filho_ = Operators_array.crossover_polyamory(pais_, escolhidos, fit_) #single_p_crossover(pais_)
     #print(len(filho_))
     filhos_ = mutacao_vhomo(filho_, **filhos_mut)
     nova_populacao = Operators_array.elitismo(populacao, filhos_, fit_)
     print(nova_populacao)
+    print(len(nova_populacao))
     return nova_populacao, val_fit
