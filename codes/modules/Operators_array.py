@@ -88,7 +88,7 @@ def tournament_selection(pop, fit_cada, p_pop = 1.0, n_pai = 0.4):
     chosen = []
     select = []
     k=(int(n_pai * len(pop)))
-    print(k)
+    #print(k)
     for i in range(k):#(int(p_pop * len(pop))):
         capture_select = []
         # ---------------------------- Escolhidos para o torneio ---------------------------------#
@@ -155,9 +155,9 @@ def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, 
     return filho
 
 
-def elitismo(pop, filhos, fit_cada):
+def elitismo(pop, filhos, fit_cada, n_fica=10):
     n_pop = pop.copy()
-    n_fica = 4
+    #n_fica = 30
     #n_fica = int(len(pop) - (len(filhos)-(0.2*len(pop)))) Colocar o if!!!
     #print('N fica é =', n_fica)
     df = pd.DataFrame(fit_cada)
@@ -169,7 +169,7 @@ def elitismo(pop, filhos, fit_cada):
     return n_pop
 
 
-def crossover_polyamory(pais_torneio, escolhidos, fit):
+def crossover_polyamory(pais_torneio):
     filhos = []
     n_filhos = int(len(pais_torneio) / 2)
     pai = np.array(pais_torneio[0:n_filhos])

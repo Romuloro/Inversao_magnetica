@@ -1,4 +1,3 @@
-import pytest
 import numpy as np
 import random
 import sys
@@ -6,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import time
 a = sys.path.append('../modules/')
-import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, aux_operators_array
+import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, aux_operators_array, graphs_and_dist, genetic_algorithm
 
 acquisition = {'nx': 20,
                   'ny': 20,
@@ -24,15 +23,6 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 data_cubo = pd.read_table('Logfile/30_10_2020_11_59/data_mag.cvs', sep =',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
-
-plt.figure(figsize=(9,10))
-plt.contourf(Y, X, anomaly_cubo, 20, cmap = plt.cm.RdBu_r)
-plt.title('Anomalia de Campo Total(nT)', fontsize = 20)
-plt.xlabel('East (m)', fontsize = 20)
-plt.ylabel('North (m)', fontsize = 20)
-plt.colorbar()
-#plt.savefig('prisma_anomalia.pdf', format='pdf')
-plt.show()
 
 
 #plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
@@ -83,19 +73,18 @@ ind_better = []
 anomaly_better = []
 final_pop = []
 
-for t in range(2):
-    fit_, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
-    min_fit = fit_.index(min(fit_))
-    ind_better.append(populacao[min_fit])
-    anomaly_better.append(anomaly[min_fit])
-    val_fit.append(min(fit_))
-    pais_, escolhidos = Operators_array.tournament_selection(populacao, fit_)
-    filho_ = Operators_array.crossover_polyamory(pais_) #Operators_array.uniform_crossover(pais_)
-    #print(len(filho_))
-    filho_ = Operators_array.mutacao_vhomo(filho_, **filhos_mut)
-    populacao = Operators_array.elitismo(populacao, filho_, fit_)
-    print('geracao', t)
-    print('Fitness=', val_fit[t])
+for t in range(2000):
+    if t % 2:
+        min_theta, ind_better, anomaly_better, val_theta, populacao = genetic_algorithm.graph_algorithm(X, Y, Z, I, D, populacao, anomaly_cubo, filhos_mut)
+        print('geracao', t)
+        for i in val_theta:
+            print(i)
+    else:
+        min_fit, ind_better, anomaly_better, val_fit, populacao = genetic_algorithm.fit_algorithm(X, Y, Z, I, D, populacao, anomaly_cubo, filhos_mut)
+        print('geracao', t)
+        for i in val_fit:
+            print(i)
+
 
 
 fim = time.time()
@@ -103,3 +92,5 @@ print(f'Tempo do algoritmo genético: {fim-ini}')
 final_pop.append(populacao)
 
 print(min(val_fit))
+print(min(val_theta))
+
