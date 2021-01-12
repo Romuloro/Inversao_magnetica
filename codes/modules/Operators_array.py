@@ -37,7 +37,7 @@ def create_population(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, dec
 
     :return pop: Lista com n indivíduos/dipolos criados de forma randômica.
     """
-    if n_pop >= 10:
+    if n_pop >= 1:
         pop = []
         n_par = 3
         for j in range(n_pop):
@@ -74,7 +74,7 @@ def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
     return fit_cada, anomalia
 
 
-def tournament_selection(pop, fit_cada, p_pop = 1.0, n_pai = 0.4):
+def tournament_selection(pop, fit_cada, p_pop = 0.5, n_pai = 0.4):
     """
     Função com o objetivo de selecionar os futuros pais, pelo dinâmica do Torneio.
 
@@ -279,3 +279,35 @@ def uniform_crossover(pop_inicial):
                     m_pai[i, j], m_mae[i, j] = i_pai[i, j], i_mae[i, j]
         filhos +=[m_pai, m_mae]
     return filhos
+
+
+def mutacao_multi_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo):
+
+    prob_mut = 0.05
+    n_dip = len(filho[0]) - 1
+    n_param = 6
+    for index, rand_mut in enumerate(filho): #Index = qual será o indivíduo que será mutado.
+        rand_mut = random.random()
+        if prob_mut > rand_mut:
+            dip_select = random.sample(range(0,(len(filho[0]) - 2)), k=(int(n_dip/2))) #Seleção qual dipolo será mutado.
+            param_select = random.sample(range(0, (len(filho[0][0]) + 3)), k=(int(n_param/2))) #Selecão qual parâmetro será mutado.
+            for round in dip_select:
+                for param in param_select:
+                    if param <= 2:
+                        coodX, coodY, coodZ = sample_random.sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n)
+                    if param == 0:
+                        filho[index][round][param] = coodX[0]
+                    elif param == 1:
+                        filho[index][round][param] = coodY[0]
+                    elif param == 2:
+                        filho[index][round][param] = coodZ[0]
+                    else:
+                        incl, decl, mag = sample_random.sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo)
+                    if param == 3:
+                        filho[index][len(filho[0])-1][0] = incl[0]
+                    elif param == 4:
+                        filho[index][len(filho[0])-1][1] = decl[0]
+                    elif param == 5:
+                        filho[index][len(filho[0])-1][2] = mag[0]
+
+    return filho

@@ -132,11 +132,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_uniform_crossover" />
+        <item itemvalue="Python.test_operators_crossover_mutation" />
         <item itemvalue="Python.test_operators_28_12_2020" />
         <item itemvalue="Python.test_operators_27_11_2020" />
-        <item itemvalue="Python.test_uniform_crossover" />
         <item itemvalue="Python.test_alphina_correcao" />
-        <item itemvalue="Python.test_operators_crossover_mutation" />
       </list>
     </recent_temporary>
   </component>
