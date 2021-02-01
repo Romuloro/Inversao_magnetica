@@ -10,9 +10,9 @@ import random
 import pandas as pd
 import sys
 a = sys.path.append('../modules/')  # endereco das funcoes implementadas por voce!
-import sphere, sample_random, aux_operators_array
+import sphere, sample_random, aux_operators_array, graphs_and_dist
 
-def create_population(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n_dip, n_pop, homogeneo):
+def create_population(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, mmax, mmin, n_dip, n_pop, homogeneo):
     """
     Função com o objetivo de criar uma população com n indivíduos randômicos, que estaram de acordo com os parâmetros
     escolhidos.
@@ -43,10 +43,10 @@ def create_population(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, dec
         for j in range(n_pop):
             cood = np.zeros((n_dip+1, n_par))
             coodX, coodY, coodZ = sample_random.sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n_dip)
-            incl, decl, mag = sample_random.sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, 1, homogeneo)
+            incl, decl, m = sample_random.sample_random_mag(inclmax, inclmin, declmax, declmin, mmax, mmin, 1, homogeneo)
             for i in range(n_dip):
                 cood[i][0], cood[i][1], cood[i][2] = coodX[i], coodY[i], coodZ[i]
-            cood[n_dip][0], cood[n_dip][1], cood[n_dip][2] = incl[0], decl[0], mag[0]
+            cood[n_dip][0], cood[n_dip][1], cood[n_dip][2] = incl[0], decl[0], m[0]
             pop.append(cood)
         return pop
     else:
@@ -281,9 +281,9 @@ def uniform_crossover(pop_inicial):
     return filhos
 
 
-def mutacao_multi_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo):
+def mutacao_multi_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo, prob_mut = 0.05):
 
-    prob_mut = 0.05
+    #prob_mut = 0.05
     n_dip = len(filho[0]) - 1
     n_param = 6
     for index, rand_mut in enumerate(filho): #Index = qual será o indivíduo que será mutado.
@@ -311,3 +311,14 @@ def mutacao_multi_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inc
                         filho[index][len(filho[0])-1][2] = mag[0]
 
     return filho
+
+
+def final_fit(X, Y, Z, I, D, pop, tfa_n_dip, lamb):
+    fit_theta = []
+    fit_, anomaly = fit_value(X, Y, Z, I, D, pop, tfa_n_dip)
+    theta, MST = graphs_and_dist.theta_value(pop)
+    for i in range(len(pop)):
+        #final_fit = fit_[i] + lamb * theta[i]
+        fit_theta.append(fit_[i] + lamb * theta[i])
+    return fit_theta, anomaly, MST, theta
+

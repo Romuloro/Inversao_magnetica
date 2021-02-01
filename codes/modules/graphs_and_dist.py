@@ -69,15 +69,15 @@ def theta_var(MST):
 
 
 
-def theta_value(pop_inicial, X, Y, Z, I, D):
+def theta_value(pop_inicial):
     theta = []
     MST = []
-    anomalia = aux_operators_array.caculation_anomaly(X, Y, Z, I, D, pop_inicial)  # Cálculo da anomalia
+    #anomalia = aux_operators_array.caculation_anomaly(X, Y, Z, I, D, pop_inicial)  # Cálculo da anomalia
     for i in range(len(pop_inicial)):
         dipolo=pop_inicial[i]
         MST.append(create_graph_dipolo(dipolo))
         theta.append(theta_var(MST[i]))
         dipolo = 0.0
     
-    return theta, MST, anomalia
+    return theta, MST
 

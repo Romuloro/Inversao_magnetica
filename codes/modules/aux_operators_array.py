@@ -14,10 +14,10 @@ import matplotlib.pyplot as plt
 import pandas as pd
 a = sys.path.append('../modules/')
 import Operators as top
-import sphere
+import sphere_teste
 
 
-def tfa_n_dips(incl, decl, mag, n, Xref, Yref, Zref, I, D, spheres):
+def tfa_n_dips(incl, decl, m, n, Xref, Yref, Zref, I, D, spheres):
     """
     Função com o objetivo calcular a anomalia magnética de n bolinhas.
 
@@ -44,9 +44,9 @@ def tfa_n_dips(incl, decl, mag, n, Xref, Yref, Zref, I, D, spheres):
 
     # ---------------------------------------------------------------------------------------------------------------------#
     tfa_n = 0
-    raio = 500.0
+    raio = 650.0
     for i in range(n):
-        tfa_cada = sphere.sphere_tfa(Xref, Yref, Zref, spheres[i], raio, mag, I, D, incl, decl)
+        tfa_cada = sphere_teste.sphere_tfa(Xref, Yref, Zref, spheres[i], m, I, D, incl, decl)
         tfa_n += tfa_cada
     return tfa_n
 
@@ -58,9 +58,9 @@ def caculation_anomaly(X, Y, Z, I, D, pop):
     for i in range(len(pop)):
         incl = pop[i][len(pop[0]) - 1, 0]
         decl = pop[i][len(pop[0]) - 1, 1]
-        mag = pop[i][len(pop[0]) - 1, 2]
+        m = pop[i][len(pop[0]) - 1, 2]
         spheres = pop[i][0:len(pop[0]) - 1, :]
-        anomaly.append(tfa_n_dips(incl, decl, mag, len(pop[0]) - 1, X, Y, Z, I, D, spheres))
+        anomaly.append(tfa_n_dips(incl, decl, m, len(pop[0]) - 1, X, Y, Z, I, D, spheres))
     return anomaly
 
 
@@ -73,7 +73,7 @@ def caculation_onlyone_anomaly(X, Y, Z, I, D, pop):
     mag = pop[len(pop[0]) - 1, 2]
     for j in range(len(pop[0])-1):
         spheres.append((pop[j][0], pop[j][1], pop[j][2], raio))
-    anomaly = (tfa_n_dips(incl, decl, mag, len(pop[0])-1, X, Y, Z, I, D, spheres))
+    anomaly = (tfa_n_dips(incl, decl, m, len(pop[0])-1, X, Y, Z, I, D, spheres))
 
     return anomaly
 
