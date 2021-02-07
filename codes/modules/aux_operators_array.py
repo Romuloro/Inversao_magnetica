@@ -128,3 +128,8 @@ def f_difference(dado_referencia, dado_calculado):
     return rms
 
 
+def relative_error(v_referencia, v_calculado):
+#REE = ( | estimado - verdadeiro: / verdadeiro ) * 100%
+    ree = (np.abs(v_calculado - v_referencia)/(v_referencia))*100
+    return ree
+

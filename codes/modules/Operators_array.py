@@ -322,3 +322,17 @@ def final_fit(X, Y, Z, I, D, pop, tfa_n_dip, lamb):
         fit_theta.append(fit_[i] + lamb * theta[i])
     return fit_theta, anomaly, MST, theta
 
+
+def elitismo_c_violation(pop, filhos, theta, n_fica=10):
+    n_pop = pop.copy()
+    #n_fica = 30
+    #n_fica = int(len(pop) - (len(filhos)-(0.2*len(pop)))) Colocar o if!!!
+    #print('N fica é =', n_fica)
+    df = pd.DataFrame(theta)
+    x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
+    piores = x.index[n_fica:]
+    for index, pos in enumerate(piores): #Substituir os piores indivíduos pelos filhos
+        n_pop[pos] = filhos[index]
+
+    return n_pop
+

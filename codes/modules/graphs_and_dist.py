@@ -61,11 +61,15 @@ def dist_euclidiana(x_coord,y_coord, z_coord):
 def theta_var(MST):
     dm1 = []
     for (u, v, wt) in MST.edges.data('weight'):
-        dm1.append(wt)
+        dm1.append(wt) 
     dm3 = np.array(dm1)
-    variancia = np.var(dm3)
+    n = len(dm1)
+    dmt_m = np.mean(dm3)
+    phi = 0.0
+    for i in range( len(dm1) ):
+        phi += (1/n)*(dm1[i] - dmt_m)**2
     
-    return variancia
+    return phi
 
 
 

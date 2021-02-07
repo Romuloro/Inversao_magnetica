@@ -23,7 +23,7 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 data_cubo = pd.read_table('Logfile/28_01_2021_16_20/data_mag.cvs', sep =',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
-#momento = 38000000000
+momento = 38000000000
 
 #plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 
@@ -33,8 +33,8 @@ population = {'xmax': 5000.0,
                 'ymin': -5000.0,
                 'zlim': 7000.0,
                 'z_min': 0.0,
-                'n_dip': 25,
-                'n_pop': 20,
+                'n_dip': 12,
+                'n_pop': 50,
                 'inclmax': 5.0,
                 'inclmin': -5.0,
                 'declmax': 5.0,
@@ -75,9 +75,12 @@ final_pop = []
 val_theta = []
 ind_theta = []
 
-for t in range(2000):
-    fit_, anomaly, MST, theta = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.00005)
-    #fit_, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
+n = 3000
+
+for t in range(n):
+    #fit_, anomaly, MST, theta = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.005)
+    fit_, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
+    theta, MST = graphs_and_dist.theta_value(populacao)
     min_fit = fit_.index(min(fit_))
     ind_better.append(populacao[min_fit])
     anomaly_better.append(anomaly[min_fit])
@@ -92,6 +95,7 @@ for t in range(2000):
     else:
         filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut) #manter mut em 0.05
     populacao = Operators_array.elitismo(populacao, filho_, fit_, n_fica = 5)
+    #populacao = Operators_array.elitismo_c_violation(populacao, filho_, theta, n_fica = 5)
     print('geracao', t)
     print(val_fit[t])
 
@@ -102,4 +106,11 @@ fim = time.time()
 print(f'Tempo do algoritmo genético: {fim-ini}')
 final_pop.append(populacao)
 
-print(min(val_fit))
+print('O menor fit da última geração é:',min(val_fit))
+m_err = aux_operators_array.relative_error(momento,ind_better[n-1][len(ind_better[n-1])-1,2])
+incl_err = aux_operators_array.relative_error(momento,ind_better[n-1][len(ind_better[n-1])-1,0])
+decl_err = aux_operators_array.relative_error(momento,ind_better[n-1][len(ind_better[n-1])-1,1])
+print('O erro relativo do momento de dipolo é:', m_err)
+print('O erro relativo do inclinação magnética é:', incl_err)
+print('O erro relativo do declinação magnética é:', decl_err)
+
