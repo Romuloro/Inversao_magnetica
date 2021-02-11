@@ -69,6 +69,7 @@ populacao = Operators_array.create_population(**population)
 #print("\n")
 
 val_fit = []
+val_phi = []
 ind_better = []
 anomaly_better = []
 final_pop = []
@@ -78,23 +79,22 @@ ind_theta = []
 n = 3000
 
 for t in range(n):
-    #fit_, anomaly, MST, theta = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.005)
-    fit_, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
-    theta, MST = graphs_and_dist.theta_value(populacao)
-    min_fit = fit_.index(min(fit_))
+    gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.00005)
+    #fit_, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
+    #theta, MST = graphs_and_dist.theta_value(populacao)
+    min_fit = gama.index(min(gama))
     ind_better.append(populacao[min_fit])
     anomaly_better.append(anomaly[min_fit])
-    val_fit.append(min(fit_))
-    min_theta = theta.index(min(theta))
-    ind_theta.append(populacao[min_theta])
+    val_fit.append(min(gama))
     val_theta.append(min(theta))
-    pais_, escolhidos = Operators_array.tournament_selection(populacao, fit_)
+    val_phi.append(min(phi))
+    pais_, escolhidos = Operators_array.tournament_selection(populacao, gama)
     filho_ = Operators_array.crossover_polyamory(pais_)  # Operators_array.uniform_crossover(pais_)
     if (t >= 5) and (val_fit[t] == val_fit[t-5]):
         filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut, prob_mut = 0.4) #aumenta mut para X
     else:
         filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut) #manter mut em 0.05
-    populacao = Operators_array.elitismo(populacao, filho_, fit_, n_fica = 5)
+    populacao = Operators_array.elitismo(populacao, filho_, gama, n_fica = 5)
     #populacao = Operators_array.elitismo_c_violation(populacao, filho_, theta, n_fica = 5)
     print('geracao', t)
     print(val_fit[t])

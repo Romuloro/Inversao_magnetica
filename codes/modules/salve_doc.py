@@ -77,18 +77,21 @@ def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind):
     pasta2 = ''.join(pasta)
     df.to_csv(pasta2, sep=' ')
     #----------------------------------------------------------------------------------------------------#
+    o_ind = pd.DataFrame(data = o_ind)
+    i_ind = pd.DataFrame(data = i_ind)
+    f_ind = pd.DataFrame(data = f_ind)
     #Exportar o cvs com os resultados
     pastac.extend('/frist_ind.cvs')
     pasta3 = ''.join(pastac)
-    o_ind.to_csv(pasta3, index = False, header = True)
+    o_ind.to_csv(pasta3, index = False, header = False)
     
-    pastac.extend('/intermediate_ind.cvs')
+    pastac2.extend('/intermediate_ind.cvs')
     pasta4 = ''.join(pastac2)
-    i_ind.to_csv(pasta4, index = False, header = True)
+    i_ind.to_csv(pasta4, index = False, header = False)
     
-    pastac.extend('/final_ind.cvs')
+    pastac3.extend('/final_ind.cvs')
     pasta5 = ''.join(pastac3)
-    f_ind.to_csv(pasta5, index = False, header = True)
+    f_ind.to_csv(pasta5, index = False, header = False)
 
 
 

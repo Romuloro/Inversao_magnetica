@@ -320,7 +320,7 @@ def final_fit(X, Y, Z, I, D, pop, tfa_n_dip, lamb):
     for i in range(len(pop)):
         #final_fit = fit_[i] + lamb * theta[i]
         fit_theta.append(fit_[i] + lamb * theta[i])
-    return fit_theta, anomaly, MST, theta
+    return fit_theta, anomaly, MST, theta, fit_
 
 
 def elitismo_c_violation(pop, filhos, theta, n_fica=10):

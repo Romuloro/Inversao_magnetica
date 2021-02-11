@@ -78,7 +78,7 @@ final_pop = []
 n_geracao = 3000
 
 for t in range(n_geracao):
-    if t % 5:
+    if t % 50:
         fit_, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
         min_fit = fit_.index(min(fit_))
         ind_better.append(populacao[min_fit])
