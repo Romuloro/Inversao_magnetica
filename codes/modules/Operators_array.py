@@ -5,6 +5,8 @@
 # Collaboratores: Rodrigo Bijani
 # -----------------------------------------------------------------------------------------
 
+from numba import jit
+from numba.typed import List
 import numpy as np
 import random
 import pandas as pd
@@ -12,6 +14,8 @@ import sys
 a = sys.path.append('../modules/')  # endereco das funcoes implementadas por voce!
 import sphere, sample_random, aux_operators_array, graphs_and_dist
 
+
+@jit(nopython=True)
 def create_population(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, mmax, mmin, n_dip, n_pop, homogeneo):
     """
     Função com o objetivo de criar uma população com n indivíduos randômicos, que estaram de acordo com os parâmetros
@@ -38,7 +42,7 @@ def create_population(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, dec
     :return pop: Lista com n indivíduos/dipolos criados de forma randômica.
     """
     if n_pop >= 1:
-        pop = []
+        pop = List()
         n_par = 3
         for j in range(n_pop):
             cood = np.zeros((n_dip+1, n_par))
@@ -51,6 +55,7 @@ def create_population(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, dec
         return pop
     else:
         return print('Por favor. Coloque o número de indivíduos maior ou igual a 10')
+
 
 
 def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
@@ -67,7 +72,7 @@ def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
 
     :return fit_cada: Lista com o valor de fitness de cara indivíduo da população.
     """
-    fit_cada = []
+    fit_cada = List()
     anomalia = aux_operators_array.caculation_anomaly(X, Y, Z, I, D, pop) #Cálculo da anomalia
     for i in range(len(pop)):
         fit_cada.append(aux_operators_array.f_difference(tfa_n_dip, anomalia[i])) #Cálculo do fit
@@ -90,23 +95,40 @@ def tournament_selection(pop, fit_cada, p_pop = 0.5, n_pai = 0.4):
     k=(int(n_pai * len(pop)))
     #print(k)
     for i in range(k):#(int(p_pop * len(pop))):
-        capture_select = []
+        if i == k-1:
+            capture_select = []
         # ---------------------------- Escolhidos para o torneio ---------------------------------#
-        index_select = list(random.sample(range(0, len(pop_1)), k=(int(p_pop * len(pop_1)))))
-        for j in range(int(p_pop * len(pop_1))):
-            capture = [fit_cada[index_select[j]], index_select[j]]
-            capture_select.append(capture)
+            index_select = list(random.sample(range(0, len(pop_1)), k=(int(p_pop * len(pop_1)))))
+            for j in range(int(p_pop * len(pop_1))):
+                capture = [fit_cada[index_select[j]], index_select[j]]
+                capture_select.append(capture)
         # ---------------------------- Vencedor do torneio ---------------------------------#
-        escolhido = pop_1[min(capture_select[:])[1]]
-        select.append(min(capture_select[:])[1])
+            escolhido = pop_1[min(capture_select[:])[1]]
+            select.append(max(capture_select[:])[1])
         # ------------------ Retirada do vencedor da população artificial ------------------------#
-        del (pop_1[min(capture_select[:])[1]])
+            del (pop_1[max(capture_select[:])[1]])
         # ---------------------------- Vencedores do torneio ---------------------------------#
-        chosen.append(escolhido)
+            chosen.append(escolhido)
+ 
+        else:
+            capture_select = []
+        # ---------------------------- Escolhidos para o torneio ---------------------------------#
+            index_select = list(random.sample(range(0, len(pop_1)), k=(int(p_pop * len(pop_1)))))
+            for j in range(int(p_pop * len(pop_1))):
+                capture = [fit_cada[index_select[j]], index_select[j]]
+                capture_select.append(capture)
+        # ---------------------------- Vencedor do torneio ---------------------------------#
+            escolhido = pop_1[min(capture_select[:])[1]]
+            select.append(min(capture_select[:])[1])
+        # ------------------ Retirada do vencedor da população artificial ------------------------#
+            del (pop_1[min(capture_select[:])[1]])
+        # ---------------------------- Vencedores do torneio ---------------------------------#
+            chosen.append(escolhido)
 
     return chosen, select
 
 
+'''
 def crossover_elitista(pais_torneio, escolhidos, fit):
     filhos = []
     n_filhos = int(len(pais_torneio) / 2)
@@ -125,6 +147,7 @@ def crossover_elitista(pais_torneio, escolhidos, fit):
         filhos.append(filho)
 
     return filhos
+'''
 
 
 def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo):
@@ -155,22 +178,25 @@ def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, 
     return filho
 
 
+
 def elitismo(pop, filhos, fit_cada, n_fica=10):
     n_pop = pop.copy()
     #n_fica = 30
     #n_fica = int(len(pop) - (len(filhos)-(0.2*len(pop)))) Colocar o if!!!
     #print('N fica é =', n_fica)
+    fit_cada = np.array(fit_cada)
     df = pd.DataFrame(fit_cada)
     x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
     piores = x.index[n_fica:]
     for index, pos in enumerate(piores): #Substituir os piores indivíduos pelos filhos
         n_pop[pos] = filhos[index]
-
+    n_pop = List(n_pop)
     return n_pop
 
 
+
 def crossover_polyamory(pais_torneio):
-    filhos = []
+    filhos = List()
     n_filhos = int(len(pais_torneio) / 2)
     pai = np.array(pais_torneio[0:n_filhos])
     inv_pai = pai[::-1]
@@ -281,6 +307,7 @@ def uniform_crossover(pop_inicial):
     return filhos
 
 
+
 def mutacao_multi_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo, prob_mut = 0.05):
 
     #prob_mut = 0.05
@@ -323,16 +350,33 @@ def final_fit(X, Y, Z, I, D, pop, tfa_n_dip, lamb):
     return fit_theta, anomaly, MST, theta, fit_
 
 
-def elitismo_c_violation(pop, filhos, theta, n_fica=10):
-    n_pop = pop.copy()
-    #n_fica = 30
-    #n_fica = int(len(pop) - (len(filhos)-(0.2*len(pop)))) Colocar o if!!!
-    #print('N fica é =', n_fica)
-    df = pd.DataFrame(theta)
-    x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
-    piores = x.index[n_fica:]
-    for index, pos in enumerate(piores): #Substituir os piores indivíduos pelos filhos
-        n_pop[pos] = filhos[index]
 
-    return n_pop
+def tournament_selection_ranking_diversit(populacao, fit_, n_regiao= 5):
+    n_pop = populacao.copy()
+    pais_ = []
+    n_len = int(len(populacao)/n_regiao)
+    k = 20
+    v_regiao_pop = []
+    v_regiao_fit = []
+    pop_ord = [None]*len(n_pop)
+    fit_ord = [None]*len(n_pop)
+    fit_ = np.array(fit_)
+    # Ordenando os valores da população e do phi
+    df = pd.DataFrame(fit_)
+    x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
+    y = x.index[0:len(x)]
+    for index, pos in enumerate(y):
+        pop_ord[index] = n_pop[pos]
+        fit_ord[index] = fit_[pos]
+    #Dividindo as regiões
+    for i in range(n_regiao):
+        v_pega_pop = pop_ord[(i*n_len):(n_len*(i+1))]
+        v_pega_fit = fit_ord[(i*n_len):(n_len*(i+1))]
+        v_regiao_pop.append(v_pega_pop)
+        v_regiao_fit.append(v_pega_fit)
+    #Escolhendo os pais via torneios
+        aprovados, escolhidos = tournament_selection(v_regiao_pop[i], v_regiao_fit[i])
+        pais_.extend(aprovados)
+    
+    return pais_
 

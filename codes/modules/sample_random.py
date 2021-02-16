@@ -2,8 +2,11 @@ import numpy as np
 import sys
 a = sys.path.append('../modules/') # endereco das funcoes implementadas por voce!
 import sphere
+from numba import jit
+from numba.typed import List
 
 
+@jit(nopython=True)
 def sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n):
     """
     Função com o objetivo de criar de forma randomica as coordenadas para n corpos.
@@ -24,9 +27,9 @@ def sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n):
              resultadoz - Lista com o final para das coordenadas no eixo Z.
     """
 
-    resultadox=[]
-    resultadoy=[]
-    resultadoz=[]
+    resultadox= List()
+    resultadoy= List()
+    resultadoz= List()
 #---------------------------------------------------------------------------------------------------------------------#
     for i in range(n):
         sorted_x1, sorted_y1,sorted_z1 = (np.random.uniform(xmin, xmax),
@@ -38,6 +41,8 @@ def sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n):
 #---------------------------------------------------------------------------------------------------------------------#        
     return resultadox, resultadoy, resultadoz
 
+
+@jit(nopython=True)
 def sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo=False):
     """
     Função com o objetivo de criar de forma randomica as propriedades magnéticas para n corpos.
@@ -59,10 +64,13 @@ def sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, hom
              decl - Lista com os valores de declinação magnética.
              mag - Lista com os valores de magnetização.
     """
-
-    incl=[]
-    decl=[]
-    mag=[]
+    porc = 0.2
+    incl= List()
+    decl= List()
+    mag= List()
+    magmax = magmax + porc*magmax
+    magmin = magmin - porc*magmin
+    #print(magmax, magmin)
 #---------------------------------------------------------------------------------------------------------------------#
     if homogeneo == True:
         sorted_incl, sorted_decl, sorted_mag =(np.random.uniform(inclmax,inclmin),
@@ -84,6 +92,8 @@ def sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, hom
             mag.append(sorted_mag)
     
     return incl, decl, mag
+
+
 
 def tfa_n_dots(incl, decl, mag, n, Xref, Yref, Zref, I, D, coodX, coodY, coodZ, raio):
     """
@@ -109,7 +119,7 @@ def tfa_n_dots(incl, decl, mag, n, Xref, Yref, Zref, I, D, coodX, coodY, coodZ, 
     :return: Uma matrix com os valores de anomália magnética para cada ponto do local estudado.
     """
 
-    sphere1 = []
+    sphere1 =  List()
     for i in range(n):
         sphere1.append((coodX[i], coodY[i], coodZ[i], raio))
 #---------------------------------------------------------------------------------------------------------------------#   

@@ -6,7 +6,8 @@
 # -----------------------------------------------------------------------------------------
 
 
-
+from numba import jit
+from numba.typed import List
 import numpy as np
 import random
 import sys
@@ -17,6 +18,7 @@ import Operators as top
 import sphere_teste
 
 
+@jit(nopython=True)
 def tfa_n_dips(incl, decl, m, n, Xref, Yref, Zref, I, D, spheres):
     """
     Função com o objetivo calcular a anomalia magnética de n bolinhas.
@@ -43,16 +45,17 @@ def tfa_n_dips(incl, decl, m, n, Xref, Yref, Zref, I, D, spheres):
     """
 
     # ---------------------------------------------------------------------------------------------------------------------#
-    tfa_n = 0
+    tfa_n = np.zeros((len(Xref),len(Xref)))
     raio = 650.0
     for i in range(n):
         tfa_cada = sphere_teste.sphere_tfa(Xref, Yref, Zref, spheres[i], m, I, D, incl, decl)
-        tfa_n += tfa_cada
+        tfa_n = tfa_n + tfa_cada
     return tfa_n
 
 
+@jit(nopython=True)
 def caculation_anomaly(X, Y, Z, I, D, pop):
-    anomaly = []
+    anomaly = List()
     # n_dip = len(pop[0])-1
 
     for i in range(len(pop)):
@@ -112,6 +115,7 @@ def definition_prob(pai_torneio, escolhidos, fit, n_filhos):
     return prob_pai, prob_mae, sum_den
 
 
+@jit(nopython=True)
 def f_difference(dado_referencia, dado_calculado):
     """
     Função com o objetivo de calcular o valor da função diferença entre os dados de referência para os dados calculados.
@@ -128,6 +132,7 @@ def f_difference(dado_referencia, dado_calculado):
     return rms
 
 
+@jit(nopython=True)
 def relative_error(v_referencia, v_calculado):
 #REE = ( | estimado - verdadeiro: / verdadeiro ) * 100%
     ree = (np.abs(v_calculado - v_referencia)/(v_referencia))*100

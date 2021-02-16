@@ -1,0 +1,16 @@
+Testes a serem feitos
+	50 n_ind
+	50 n_dip
+	3000 gerações
+	Com lambda:
+Valores:
+	0,00005 OK
+	0,5	OK
+	5	OK
+	0,0005	OK
+	0,005	OK
+	0,015	OK
+	0	OK
+	0,05	OK
+
+

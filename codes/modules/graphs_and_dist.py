@@ -4,6 +4,8 @@ import pandas as pd
 import sys
 import networkx as nx
 import math as mt
+from numba import jit
+from numba.typed import List
 a = sys.path.append('../modules/')  # endereco das funcoes implementadas por voce!
 import sphere, sample_random, aux_operators_array, Operators_array, plot_3D
 
@@ -24,9 +26,14 @@ def create_graph_dipolo(pop_inicial):
 
     #Cálculo do MST
     TSG = nx.minimum_spanning_tree( grafos , algorithm='kruskal' )
-    return TSG
+    
+    dm1 = []
+    for (u, v, wt) in TSG.edges.data('weight'):
+        dm1.append(wt)
+    
+    return TSG, dm1
 
-
+@jit(nopython=True)
 def dist_euclidiana(x_coord,y_coord, z_coord):
     '''
     This function takes two vectors, x_coord and y_coord, and returns a matrix were the element in the ij position is the distance (considering the euclidian norm, ou l2 norm) betwen the point (x_coord[i],y_coord[i]) and (x_coord[j],y_coord[j]).
@@ -58,10 +65,8 @@ def dist_euclidiana(x_coord,y_coord, z_coord):
 
 
 
-def theta_var(MST):
-    dm1 = []
-    for (u, v, wt) in MST.edges.data('weight'):
-        dm1.append(wt) 
+def theta_var(dm1):
+    
     dm3 = np.array(dm1)
     n = len(dm1)
     dmt_m = np.mean(dm3)
@@ -79,8 +84,9 @@ def theta_value(pop_inicial):
     #anomalia = aux_operators_array.caculation_anomaly(X, Y, Z, I, D, pop_inicial)  # Cálculo da anomalia
     for i in range(len(pop_inicial)):
         dipolo=pop_inicial[i]
-        MST.append(create_graph_dipolo(dipolo))
-        theta.append(theta_var(MST[i]))
+        mst, dm1 = create_graph_dipolo(dipolo)
+        MST.append(mst)
+        theta.append(theta_var(dm1))
         dipolo = 0.0
     
     return theta, MST

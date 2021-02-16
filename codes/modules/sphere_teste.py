@@ -6,10 +6,13 @@
 # --------------------------------------------------------------------------------------------------
 
 # Import Python libraries
+from numba import jit
 import numpy as np
 # Import my libraries
 import auxiliars as aux
 
+
+@jit(nopython=True)
 def sphere_bx(x, y, z, sphere, m, incs, decs):
 
     '''    
@@ -71,6 +74,8 @@ def sphere_bx(x, y, z, sphere, m, incs, decs):
     # Return the final output
     return bx
 
+
+@jit(nopython=True)
 def sphere_by(x, y, z, sphere, m, incs, decs):
 
     '''    
@@ -132,6 +137,8 @@ def sphere_by(x, y, z, sphere, m, incs, decs):
     # Return the final output
     return by
 
+
+@jit(nopython=True)
 def sphere_bz(x, y, z, sphere, m, incs, decs):
 
     '''    
@@ -193,6 +200,8 @@ def sphere_bz(x, y, z, sphere, m, incs, decs):
     # Return the final output
     return bz
 
+
+@jit(nopython=True)
 def sphere_tf(x, y, z, sphere, m, F, incf, decf, incs = None, decs = None):
     
     '''    
@@ -240,6 +249,8 @@ def sphere_tf(x, y, z, sphere, m, F, incf, decf, incs = None, decs = None):
     # Return the final output
     return tf
 
+
+@jit(nopython=True)
 def sphere_tfa(x, y, z, sphere, m, incf, decf, incs = None, decs = None):
 
     '''    

@@ -7,6 +7,7 @@ import numpy
 import math
 import scipy
 import warnings
+from numba import jit
 
 def my_atan(x, y):
     
@@ -55,6 +56,7 @@ def my_outer(x,y):
     
     return numpy.outer(x,y)
 
+@jit(nopython=True)
 def deg2rad(angle):
     '''
     It converts an angle value in degrees to radian.     
@@ -86,6 +88,8 @@ def rad2deg(argument):
     # Return the final output
     return angle
 
+
+@jit(nopython=True)
 def dircos(inc, dec, azm = 0.):
     '''
     This function calculates the cossines projected values on directions using inclination 
