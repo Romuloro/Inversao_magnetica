@@ -25,7 +25,7 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 data_cubo = pd.read_table('Logfile/28_01_2021_16_20/data_mag.cvs', sep =',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
-momento = 38000000000/30 #3.8X10^10/ndip
+momento = 38000000000/29 #3.8X10^10/ndip
 #print(momento)
 
 #plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
@@ -81,7 +81,7 @@ ind_theta = List()
 incl_better = List()
 decl_better = List()
 
-n = 5000
+n = 3000
 
 for t in range(n):
     populacao = List(populacao)
@@ -116,9 +116,9 @@ final_pop.append(populacao)
 
 print('O menor fit da última geração é:',min(val_fit))
 m_err = aux_operators_array.relative_error(ind_better[n-1][len(ind_better[n-1])-1,2], momento)
-incl_err = aux_operators_array.relative_error(ind_better[n-1][len(ind_better[n-1])-1,0], 0.0)
-decl_err = aux_operators_array.relative_error(ind_better[n-1][len(ind_better[n-1])-1,1], 0.0)
+#incl_err = aux_operators_array.relative_error(ind_better[n-1][len(ind_better[n-1])-1,0], 0.0)
+#decl_err = aux_operators_array.relative_error(ind_better[n-1][len(ind_better[n-1])-1,1], 0.0)
 print('O erro relativo do momento de dipolo é:', m_err)
-print('O erro relativo do inclinação magnética é:', incl_err)
-print('O erro relativo do declinação magnética é:', decl_err)
+#print('O erro relativo do inclinação magnética é:', incl_err)
+#print('O erro relativo do declinação magnética é:', decl_err)
 

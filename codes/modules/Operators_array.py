@@ -346,7 +346,7 @@ def final_fit(X, Y, Z, I, D, pop, tfa_n_dip, lamb):
     theta, MST = graphs_and_dist.theta_value(pop)
     for i in range(len(pop)):
         #final_fit = fit_[i] + lamb * theta[i]
-        fit_theta.append(fit_[i] + lamb * theta[i])
+        fit_theta.append(fit_[i] + (lamb * theta[i]))
     return fit_theta, anomaly, MST, theta, fit_
 
 

@@ -43,7 +43,7 @@ def create_diretorio(dicionario, matriz):
 
 
 
-def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind):
+def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind, incl, decl, gamma, theta, phi):
     '''
     Função com a finalidade de criar um diretório no qual serão armazenados os dados de cada parte do processo. Também a criação de um  arquivo .txt com os parametros utilizados e de um documento .csv com os resultados.
     dicionario = dicionário com todos as entradas organizadas da seguinte forma.
@@ -68,6 +68,11 @@ def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind):
     pastac = pasta.copy()
     pastac2 = pasta.copy()
     pastac3 = pasta.copy()
+    pastac4 = pasta.copy()
+    pastac5 = pasta.copy()
+    pastac6 = pasta.copy()
+    pastac7 = pasta.copy()
+    pastac8 = pasta.copy()
     pasta1 = ''.join(pasta)
     os.mkdir(pasta1)
     #----------------------------------------------------------------------------------------------------#
@@ -80,6 +85,11 @@ def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind):
     o_ind = pd.DataFrame(data = o_ind)
     i_ind = pd.DataFrame(data = i_ind)
     f_ind = pd.DataFrame(data = f_ind)
+    incl = pd.DataFrame(data = incl)
+    decl = pd.DataFrame(data = decl)
+    gamma = pd.DataFrame(data = gamma)
+    theta = pd.DataFrame(data = theta)
+    phi = pd.DataFrame(data = phi)
     #Exportar o cvs com os resultados
     pastac.extend('/frist_ind.cvs')
     pasta3 = ''.join(pastac)
@@ -92,7 +102,26 @@ def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind):
     pastac3.extend('/final_ind.cvs')
     pasta5 = ''.join(pastac3)
     f_ind.to_csv(pasta5, index = False, header = False)
-
+    
+    pastac4.extend('/incl.cvs')
+    pasta6 = ''.join(pastac4)
+    incl.to_csv(pasta6, index = False, header = False)
+    
+    pastac5.extend('/decl.cvs')
+    pasta7 = ''.join(pastac5)
+    decl.to_csv(pasta7, index = False, header = False)
+    
+    pastac6.extend('/gamma.cvs')
+    pasta8 = ''.join(pastac6)
+    gamma.to_csv(pasta8, index = False, header = False)
+    
+    pastac7.extend('/phi.cvs')
+    pasta9 = ''.join(pastac7)
+    phi.to_csv(pasta9, index = False, header = False)
+    
+    pastac8.extend('/theta.cvs')
+    pasta10 = ''.join(pastac8)
+    theta.to_csv(pasta10, index = False, header = False)
 
 
 def reshape_matrix(X, Y, Z, ACTn, nx, ny):

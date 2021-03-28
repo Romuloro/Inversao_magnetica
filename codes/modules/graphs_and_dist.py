@@ -70,11 +70,11 @@ def theta_var(dm1):
     dm3 = np.array(dm1)
     n = len(dm1)
     dmt_m = np.mean(dm3)
-    phi = 0.0
+    theta = 0.0
     for i in range( len(dm1) ):
-        phi += (1/n)*(dm1[i] - dmt_m)**2
-    
-    return phi
+        theta += (dm1[i] - dmt_m)**2
+        
+    return theta
 
 
 

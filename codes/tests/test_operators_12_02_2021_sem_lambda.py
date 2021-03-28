@@ -11,10 +11,10 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 acquisition = {'nx': 20,
                   'ny': 20,
-                  'xmin': -5000,
-                  'xmax': 5000,
-                  'ymin': -5000,
-                  'ymax': 5000,
+                  'xmin': -5000.0,
+                  'xmax': 5000.0,
+                  'ymin': -5000.0,
+                  'ymax': 5000.0,
                   'z': -50.0,
                   'color': '.r'}
 
@@ -25,7 +25,8 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 data_cubo = pd.read_table('Logfile/28_01_2021_16_20/data_mag.cvs', sep =',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
-momento = 38000000000/30 #3.8X10^10/ndip
+momento = 38000000000/29 #3.8X10^1/ndip
+#print(momento)
 
 #plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 

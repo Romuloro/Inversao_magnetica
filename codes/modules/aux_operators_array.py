@@ -67,9 +67,8 @@ def caculation_anomaly(X, Y, Z, I, D, pop):
     return anomaly
 
 
-def caculation_onlyone_anomaly(X, Y, Z, I, D, pop):
+def caculation_onlyone_anomaly(X, Y, Z, I, D, pop, m):
 
-    raio = 100.0
     spheres = []
     incl = pop[len(pop[0]) - 1, 0]
     decl = pop[len(pop[0]) - 1, 1]

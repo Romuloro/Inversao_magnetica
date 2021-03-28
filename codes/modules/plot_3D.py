@@ -38,12 +38,12 @@ def plot_obs_3d(prism, size, view, x, y, z):
     scale[3,3] = 1.
 
     # Labels
-    ax.set_xlabel('North (m)', size = 25, labelpad = 30)
-    ax.set_ylabel('East (m)', size = 25, labelpad = 30)
-    ax.set_zlabel('Depth (m)', size = 25, labelpad = 30)
+    ax.set_xlabel('North (km)', size = 25, labelpad = 30)
+    ax.set_ylabel('East (km)', size = 25, labelpad = 30)
+    ax.set_zlabel('Depth (km)', size = 25, labelpad = 30)
     ax.set_xlim(x.min(), x.max())
     ax.set_ylim(y.min(), y.max())
-    ax.set_zlim(min(z)-500.0, max(z)+500.0)
+    ax.set_zlim(min(z)-0.5, max(z)+0.5)
     #ax.set_xticks(numpy.arange(x.min(), x.max(), 2500))
     #ax.set_yticks(numpy.linspace(y.min(), y.max(), 5))
     #ax.set_zticks(numpy.linspace(0., z[1], 6))
