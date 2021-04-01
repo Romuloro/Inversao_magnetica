@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a8ede8e-a48a-4224-ab26-14435290650c" name="Default Changelist" comment="" />
+    <list default="true" id="1a8ede8e-a48a-4224-ab26-14435290650c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/codes/tests/test_plot_individuos.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/test_plot_individuos.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/tests/test_plot_individuos_28_12_2020.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/test_plot_individuos_28_12_2020.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +17,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1guKQ5cyAqMxgxyITlo0ep5AP7X" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -21,7 +27,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Material_peruano/PFG_FallaLuza" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python.test_operators_11_02_2021">
@@ -150,6 +157,17 @@
       <updated>1598959017896</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
