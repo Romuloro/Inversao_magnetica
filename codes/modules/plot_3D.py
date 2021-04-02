@@ -175,3 +175,54 @@ def modelo_anomalia_3D(Yref, Xref, tfa_n_bolinhas, resulty, resultx, resultz, re
     plt.grid()
     ax.view_init(view[0], view[1])
     plt.show()
+
+
+def plot_obs_3d_bolinha(prism, size, view, x, y, z, coodX1, coodY1, coodZ1, incl1):
+    
+    '''
+    prism = dicionário com o número de prismas que seram plotados e os prismas desenhados.
+        prism = {'n': n, - números de prismas que seram plotados
+                 'prisma': [prisma1, prisma2, ..., prismaN] - todos os prismas que serão incluidos}
+    size = tamanho da figura
+    view = ângulo de visualização
+    x = matriz de posições em x
+    y = matrix de posições em y
+    z = matriz profundidades do prisma
+    '''
+    figure = plt.figure(figsize=(size[0],size[1]))
+    ax1 = figure.gca(projection = '3d')
+    #----------------------------------------------------------------------------------------------------#
+    n = prism.get('n')
+    prisma = prism.get('prisma')
+    for i in range(n):
+        ax1.add_collection3d(prisma[i])
+    #----------------------------------------------------------------------------------------------------#
+    individuo0 = ax.scatter(coodX1, coodY1, coodZ1, c=incl1, depthshade=True, cmap='jet', s = 200.0)
+    # Define the scale of the projection
+    x_scale = 1.2
+    y_scale = 1.2
+    z_scale = 1.
+    scale=numpy.diag([x_scale, y_scale, z_scale, 1.0])
+    scale=scale*(1.0/scale.max())
+    scale[3,3] = 1.
+
+    # Labels
+    ax.set_xlabel('North (km)', size = 25, labelpad = 30)
+    ax.set_ylabel('East (km)', size = 25, labelpad = 30)
+    ax.set_zlabel('Depth (km)', size = 25, labelpad = 30)
+    ax.set_xlim(x.min(), x.max())
+    ax.set_ylim(y.min(), y.max())
+    ax.set_zlim(min(z)-500.0, max(z)+500.0)
+    #ax.set_xticks(numpy.arange(x.min(), x.max(), 2500))
+    #ax.set_yticks(numpy.linspace(y.min(), y.max(), 5))
+    #ax.set_zticks(numpy.linspace(0., z[1], 6))
+    #ax.tick_params(labelsize = 20, pad = 10)
+
+    # Visualization angle
+    ax.view_init(view[0], view[1])
+
+    plt.tight_layout(True)
+    #plt.savefig('prisma_3D.pdf', format='pdf')
+
+    plt.show()
+    
