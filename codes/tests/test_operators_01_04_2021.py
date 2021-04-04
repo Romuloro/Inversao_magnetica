@@ -85,7 +85,7 @@ n = 3000
 
 for t in range(n):
     populacao = List(populacao)
-    gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.00005)
+    gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.0005)
     #fit_, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
     #theta, MST = graphs_and_dist.theta_value(populacao)
     min_fit = gama.index(min(gama))
