@@ -22,10 +22,10 @@ acquisition = {'nx': 20,
 x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 
-data_cubo = pd.read_table('Logfile/01_04_2021_13_13/data_mag.cvs', sep =',')
+data_cubo = pd.read_table('Logfile/09_04_2021_16_36/data_mag.cvs', sep =',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
-momento = 26000000000/29 #3.8X10^10/ndip
+momento = 28600000000/29 #3.8X10^10/ndip
 #print(momento)
 
 #plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
@@ -36,7 +36,7 @@ population = {'xmax': 5000.0,
                 'ymin': -5000.0,
                 'zlim': 5000.0,
                 'z_min': 0.0,
-                'n_dip': 30,
+                'n_dip': 100,
                 'n_pop': 50,
                 'inclmax': 5.0,
                 'inclmin': -5.0,

@@ -22,10 +22,10 @@ acquisition = {'nx': 20,
 x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 
-data_cubo = pd.read_table('Logfile/01_04_2021_13_13/data_mag.cvs', sep =',')
+data_cubo = pd.read_table('Logfile/14_04_2021_17_08/data_mag.cvs', sep =',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
-momento = 26000000000/29 #3.8X10^1/ndip
+momento = 28600000000/30 #3.8X10^1/ndip
 #print(momento)
 
 #plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
@@ -34,7 +34,7 @@ population = {'xmax': 5000.0,
                 'xmin': -5000.0,
                 'ymax': 5000.0,
                 'ymin': -5000.0,
-                'zlim': 5000.0,
+                'zlim': 7000.0,
                 'z_min': 0.0,
                 'n_dip': 30,
                 'n_pop': 50,
@@ -53,7 +53,7 @@ filhos_mut = {'xmax': 5000.0,
                 'xmin': -5000.0,
                 'ymax': 5000.0,
                 'ymin': -5000.0,
-                'zlim': 5000.0,
+                'zlim': 7000.0,
                 'z_min': 0.0,
                 'n': 1,
                 'inclmax': 5.0,
@@ -97,7 +97,7 @@ for t in range(n):
     incl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 0])
     decl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 1])
     pais_ = Operators_array.tournament_selection_ranking_diversit(populacao, fit_)
-    filho_ = Operators_array.crossover_polyamory(pais_)  # Operators_array.uniform_crossover(pais_)
+    filho_ = Operators_array.crossover_polyamory(pais_) #Operators_array.uniform_crossover(pais_) 
     if (t >= 5) and (val_fit[t] == val_fit[t-5]):
         filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut, prob_mut = 0.4) #aumenta mut para X
     else:

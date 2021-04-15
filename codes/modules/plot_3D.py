@@ -57,7 +57,7 @@ def plot_obs_3d(prism, size, view, x, y, z):
 
     plt.show()
     
-def creat_point (n, x, y, z, deltay, deltaz, incl):
+def creat_point (n, x, y, z, deltay, deltaz, deltax, incl, merg):
     '''
     As entradas da função é feita da forma clássica ou através de um dicionário que é descompactado.
     O dicinário deve conter as chaves nomeadas de forma identica aos parâmetros de entrada da função.
@@ -77,21 +77,40 @@ def creat_point (n, x, y, z, deltay, deltaz, incl):
     pointy = []
     pointz = []
     
+    if merg == 'y':
+        
     # Criação dos pontos em X
-    for i in range(n):
-        pointx.extend([x[0],x[1]])
+        for i in range(n):
+            pointx.extend([x[0],x[1]])
 
     # Criação dos pontos em Z
-    for i in range(n):
-        pointz.extend([z[0]+i*deltaz/2,z[1]+i*deltaz/2])
+        for i in range(n):
+            pointz.extend([z[0]+i*deltaz/2,z[1]+i*deltaz/2])
     
     # Criação dos pontos em Y
-    if incl == 'positivo':
-        for i in range(n):
-            pointy.extend([y[0]+i*deltay/2,y[1]+i*deltay/2])
+        if incl == 'positivo':
+            for i in range(n):
+                pointy.extend([y[0]+i*deltay/2,y[1]+i*deltay/2])
+        else:
+            for i in range(n):
+                pointy.extend([y[0]-i*deltay/2,y[1]-i*deltay/2])
+    
     else:
+        # Criação dos pontos em Y
         for i in range(n):
-            pointy.extend([y[0]-i*deltay/2,y[1]-i*deltay/2])
+            pointy.extend([y[0],y[1]])
+
+    # Criação dos pontos em Z
+        for i in range(n):
+            pointz.extend([z[0]+i*deltaz/2,z[1]+i*deltaz/2])
+    
+    # Criação dos pontos em z
+        if incl == 'positivo':
+            for i in range(n):
+                pointx.extend([x[0]+i*deltax/2,x[1]+i*deltax/2])
+        else:
+            for i in range(n):
+                pointx.extend([x[0]-i*deltax/2,x[1]-i*deltax/2])
     
     return pointx, pointy, pointz
 
