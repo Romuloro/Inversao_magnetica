@@ -74,7 +74,7 @@ def theta_var(dm1):
     for i in range( len(dm1) ):
         theta += (dm1[i] - dmt_m)**2
         
-    return theta
+    return theta/n
 
 
 

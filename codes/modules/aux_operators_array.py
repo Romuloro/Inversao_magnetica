@@ -137,3 +137,13 @@ def relative_error(v_referencia, v_calculado):
     ree = (np.abs(v_calculado - v_referencia)/(v_referencia))*100
     return ree
 
+
+@jit(nopython=True)
+def normalize(function):
+    min_f, max_f = min(function), max(function)
+    n_f = List()
+    for i in range(len(function)):
+        normal_f = (function[i] - min_f)/(max_f + min_f)
+        n_f.append(normal_f)
+    return n_f
+
