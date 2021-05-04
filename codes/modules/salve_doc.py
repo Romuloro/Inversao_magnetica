@@ -63,7 +63,7 @@ def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind, incl, decl, gamma,
     #----------------------------------------------------------------------------------------------------#
     #Criando a posta
     pasta = []
-    endereco = './Testes_congresso/'
+    endereco = './Testes_mestrado1/'
     pasta.extend([endereco, data_e_hora])
     pastac = pasta.copy()
     pastac2 = pasta.copy()

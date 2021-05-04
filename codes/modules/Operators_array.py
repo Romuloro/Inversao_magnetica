@@ -384,3 +384,28 @@ def tournament_selection_ranking_diversit(populacao, fit_, n_regiao= 5):
     
     return pais_
 
+
+def eletismo_constraint(X, Y, Z, I, D, filho, anomaly, populacao, choose):
+    normal_gama, gama, anomaly, MST, theta, phi = final_fit(X, Y, Z, I, D, filho, anomaly, lamb = 0.00005)
+    fit_cada = np.array(normal_gama)
+    df = pd.DataFrame(fit_cada)
+    x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
+    n_select = len(populacao) - len(choose)
+    melhores = x.index[0:n_select]
+    for i in range(n_select):
+        change_index = melhores[i]
+        choose.append(filho[melhores[i]])
+    
+    return choose
+
+
+def constraint_violation(phi, theta, populacao):
+    choose = []
+    m_phi = np.mean(phi)
+    m_theta = np.mean(theta)
+    for i in range(len(phi)):
+        if phi[i] < m_phi - 0.6*m_phi and theta[i] < m_theta - 0.6*m_theta:
+            i_phi = phi.index(phi[i])
+            choose.append(populacao[i_phi])
+    
+    return choose

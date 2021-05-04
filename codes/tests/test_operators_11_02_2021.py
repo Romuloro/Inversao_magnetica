@@ -25,7 +25,7 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 data_cubo = pd.read_table('Logfile/28_01_2021_16_20/data_mag.cvs', sep =',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
-momento = 38000000000/29 #3.8X10^10/ndip
+momento = 38000000000/30 #3.8X10^10/ndip
 #print(momento)
 
 #plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
@@ -85,10 +85,10 @@ n = 3000
 
 for t in range(n):
     populacao = List(populacao)
-    gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.00005)
+    normal_gama, gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.05)
     #fit_, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
     #theta, MST = graphs_and_dist.theta_value(populacao)
-    min_fit = gama.index(min(gama))
+    min_fit = normal_gama.index(min(normal_gama))
     ind_better.append(populacao[min_fit])
     anomaly_better.append(anomaly[min_fit])
     val_fit.append(min(gama))
@@ -96,13 +96,13 @@ for t in range(n):
     val_phi.append(min(phi))
     incl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 0])
     decl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 1])
-    pais_ = Operators_array.tournament_selection_ranking_diversit(populacao, gama)
+    pais_ = Operators_array.tournament_selection_ranking_diversit(populacao, normal_gama)
     filho_ = Operators_array.crossover_polyamory(pais_)  # Operators_array.uniform_crossover(pais_)
     if (t >= 5) and (val_fit[t] == val_fit[t-5]):
         filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut, prob_mut = 0.4) #aumenta mut para X
     else:
         filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut) #manter mut em 0.05
-    populacao = Operators_array.elitismo(populacao, filho_, gama, n_fica = 5)
+    populacao = Operators_array.elitismo(populacao, filho_, normal_gama, n_fica = 5)
     #populacao = Operators_array.elitismo_c_violation(populacao, filho_, theta, n_fica = 5)
     print('geracao', t)
     print(val_fit[t])
