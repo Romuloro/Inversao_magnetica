@@ -4,9 +4,11 @@ import sys
 import matplotlib.pyplot as plt
 import pandas as pd
 import time
+import os
 from numba import jit
 from numba.typed import List
 a = sys.path.append('../modules/')
+a = sys.path.append('../codes/')
 import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, aux_operators_array, graphs_and_dist
 
 acquisition = {'nx': 20,
@@ -20,7 +22,6 @@ acquisition = {'nx': 20,
 
 
 x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
-
 
 data_cubo = pd.read_table('Logfile/28_01_2021_16_20/data_mag.cvs', sep =',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
@@ -81,11 +82,11 @@ ind_theta = List()
 incl_better = List()
 decl_better = List()
 
-n = 3000
+n = 5000
 
 for t in range(n):
     populacao = List(populacao)
-    normal_gama, gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.05)
+    normal_gama, gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.005)
     #fit_, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
     #theta, MST = graphs_and_dist.theta_value(populacao)
     min_fit = normal_gama.index(min(normal_gama))

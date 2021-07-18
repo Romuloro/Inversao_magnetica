@@ -79,11 +79,13 @@ ind_theta = List()
 incl_better = List()
 decl_better = List()
 
+#lamb = 5.2e-5
+#n_loop = 7
 n = 3000
 
 for t in range(n):
     populacao = List(populacao)
-    normal_gama, gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.00005)
+    normal_gama, gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb = 0.0)
     #print('gamma é:', normal_gama)
     #print('theta é:', theta)
     #print('phi é:', phi)
@@ -103,13 +105,12 @@ for t in range(n):
         filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut, prob_mut = 0.4) #aumenta mut para X
     else:
         filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut) #manter mut em 0.05
-    choose = Operators_array.constraint_violation(phi, theta, populacao)
-    populacao = Operators_array.eletismo_constraint(X, Y, Z, I, D, filho_, anomaly_cubo, populacao, choose)
-    #populacao = Operators_array.elitismo_c_violation(populacao, filho_, theta, n_fica = 5)
+    #choose = Operators_array.constraint_violation(phi, theta, populacao)
+    populacao = Operators_array.elitismo(populacao, filho_, normal_gama, n_fica = 5)
     print('geracao', t)
     print(val_fit[t])
 
-
+#lamb = lamb*1.0e-1
 
 
 fim = time.time()

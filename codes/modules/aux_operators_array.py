@@ -147,3 +147,43 @@ def normalize(function):
         n_f.append(normal_f)
     return n_f
 
+
+@jit(nopython=True)
+def deversity_calculate(populacao, param):
+    pop_l = len(populacao)
+    ind_l = len(populacao[0])
+    if param == 'X':
+        m_ = np.zeros((ind_l-1, pop_l))
+        for i in range(pop_l):
+            m_[:, i] = populacao[i][0:ind_l-1,0]
+    
+    if param == 'Y':
+        m_ = np.zeros((ind_l-1, pop_l))
+        for i in range(pop_l):
+            m_[:, i] = populacao[i][0:ind_l-1,1]
+    
+    if param == 'Z':
+        m_ = np.zeros((ind_l-1, pop_l))
+        for i in range(pop_l):
+            m_[:, i] = populacao[i][0:ind_l-1,2]
+    
+    if param == 'incl':
+        m_ = np.zeros((1, pop_l))
+        for i in range(pop_l):
+            m_[:, i] = populacao[i][ind_l-1,0]
+    
+    if param == 'decl':
+        m_ = np.zeros((1, pop_l))
+        for i in range(pop_l):
+            m_[:, i] = populacao[i][ind_l-1,1]
+    
+    if param == 'mom':
+        m_ = np.zeros((1, pop_l))
+        for i in range(pop_l):
+            m_[:, i] = populacao[i][ind_l-1,2]
+    
+    mean_ = np.mean(m_)
+    std_ = np.std(m_)
+    
+    return mean_, std_
+

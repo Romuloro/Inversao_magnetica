@@ -1,0 +1,3 @@
+#!/home/romulo/my_project_dir/Inversao_magnetica/venv/bin/python
+from numba.pycc import main
+main()
