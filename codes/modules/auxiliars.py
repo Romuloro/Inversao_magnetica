@@ -155,7 +155,7 @@ def noise_normal_dist(data, v0, std):
     
     assert numpy.min(data) <= numpy.mean(data), 'Mean must be greater than minimum'
     assert numpy.max(data) >= numpy.mean(data), 'Maximum must be greater than mean'
-    assert std <= 10., 'Noise must not be greater than 1'
+    #assert std <= 10., 'Noise must not be greater than 1'
     assert std >= 1e-12, 'Noise should not be smaller than 1 micro unit'
     
     # Define the values for size and shape of the data

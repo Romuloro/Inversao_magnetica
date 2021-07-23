@@ -24,10 +24,10 @@ acquisition = {'nx': 20,
 x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile')
-data_cubo = pd.read_table('15_07_2021_18_10/data_mag.cvs', sep=',')
+data_cubo = pd.read_table('28_01_2021_16_20/data_mag.cvs', sep=',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20, 20))
 
-momento = 1.035e10 / 20  # 3.8X10^10/ndip
+momento = 3.8e10 / 20  # 3.8X10^10/ndip
 # print(momento)
 
 # plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
@@ -75,7 +75,7 @@ populacao = Operators_array.create_population(**population)
 
 
 n = 3000
-lamb = 1.25e-2
+lamb = 3.9e-6
 
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
