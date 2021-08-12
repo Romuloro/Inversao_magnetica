@@ -24,7 +24,7 @@ acquisition = {'nx': 20,
 x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile')
-data_cubo = pd.read_table('28_01_2021_16_20/data_mag.cvs', sep=',')
+data_cubo = pd.read_table('03_08_2021_08_57/data_mag.cvs', sep=',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20, 20))
 
 momento = 3.8e10 / 20  # 3.8X10^10/ndip
@@ -36,7 +36,7 @@ population = {'xmax': 6000.0,
               'xmin': -6000.0,
               'ymax': 6000.0,
               'ymin': -6000.0,
-              'zlim': 7000.0,
+              'zlim': 6000.0,
               'z_min': 0.0,
               'n_dip': 20,
               'n_pop': 50,
@@ -55,7 +55,7 @@ filhos_mut = {'xmax': 6000.0,
               'xmin': -6000.0,
               'ymax': 6000.0,
               'ymin': -6000.0,
-              'zlim': 7000.0,
+              'zlim': 6000.0,
               'z_min': 0.0,
               'n': 1,
               'inclmax': 5.0,
@@ -75,7 +75,7 @@ populacao = Operators_array.create_population(**population)
 
 
 n = 3000
-lamb = 3.9e-6
+lamb = 5.e-2
 
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
@@ -123,7 +123,7 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
         val_phi.append(min(phi))
         incl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 0])
         decl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 1])
-        pais_ = Operators_array.tournament_selection_ranking_diversit(populacao, normal_gama)
+        pais_, select = Operators_array.tournament_selection(populacao, normal_gama) #Operators_array.tournament_selection_ranking_diversit(populacao, normal_gama)
         filho_ = Operators_array.crossover_polyamory(pais_)  # Operators_array.uniform_crossover(pais_)
         if (t >= 5) and (val_fit[t] == val_fit[t - 5]):
             filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut, prob_mut=0.4)  # aumenta mut para X
