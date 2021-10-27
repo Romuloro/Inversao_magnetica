@@ -392,3 +392,41 @@ def rotate3D_xyz(x, y, z, angle, direction = 'z'):
     
     # Return the final output
     return xr, yr, zr
+
+
+def my_wavenumber(x, y):
+    '''
+    Return the wavenumbers in X and Y directions
+    
+    Inputs:
+    x - numpy array - coordinates in x directions
+    y - numpy array - coordinates in y directions
+    
+    Output:
+    kx - numpy 2D array - calculated wavenumber in x direction
+    ky - numpy 2D array - calculated wavenumber in y direction
+    '''
+    
+    # Verify if x and y are 1D or 2D numpy arrays
+    if x.shape[0] == x.size or x.shape[1] == x.size:
+        dx = x[1] - x[0]
+        nx = x.size
+    else:
+        dx = (x.max() - x.min())/(x.shape[1] - 1)
+        nx = x.shape[1]
+    
+    if y.shape[0] == y.size or y.shape[1] == y.size:
+        dy = y[1] - y[0]
+        ny = y.size
+    else:
+        dy = (y.max() - y.min())/(y.shape[0] - 1)
+        ny = y.shape[0]
+      
+    # Compute the values for wavenumber in x and y directions
+    c = 2.*numpy.pi
+    kx = c*numpy.fft.fftfreq(nx, dx)
+    ky = c*numpy.fft.fftfreq(ny, dy)    
+    
+    # Return the final output
+    return numpy.meshgrid(kx, ky)
+
