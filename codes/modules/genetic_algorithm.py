@@ -24,7 +24,7 @@ acquisition = {'nx': 51,
 x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests')
-data_cubo = pd.read_table('data_ajustment_mag_arraial.csv', sep=',')
+data_cubo = pd.read_table('data_ajustment_mag_arraial_v3.csv', sep=',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (51,51))
 
 momento = 4.54e9 / 20  # 3.8X10^10/ndip
@@ -36,16 +36,16 @@ population = {'xmax': 809743.0,
               'xmin': 804532.0,
               'ymax': 7460598.0,
               'ymin': 7456613.0,
-              'zlim': 2000.0,
+              'zlim': 1000.0,
               'z_min': 0.0,
               'n_dip': 10,
               'n_pop': 50,
-              'inclmax': -5.0,
-              'inclmin': -30.0,
-              'declmax': -10.0,
-              'declmin': -30.0,
-              'mmax': 4.5e10 / 10,
-              'mmin': 1.5e9 / 10,
+              'inclmax': 90.0,
+              'inclmin': -90.0,
+              'declmax': 90.0,
+              'declmin': -90.0,
+              'mmax': 9.5e10 / 10,
+              'mmin': 1.5e7 / 10,
               'homogeneo': True
               }
 
@@ -55,15 +55,15 @@ filhos_mut = {'xmax': 809743.0,
               'xmin': 804532.0,
               'ymax': 7460598.0,
               'ymin': 7456613.0,
-              'zlim': 2000.0,
+              'zlim': 1000.0,
               'z_min': 0.0,
               'n': 1,
-              'inclmax': -5.0,
-              'inclmin': -30.0,
-              'declmax': -10.0,
-              'declmin': -30.0,
-              'magmax': 4.54e10 / 10,
-              'magmin': 1.54e9 / 10,
+              'inclmax': 90.0,
+              'inclmin': -90.0,
+              'declmax': 90.0,
+              'declmin': -90.0,
+              'magmax': 9.5e10 / 10,
+              'magmin': 1.54e7 / 10,
               'homogeneo': True
               }
 
