@@ -152,7 +152,7 @@ def crossover_elitista(pais_torneio, escolhidos, fit):
 
 def mutacao_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo):
 
-    prob_mut = 0.05
+    prob_mut = 0.15
     for index, rand_mut in enumerate(filho): #Index = qual será o indivíduo que será mutado.
         rand_mut = random.random()
         if prob_mut > rand_mut:

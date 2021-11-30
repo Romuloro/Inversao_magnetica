@@ -68,8 +68,8 @@ def sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, hom
     incl= List()
     decl= List()
     mag= List()
-    magmax = magmax + porc*magmax
-    magmin = magmin - porc*magmin
+    magmax = magmax #+ porc*magmax
+    magmin = magmin #- porc*magmin
     #print(magmax, magmin)
 #---------------------------------------------------------------------------------------------------------------------#
     if homogeneo == True:

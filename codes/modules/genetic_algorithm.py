@@ -12,58 +12,58 @@ a = sys.path.append('../modules/')
 a = sys.path.append('../codes/')
 import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, aux_operators_array, graphs_and_dist
 
-acquisition = {'nx': 51,
-               'ny': 51,
-               'xmax': 809743.0,
-               'xmin': 804532.0,
-               'ymax': 7460598.0,
-               'ymin': 7456613.0,
+acquisition = {'nx': 20,
+               'ny': 20,
+               'ymax': 810803.34,
+               'ymin': 803484.48,
+               'xmax': 7462279.99,
+               'xmin': 7455485.14,
                'z': -50.0,
                'color': '.r'}
 
 x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests')
-data_cubo = pd.read_table('data_ajustment_mag_arraial_v3.csv', sep=',')
-anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (51,51))
+data_cubo = pd.read_table('data_ajustment_mag_arraial_29_11_2021_background_0_continuacao_200.csv', sep=',')
+anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
 momento = 4.54e9 / 20  # 3.8X10^10/ndip
 # print(momento)
 
 # plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 
-population = {'xmax': 809743.0,
-              'xmin': 804532.0,
-              'ymax': 7460598.0,
-              'ymin': 7456613.0,
-              'zlim': 1000.0,
-              'z_min': 0.0,
-              'n_dip': 10,
-              'n_pop': 50,
-              'inclmax': 90.0,
-              'inclmin': -90.0,
-              'declmax': 90.0,
-              'declmin': -90.0,
-              'mmax': 9.5e10 / 10,
-              'mmin': 1.5e7 / 10,
+population = {'ymax': 810000.0,
+               'ymin': 805000.0,
+               'xmax': 7461000.0,
+               'xmin': 7456000.0,
+              'zlim': 2500.0,
+              'z_min': 200.0,
+              'n_dip': 20,
+              'n_pop': 100,
+              'inclmax': 30.0,
+              'inclmin': 15.0,
+              'declmax': -5.0,
+              'declmin': -20.0,
+              'mmax': 8.9e9 / 20,
+              'mmin': 8.65e9 / 20,
               'homogeneo': True
               }
 
 I, D = -36.346, -21.826
 
-filhos_mut = {'xmax': 809743.0,
-              'xmin': 804532.0,
-              'ymax': 7460598.0,
-              'ymin': 7456613.0,
-              'zlim': 1000.0,
-              'z_min': 0.0,
+filhos_mut = {'ymax': 810000.0,
+               'ymin': 805000.0,
+               'xmax': 7461000.0,
+               'xmin': 7456000.0,
+              'zlim': 2500.0,
+              'z_min': 200.0,
               'n': 1,
-              'inclmax': 90.0,
-              'inclmin': -90.0,
-              'declmax': 90.0,
-              'declmin': -90.0,
-              'magmax': 9.5e10 / 10,
-              'magmin': 1.54e7 / 10,
+              'inclmax': 30.0,
+              'inclmin': 15.0,
+              'declmax': -5.0,
+              'declmin': -20.0,
+              'magmax': 8.9e9 / 20,
+              'magmin': 8.65e9 / 20,
               'homogeneo': True
               }
 
@@ -74,7 +74,7 @@ populacao = Operators_array.create_population(**population)
 # print("\n")
 
 
-n = 3000
+n = 10000
 lamb = 0.0
 
 
@@ -91,6 +91,7 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
     # ind_theta = List()
     incl_better = List()
     decl_better = List()
+    mom_better = List()
     diversity_x = List()
     diversity_y = List()
     diversity_z = List()
@@ -123,6 +124,7 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
         val_phi.append(min(phi))
         incl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 0])
         decl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 1])
+        mom_better.append(populacao[min_fit][len(ind_better[0]) - 1, 2])
         pais_, select = Operators_array.tournament_selection(populacao, normal_gama) #Operators_array.tournament_selection_ranking_diversit(populacao, normal_gama)
         filho_ = Operators_array.crossover_polyamory(pais_)  # Operators_array.uniform_crossover(pais_)
         if (t >= 5) and (val_fit[t] == val_fit[t - 5]):
@@ -132,5 +134,5 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
         populacao = Operators_array.elitismo(populacao, filho_, normal_gama, n_fica=5)
         # populacao = Operators_array.elitismo_c_violation(populacao, filho_, theta, n_fica = 5)
 
-    return populacao, anomaly_better, ind_better, val_fit, val_phi, val_theta, incl_better, decl_better, diversity_x, diversity_y, diversity_z, diversity_incl, diversity_decl, diversity_mom
+    return populacao, anomaly_better, ind_better, val_fit, val_phi, val_theta, incl_better, decl_better, mom_better, diversity_x, diversity_y, diversity_z, diversity_incl, diversity_decl, diversity_mom
 
