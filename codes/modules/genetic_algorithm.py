@@ -12,58 +12,61 @@ a = sys.path.append('../modules/')
 a = sys.path.append('../codes/')
 import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, aux_operators_array, graphs_and_dist
 
-acquisition = {'nx': 20,
-               'ny': 20,
-               'ymax': 810803.34,
-               'ymin': 803484.48,
-               'xmax': 7462279.99,
-               'xmin': 7455485.14,
-               'z': -50.0,
-               'color': '.r'}
 
-x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests')
-data_cubo = pd.read_table('data_ajustment_mag_arraial_29_11_2021_background_0_continuacao_200.csv', sep=',')
+data_cubo = pd.read_table('data_mag_arraial_pontal_Atalaia.csv', sep=',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
 momento = 4.54e9 / 20  # 3.8X10^10/ndip
 # print(momento)
 
+acquisition = {'nx': 20,
+               'ny': 20,
+               'ymax': data_cubo['East(m)'].max(),
+               'ymin': data_cubo['East(m)'].min(),
+               'xmax': data_cubo['North(m)'].max(),
+               'xmin': data_cubo['North(m)'].min(),
+               'z': -50.0,
+               'color': '.r'}
+
+x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
+
+
 # plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 
-population = {'ymax': 810000.0,
-               'ymin': 805000.0,
-               'xmax': 7461000.0,
-               'xmin': 7456000.0,
+population = {'ymax': data_cubo['East(m)'].max(),
+               'ymin': data_cubo['East(m)'].min(),
+               'xmax': data_cubo['North(m)'].max(),
+               'xmin': data_cubo['North(m)'].min(),
               'zlim': 2500.0,
               'z_min': 200.0,
-              'n_dip': 20,
+              'n_dip': 10,
               'n_pop': 100,
-              'inclmax': 30.0,
-              'inclmin': 15.0,
-              'declmax': -5.0,
-              'declmin': -20.0,
-              'mmax': 8.9e9 / 20,
-              'mmin': 8.65e9 / 20,
+              'inclmax': 50.0,
+              'inclmin': -50.0,
+              'declmax': 50.0,
+              'declmin': -50.0,
+              'mmax': 1.8e10 / 10,
+              'mmin': 1.2e10 / 10,
               'homogeneo': True
               }
 
 I, D = -36.346, -21.826
 
-filhos_mut = {'ymax': 810000.0,
-               'ymin': 805000.0,
-               'xmax': 7461000.0,
-               'xmin': 7456000.0,
+filhos_mut = {'ymax': data_cubo['East(m)'].max(),
+               'ymin': data_cubo['East(m)'].min(),
+               'xmax': data_cubo['North(m)'].max(),
+               'xmin': data_cubo['North(m)'].min(),
               'zlim': 2500.0,
               'z_min': 200.0,
               'n': 1,
-              'inclmax': 30.0,
-              'inclmin': 15.0,
-              'declmax': -5.0,
-              'declmin': -20.0,
-              'magmax': 8.9e9 / 20,
-              'magmin': 8.65e9 / 20,
+              'inclmax': 50.0,
+              'inclmin': -50.0,
+              'declmax': 50.0,
+              'declmin': -50.0,
+              'magmax': 1.8e10 / 10,
+              'magmin': 1.2e10 / 10,
               'homogeneo': True
               }
 
@@ -74,7 +77,7 @@ populacao = Operators_array.create_population(**population)
 # print("\n")
 
 
-n = 10000
+n = 1000
 lamb = 0.0
 
 
