@@ -43,12 +43,12 @@ population = {'ymax': data_cubo['East(m)'].max(),
               'z_min': 200.0,
               'n_dip': 10,
               'n_pop': 100,
-              'inclmax': 50.0,
-              'inclmin': -50.0,
-              'declmax': 50.0,
-              'declmin': -50.0,
-              'mmax': 1.8e10 / 10,
-              'mmin': 1.2e10 / 10,
+              'inclmax': 20.0,
+              'inclmin': -20.0,
+              'declmax': 20.0,
+              'declmin': -30.0,
+              'mmax': 5.6e10/10,
+              'mmin': 4.6e10/10,
               'homogeneo': True
               }
 
@@ -61,12 +61,12 @@ filhos_mut = {'ymax': data_cubo['East(m)'].max(),
               'zlim': 2500.0,
               'z_min': 200.0,
               'n': 1,
-              'inclmax': 50.0,
-              'inclmin': -50.0,
-              'declmax': 50.0,
-              'declmin': -50.0,
-              'magmax': 1.8e10 / 10,
-              'magmin': 1.2e10 / 10,
+              'inclmax': 20.0,
+              'inclmin': -20.0,
+              'declmax': 20.0,
+              'declmin': -30.0,
+              'magmax': 5.6e10/10,
+              'magmin': 4.6e10/10,
               'homogeneo': True
               }
 
@@ -77,7 +77,7 @@ populacao = Operators_array.create_population(**population)
 # print("\n")
 
 
-n = 1000
+n = 500
 lamb = 0.0
 
 
@@ -116,25 +116,25 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
         diversity_incl.append(std_incl)
         diversity_decl.append(std_decl)
         diversity_mom.append(std_mom)
-        normal_gama, gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb=lamb)
-        # fit_, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
+        #normal_gama, gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb=lamb)
+        phi, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
         # theta, MST = graphs_and_dist.theta_value(populacao)
-        min_fit = normal_gama.index(min(normal_gama))
+        min_fit = phi.index(min(phi))
         ind_better.append(populacao[min_fit])
         anomaly_better.append(anomaly[min_fit])
-        val_fit.append(min(gama))
-        val_theta.append(min(theta))
+        val_fit.append(min(phi))
+        val_theta.append(min(phi))
         val_phi.append(min(phi))
         incl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 0])
         decl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 1])
         mom_better.append(populacao[min_fit][len(ind_better[0]) - 1, 2])
-        pais_, select = Operators_array.tournament_selection(populacao, normal_gama) #Operators_array.tournament_selection_ranking_diversit(populacao, normal_gama)
+        pais_, select = Operators_array.tournament_selection(populacao, phi) #Operators_array.tournament_selection_ranking_diversit(populacao, normal_gama)
         filho_ = Operators_array.crossover_polyamory(pais_)  # Operators_array.uniform_crossover(pais_)
         if (t >= 5) and (val_fit[t] == val_fit[t - 5]):
             filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut, prob_mut=0.4)  # aumenta mut para X
         else:
             filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut)  # manter mut em 0.05
-        populacao = Operators_array.elitismo(populacao, filho_, normal_gama, n_fica=5)
+        populacao = Operators_array.elitismo(populacao, filho_, phi, n_fica=50)
         # populacao = Operators_array.elitismo_c_violation(populacao, filho_, theta, n_fica = 5)
 
     return populacao, anomaly_better, ind_better, val_fit, val_phi, val_theta, incl_better, decl_better, mom_better, diversity_x, diversity_y, diversity_z, diversity_incl, diversity_decl, diversity_mom
