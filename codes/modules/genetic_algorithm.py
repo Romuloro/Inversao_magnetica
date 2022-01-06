@@ -15,7 +15,7 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests')
-data_cubo = pd.read_table('data_mag_arraial_pontal_Atalaia.csv', sep=',')
+data_cubo = pd.read_table('data_ajustment_mag_arraial_02_12_2021_background_0.csv', sep=',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
 momento = 4.54e9 / 20  # 3.8X10^10/ndip
@@ -41,14 +41,14 @@ population = {'ymax': data_cubo['East(m)'].max(),
                'xmin': data_cubo['North(m)'].min(),
               'zlim': 2500.0,
               'z_min': 200.0,
-              'n_dip': 10,
+              'n_dip': 1,
               'n_pop': 100,
-              'inclmax': 20.0,
-              'inclmin': -20.0,
-              'declmax': 20.0,
-              'declmin': -30.0,
-              'mmax': 5.6e10/10,
-              'mmin': 4.6e10/10,
+              'inclmax': 21.0,
+              'inclmin': 11.0,
+              'declmax': -27.0,
+              'declmin': -37.0,
+              'mmax': 1.8e10,
+              'mmin': 1.2e10,
               'homogeneo': True
               }
 
@@ -61,12 +61,12 @@ filhos_mut = {'ymax': data_cubo['East(m)'].max(),
               'zlim': 2500.0,
               'z_min': 200.0,
               'n': 1,
-              'inclmax': 20.0,
-              'inclmin': -20.0,
-              'declmax': 20.0,
-              'declmin': -30.0,
-              'magmax': 5.6e10/10,
-              'magmin': 4.6e10/10,
+              'inclmax': 21.0,
+              'inclmin': 11.0,
+              'declmax': -27.0,
+              'declmin': -37.0,
+              'magmax': 1.8e10,
+              'magmin': 1.2e10,
               'homogeneo': True
               }
 
@@ -116,25 +116,26 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
         diversity_incl.append(std_incl)
         diversity_decl.append(std_decl)
         diversity_mom.append(std_mom)
-        #normal_gama, gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb=lamb)
-        phi, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
-        # theta, MST = graphs_and_dist.theta_value(populacao)
-        min_fit = phi.index(min(phi))
+        gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb=lamb)
+        #phi, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
+        #theta, MST = graphs_and_dist.theta_value(populacao)
+        
+        min_fit = phi.index(min(gama))
         ind_better.append(populacao[min_fit])
         anomaly_better.append(anomaly[min_fit])
-        val_fit.append(min(phi))
-        val_theta.append(min(phi))
+        val_fit.append(min(gama))
+        val_theta.append(min(theta))
         val_phi.append(min(phi))
         incl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 0])
         decl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 1])
         mom_better.append(populacao[min_fit][len(ind_better[0]) - 1, 2])
-        pais_, select = Operators_array.tournament_selection(populacao, phi) #Operators_array.tournament_selection_ranking_diversit(populacao, normal_gama)
+        pais_, select = Operators_array.tournament_selection(populacao, gama) #Operators_array.tournament_selection_ranking_diversit(populacao, normal_gama)
         filho_ = Operators_array.crossover_polyamory(pais_)  # Operators_array.uniform_crossover(pais_)
         if (t >= 5) and (val_fit[t] == val_fit[t - 5]):
             filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut, prob_mut=0.4)  # aumenta mut para X
         else:
             filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut)  # manter mut em 0.05
-        populacao = Operators_array.elitismo(populacao, filho_, phi, n_fica=50)
+        populacao = Operators_array.elitismo(populacao, filho_, gama, n_fica=5)
         # populacao = Operators_array.elitismo_c_violation(populacao, filho_, theta, n_fica = 5)
 
     return populacao, anomaly_better, ind_better, val_fit, val_phi, val_theta, incl_better, decl_better, mom_better, diversity_x, diversity_y, diversity_z, diversity_incl, diversity_decl, diversity_mom

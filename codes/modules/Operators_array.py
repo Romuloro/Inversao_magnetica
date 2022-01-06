@@ -345,13 +345,11 @@ def final_fit(X, Y, Z, I, D, pop, tfa_n_dip, lamb):
     gamma = []
     fit_, anomaly = fit_value(X, Y, Z, I, D, pop, tfa_n_dip)
     theta, MST = graphs_and_dist.theta_value(pop)
-    n_phi = aux_operators_array.normalize(fit_)
-    n_theta = aux_operators_array.normalize(theta)
     for i in range(len(pop)):
         #final_fit = fit_[i] + lamb * theta[i]
-        fit_gamma.append(n_phi[i] + (lamb * (n_theta[i])))
-        gamma.append(fit_[i] + (lamb * (theta[i])))
-    return fit_gamma, gamma, anomaly, MST, theta, fit_
+        fit_gamma.append(fit_[i] + (lamb * (theta[i])))
+        #gamma.append(fit_[i] + (lamb * (theta[i])))
+    return fit_gamma, anomaly, MST, theta, fit_
 
 
 
