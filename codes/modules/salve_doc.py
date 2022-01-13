@@ -37,7 +37,7 @@ def create_diretorio(dicionario, matriz):
     df.to_csv(pasta2, sep=' ')
     #----------------------------------------------------------------------------------------------------#
     #Exportar o cvs com os resultados
-    pastac.extend('/data_mag.cvs')
+    pastac.extend('/data_mag.csv')
     pasta3 = ''.join(pastac)
     matriz.to_csv(pasta3, index = False, header = True)
 
@@ -92,35 +92,35 @@ def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind, incl, decl, gamma,
     theta = pd.DataFrame(data = theta)
     phi = pd.DataFrame(data = phi)
     #Exportar o cvs com os resultados
-    pastac.extend('/frist_ind.cvs')
+    pastac.extend('/frist_ind.csv')
     pasta3 = ''.join(pastac)
     o_ind.to_csv(pasta3, index = False, header = False)
     
-    pastac2.extend('/intermediate_ind.cvs')
+    pastac2.extend('/intermediate_ind.csv')
     pasta4 = ''.join(pastac2)
     i_ind.to_csv(pasta4, index = False, header = False)
     
-    pastac3.extend('/final_ind.cvs')
+    pastac3.extend('/final_ind.csv')
     pasta5 = ''.join(pastac3)
     f_ind.to_csv(pasta5, index = False, header = False)
     
-    pastac4.extend('/incl.cvs')
+    pastac4.extend('/incl.csv')
     pasta6 = ''.join(pastac4)
     incl.to_csv(pasta6, index = False, header = False)
     
-    pastac5.extend('/decl.cvs')
+    pastac5.extend('/decl.csv')
     pasta7 = ''.join(pastac5)
     decl.to_csv(pasta7, index = False, header = False)
     
-    pastac6.extend('/gamma.cvs')
+    pastac6.extend('/gamma.csv')
     pasta8 = ''.join(pastac6)
     gamma.to_csv(pasta8, index = False, header = False)
     
-    pastac7.extend('/phi.cvs')
+    pastac7.extend('/phi.csv')
     pasta9 = ''.join(pastac7)
     phi.to_csv(pasta9, index = False, header = False)
     
-    pastac8.extend('/theta.cvs')
+    pastac8.extend('/theta.csv')
     pasta10 = ''.join(pastac8)
     theta.to_csv(pasta10, index = False, header = False)
 

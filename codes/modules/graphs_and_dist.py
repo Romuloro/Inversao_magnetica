@@ -47,9 +47,9 @@ def dist_euclidiana(x_coord,y_coord, z_coord):
     '''
     
     fator_km = 1.0e-3
-    x_coord = x_coord*fator_km
+    '''x_coord = x_coord*fator_km
     y_coord = y_coord*fator_km
-    z_coord = z_coord*fator_km
+    z_coord = z_coord*fator_km'''
     
     #Stablishing the error condition
     tamx = np.shape(x_coord)[0]           
@@ -66,7 +66,7 @@ def dist_euclidiana(x_coord,y_coord, z_coord):
         for j in range(tamx):
             distl2_matrix[i][j] = ( (x_coord[i] - x_coord[j])**2 + (y_coord[i] - y_coord[j])**2 + (z_coord[i] - z_coord[j])**2 )**(1/2)
     
-    return distl2_matrix
+    return distl2_matrix * fator_km
 
 
 
