@@ -14,11 +14,11 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 
-os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile/07_01_2022_11_10')
+os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile/07_01_2022_11_11')
 data_cubo = pd.read_table('data_mag.cvs', sep=',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
-momento = 5.0864e10 / 20  # 3.8X10^10/ndip
+momento = 3.8e10 / 20  # 3.8X10^10/ndip
 # print(momento)
 
 acquisition = {'nx': 20,
@@ -39,7 +39,7 @@ population = {'ymax': data_cubo['East(m)'].max(),
                'ymin': data_cubo['East(m)'].min(),
                'xmax': data_cubo['North(m)'].max(),
                'xmin': data_cubo['North(m)'].min(),
-              'zlim': 5000.0,
+              'zlim': 6000.0,
               'z_min': 200.0,
               'n_dip': 20,
               'n_pop': 100,
@@ -78,7 +78,7 @@ populacao = Operators_array.create_population(**population)
 
 
 n = 5000
-lamb = 2.5e1
+lamb = 2.5e0
 
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
