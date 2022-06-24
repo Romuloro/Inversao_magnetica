@@ -1,0 +1,7 @@
+ 0
+"Data da Modelagem" 02_12_2021_21_34
+"Tipo de Teste" "Algoritmo genético com o método alternativo 5X1"
+"números de corpos" 1
+"Coordenadas do prisma 1 (x1, x2, y1, y2, z1, z2)" "[-1700.0, 0.0, -1700.0, 1700.0, 800.0, 1900.0]"
+"Informação magnética da fonte (Incl, Decl, Momento)" "[-36.346, -21.826, 227000000.0]"
+"Parâmetros da população inicial" "{'ymax': 809500.0, 'ymin': 804500.0, 'xmax': 7461000.0, 'xmin': 7456000.0, 'zlim': 2500.0, 'z_min': 200.0, 'n_dip': 20, 'n_pop': 100, 'inclmax': 23.0, 'inclmin': 13.0, 'declmax': -24.0, 'declmin': -34.0, 'mmax': 492500000.0, 'mmin': 432500000.0, 'homogeneo': True}"

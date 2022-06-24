@@ -7,6 +7,7 @@ import numpy
 import math
 import scipy
 import warnings
+from numba import jit
 
 def my_atan(x, y):
     
@@ -55,6 +56,7 @@ def my_outer(x,y):
     
     return numpy.outer(x,y)
 
+@jit(nopython=True)
 def deg2rad(angle):
     '''
     It converts an angle value in degrees to radian.     
@@ -86,6 +88,8 @@ def rad2deg(argument):
     # Return the final output
     return angle
 
+
+@jit(nopython=True)
 def dircos(inc, dec, azm = 0.):
     '''
     This function calculates the cossines projected values on directions using inclination 
@@ -151,7 +155,7 @@ def noise_normal_dist(data, v0, std):
     
     assert numpy.min(data) <= numpy.mean(data), 'Mean must be greater than minimum'
     assert numpy.max(data) >= numpy.mean(data), 'Maximum must be greater than mean'
-    assert std <= 10., 'Noise must not be greater than 1'
+    #assert std <= 10., 'Noise must not be greater than 1'
     assert std >= 1e-12, 'Noise should not be smaller than 1 micro unit'
     
     # Define the values for size and shape of the data
@@ -388,3 +392,41 @@ def rotate3D_xyz(x, y, z, angle, direction = 'z'):
     
     # Return the final output
     return xr, yr, zr
+
+
+def my_wavenumber(x, y):
+    '''
+    Return the wavenumbers in X and Y directions
+    
+    Inputs:
+    x - numpy array - coordinates in x directions
+    y - numpy array - coordinates in y directions
+    
+    Output:
+    kx - numpy 2D array - calculated wavenumber in x direction
+    ky - numpy 2D array - calculated wavenumber in y direction
+    '''
+    
+    # Verify if x and y are 1D or 2D numpy arrays
+    if x.shape[0] == x.size or x.shape[1] == x.size:
+        dx = x[1] - x[0]
+        nx = x.size
+    else:
+        dx = (x.max() - x.min())/(x.shape[1] - 1)
+        nx = x.shape[1]
+    
+    if y.shape[0] == y.size or y.shape[1] == y.size:
+        dy = y[1] - y[0]
+        ny = y.size
+    else:
+        dy = (y.max() - y.min())/(y.shape[0] - 1)
+        ny = y.shape[0]
+      
+    # Compute the values for wavenumber in x and y directions
+    c = 2.*numpy.pi
+    kx = c*numpy.fft.fftfreq(nx, dx)
+    ky = c*numpy.fft.fftfreq(ny, dy)    
+    
+    # Return the final output
+    return numpy.meshgrid(kx, ky)
+

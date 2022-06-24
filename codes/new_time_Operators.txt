@@ -1,0 +1,13 @@
+06/10/2020
+
+create_population: 1.4 ms ± 40.7 µs per loop
+
+fit_value: 223 ms ± 11 ms per loop **
+
+tournament_selection: 76.1 µs ± 4.51 µs per loop
+
+crossover: 37.4 µs ± 4.57 µs per loop
+
+mutacao: 1.37 µs ± 84.3 ns
+
+elitismo: 1.07 ms ± 45.8 µs per loop

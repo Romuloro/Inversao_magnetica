@@ -2,23 +2,11 @@ import numpy as np
 import sys
 a = sys.path.append('../modules/') # endereco das funcoes implementadas por voce!
 import sphere
-
-def f_difference (dado_referencia, dado_calculado):
-    """
-    Função com o objetivo de calcular o valor da função diferença entre os dados de referência para os dados calculados.
-
-    :param dado_referencia: O dado de referência.
-    :param dado_calculado: O dado calculado que será comparado.
-    :return: Valor da função diferença.
-    """
-
-    std = np.std(dado_referencia)
-    dif = (dado_referencia - dado_calculado)**2 / (std**2)
-    rms = np.sum(dif) / len(dif)
-    
-    return rms
+from numba import jit
+from numba.typed import List
 
 
+@jit(nopython=True)
 def sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n):
     """
     Função com o objetivo de criar de forma randomica as coordenadas para n corpos.
@@ -39,20 +27,22 @@ def sample_random_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n):
              resultadoz - Lista com o final para das coordenadas no eixo Z.
     """
 
-    resultadox=[]
-    resultadoy=[]
-    resultadoz=[]
+    resultadox= List()
+    resultadoy= List()
+    resultadoz= List()
 #---------------------------------------------------------------------------------------------------------------------#
     for i in range(n):
-        sorted_x1, sorted_y1,sorted_z1 = (float("{0:.2f}".format(np.random.uniform(xmin, xmax))),
-                                      float("{0:.2f}".format(np.random.uniform(ymin, ymax))),
-                                      float("{0:.2f}".format(np.random.uniform(z_min, zlim))))
+        sorted_x1, sorted_y1,sorted_z1 = (np.random.uniform(xmin, xmax),
+                                      np.random.uniform(ymin, ymax),
+                                      np.random.uniform(z_min, zlim))
         resultadox.append(sorted_x1)
         resultadoy.append(sorted_y1)
         resultadoz.append(sorted_z1)  
 #---------------------------------------------------------------------------------------------------------------------#        
     return resultadox, resultadoy, resultadoz
 
+
+@jit(nopython=True)
 def sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo=False):
     """
     Função com o objetivo de criar de forma randomica as propriedades magnéticas para n corpos.
@@ -68,37 +58,42 @@ def sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, hom
                        magmax = Valor máximo da magnetização.
                        magmin = Valor mínimo da magnetização.
                        n - número de bolinhas desejadas.
-    :param homogeneo: True para valores de magnetização iguais para as n bolinhas.
-                      False é a opção default, onde os valores de magnetização é criada de forma randominca.
+    :param homogeneo: True para valores de inclinação, declinação e magnetização iguais para as n bolinhas.
+                      False é a opção default, onde os valores de inclinação, declinação e magnetização é criada de forma randômica.
     :return: incl - Lista com os valores de inclinação magnética.
              decl - Lista com os valores de declinação magnética.
              mag - Lista com os valores de magnetização.
     """
-
-    incl=[]
-    decl=[]
-    mag=[]
+    porc = 0.2
+    incl= List()
+    decl= List()
+    mag= List()
+    magmax = magmax #+ porc*magmax
+    magmin = magmin #- porc*magmin
+    #print(magmax, magmin)
 #---------------------------------------------------------------------------------------------------------------------#
     if homogeneo == True:
-        sorted_mag =(float("{0:.2f}".format(np.random.uniform(magmax, magmin))))  
+        sorted_incl, sorted_decl, sorted_mag =(np.random.uniform(inclmax,inclmin),
+                                   np.random.uniform(declmax, declmin),
+                                   np.random.uniform(magmax, magmin))  
 #---------------------------------------------------------------------------------------------------------------------#        
         for i in range(n):
-            sorted_incl, sorted_decl = (float("{0:.2f}".format(np.random.uniform(inclmax,inclmin))),
-                                   float("{0:.2f}".format(np.random.uniform(declmax, declmin))))
             incl.append(sorted_incl)
             decl.append(sorted_decl)
             mag.append(sorted_mag)       
 #---------------------------------------------------------------------------------------------------------------------#
     else:
         for i in range(n):
-            sorted_incl, sorted_decl, sorted_mag =(float("{0:.2f}".format(np.random.uniform(inclmax,inclmin))),
-                                   float("{0:.2f}".format(np.random.uniform(declmax, declmin))),
-                                   float("{0:.2f}".format(np.random.uniform(magmax, magmin))))
+            sorted_incl, sorted_decl, sorted_mag =(np.random.uniform(inclmax,inclmin),
+                                   np.random.uniform(declmax, declmin),
+                                   np.random.uniform(magmax, magmin))
             incl.append(sorted_incl)
             decl.append(sorted_decl)
             mag.append(sorted_mag)
     
     return incl, decl, mag
+
+
 
 def tfa_n_dots(incl, decl, mag, n, Xref, Yref, Zref, I, D, coodX, coodY, coodZ, raio):
     """
@@ -124,8 +119,7 @@ def tfa_n_dots(incl, decl, mag, n, Xref, Yref, Zref, I, D, coodX, coodY, coodZ, 
     :return: Uma matrix com os valores de anomália magnética para cada ponto do local estudado.
     """
 
-    sphere1 = []
-    n = n
+    sphere1 =  List()
     for i in range(n):
         sphere1.append((coodX[i], coodY[i], coodZ[i], raio))
 #---------------------------------------------------------------------------------------------------------------------#   
@@ -135,3 +129,4 @@ def tfa_n_dots(incl, decl, mag, n, Xref, Yref, Zref, I, D, coodX, coodY, coodZ, 
         tfa_n += tfa_cada
     
     return tfa_n
+
