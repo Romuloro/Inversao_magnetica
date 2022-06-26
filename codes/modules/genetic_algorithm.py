@@ -14,8 +14,8 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 
-os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests')
-data_cubo = pd.read_table('data_ajustment_mag_arraial_02_12_2021_background_0.csv', sep=',')
+os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile/24_06_2022_10_11')
+data_cubo = pd.read_table('data_mag.csv', sep=',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
 momento = 3.8e10 / 20  # 3.8X10^10/ndip
@@ -39,34 +39,34 @@ population = {'ymax': data_cubo['East(m)'].max(),
                'ymin': data_cubo['East(m)'].min(),
                'xmax': data_cubo['North(m)'].max(),
                'xmin': data_cubo['North(m)'].min(),
-              'zlim': 2500.0,
+              'zlim': 4000.0,
               'z_min': 200.0,
               'n_dip': 20,
               'n_pop': 100,
-              'inclmax': 16.0,
-              'inclmin': 6.0,
-              'declmax': -27.0,
-              'declmin': -37.0,
-              'mmax': 1.5e10/20,
-              'mmin': 1.0e10/20,
+              'inclmax': 5.0,
+              'inclmin': -5.0,
+              'declmax': 5.0,
+              'declmin': -5.0,
+              'mmax': 1.3e10/20,
+              'mmin': 1.1e10/20,
               'homogeneo': True
               }
 
-I, D =  -36.34, -21.82
+I, D =  5.0, 70.0
 
 filhos_mut = {'ymax': data_cubo['East(m)'].max(),
                'ymin': data_cubo['East(m)'].min(),
                'xmax': data_cubo['North(m)'].max(),
                'xmin': data_cubo['North(m)'].min(),
-              'zlim': 2500.0,
+              'zlim': 4000.0,
               'z_min': 200.0,
               'n': 1,
-              'inclmax': 16.0,
-              'inclmin': 6.0,
-              'declmax': -27.0,
-              'declmin': -37.0,
-              'magmax':  1.5e10/20,
-              'magmin': 1.0e10/20,
+              'inclmax': 5.0,
+              'inclmin': -5.0,
+              'declmax': 5.0,
+              'declmin': -5.0,
+              'magmax':  1.3e10/20,
+              'magmin': 1.1e10/20,
               'homogeneo': True
               }
 
@@ -77,8 +77,8 @@ populacao = Operators_array.create_population(**population)
 # print("\n")
 
 
-n = 5000
-lamb = 8.0e0
+n = 3000
+lamb = 7.50e0
 
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
