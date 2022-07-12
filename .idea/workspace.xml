@@ -2,21 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a8ede8e-a48a-4224-ab26-14435290650c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/codes/modules/Curve_L.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/modules/genetic_algorithm_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Inversao_magnetica.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Inversao_magnetica.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/anomaly_final.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/decl.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/decl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/final_2d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/final_3d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/final_ind.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/frist_ind.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/gamma.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/gamma.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/hist.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/incl.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/incl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/inicial_2d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/inicial_3d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/intermediate_ind.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/mom.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/parametros.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/phi.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/res.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/theta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/anomaly_final.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/decl.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/decl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/final_2d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/final_3d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/final_ind.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/frist_ind.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/gamma.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/gamma.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/hist.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/incl.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/incl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/inicial_2d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/inicial_3d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/intermediate_ind.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/mom.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/parametros.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/phi.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/res.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/theta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_sintetico/Dique_inclinado/Curva_L_teste_2/result_1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Logfile/27_06_2022_22_54/data_mag.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/tests/Logfile/27_06_2022_22_54/parametros.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/modules/genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/codes/modules/genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/Teste_mag_bolinhas.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/Teste_mag_bolinhas.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/Teste_mag_dipolo.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/Teste_mag_dipolo.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/modelo_Nelson.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/modelo_Nelson.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/modules/graphs_and_dist.py" beforeDir="false" afterPath="$PROJECT_DIR$/codes/modules/graphs_and_dist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/10_05_2022_21_47/decl.png" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/10_05_2022_21_47/decl.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/tests/modelo_dipping_dike.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/modelo_dipping_dike.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/test_Mag_prisma.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/test_Mag_prisma.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/test_operators_01_04_2021.py" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/test_operators_01_04_2021.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/test_operators_11_02_2021.py" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/test_operators_11_02_2021.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/test_plot_individuos_28_12_2020.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/test_plot_individuos_28_12_2020.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/test_plot_individuos_dipping_dike_02_04_2021.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/test_plot_individuos_dipping_dike_02_04_2021.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/tests/number_of_the_dipole.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/number_of_the_dipole.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/tests/plot_curve_L.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/plot_curve_L.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +215,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

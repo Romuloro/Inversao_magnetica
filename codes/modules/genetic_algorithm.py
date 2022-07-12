@@ -14,7 +14,7 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 
-os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile/24_06_2022_10_11')
+os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile/27_06_2022_22_54')
 data_cubo = pd.read_table('data_mag.csv', sep=',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
@@ -43,8 +43,8 @@ population = {'ymax': data_cubo['East(m)'].max(),
               'z_min': 200.0,
               'n_dip': 20,
               'n_pop': 100,
-              'inclmax': 5.0,
-              'inclmin': -5.0,
+              'inclmax': 90.0,
+              'inclmin': 80.0,
               'declmax': 5.0,
               'declmin': -5.0,
               'mmax': 1.3e10/20,
@@ -52,7 +52,7 @@ population = {'ymax': data_cubo['East(m)'].max(),
               'homogeneo': True
               }
 
-I, D =  5.0, 70.0
+I, D =  90.0, 0.0
 
 filhos_mut = {'ymax': data_cubo['East(m)'].max(),
                'ymin': data_cubo['East(m)'].min(),
@@ -61,8 +61,8 @@ filhos_mut = {'ymax': data_cubo['East(m)'].max(),
               'zlim': 4000.0,
               'z_min': 200.0,
               'n': 1,
-              'inclmax': 5.0,
-              'inclmin': -5.0,
+              'inclmax': 90.0,
+              'inclmin': 80.0,
               'declmax': 5.0,
               'declmin': -5.0,
               'magmax':  1.3e10/20,
@@ -77,8 +77,8 @@ populacao = Operators_array.create_population(**population)
 # print("\n")
 
 
-n = 3000
-lamb = 7.50e0
+n = 5000
+lamb = 1.0e-1
 
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
