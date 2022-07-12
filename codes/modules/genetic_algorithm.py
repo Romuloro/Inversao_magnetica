@@ -47,8 +47,8 @@ population = {'ymax': data_cubo['East(m)'].max(),
               'inclmin': 80.0,
               'declmax': 5.0,
               'declmin': -5.0,
-              'mmax': 1.3e10/20,
-              'mmin': 1.1e10/20,
+              'mmax': 4.1e10/20,
+              'mmin': 3.9e10/20,
               'homogeneo': True
               }
 
@@ -65,8 +65,8 @@ filhos_mut = {'ymax': data_cubo['East(m)'].max(),
               'inclmin': 80.0,
               'declmax': 5.0,
               'declmin': -5.0,
-              'magmax':  1.3e10/20,
-              'magmin': 1.1e10/20,
+              'magmax':  4.1e10/20,
+              'magmin': 3.9e10/20,
               'homogeneo': True
               }
 
@@ -77,9 +77,8 @@ populacao = Operators_array.create_population(**population)
 # print("\n")
 
 
-n = 5000
-lamb = 1.0e-1
-
+n = 3000
+lamb = 0.0
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
@@ -119,7 +118,7 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
         gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb=lamb)
         #phi, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
         #theta, MST = graphs_and_dist.theta_value(populacao)
-        
+
         min_fit = gama.index(min(gama))
         ind_better.append(populacao[min_fit])
         anomaly_better.append(anomaly[min_fit])
@@ -140,3 +139,4 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
     return populacao, anomaly_better, ind_better, val_fit, val_phi, val_theta, incl_better, decl_better, mom_better, diversity_x, diversity_y, diversity_z, diversity_incl, diversity_decl, diversity_mom
 
+#populacao, anomaly_better, ind_better, val_fit, val_phi, val_theta, incl_better, decl_better, mom_better, diversity_x, diversity_y, diversity_z, diversity_incl, diversity_decl, diversity_mom = ga.ga(lamb, n, anomaly_cubo, filhos_mut, population)

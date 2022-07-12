@@ -1,56 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1a8ede8e-a48a-4224-ab26-14435290650c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/anomaly_final.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/decl.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/decl.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/final_2d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/final_3d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/final_ind.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/frist_ind.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/gamma.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/gamma.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/hist.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/incl.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/incl.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/inicial_2d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/inicial_3d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/intermediate_ind.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/mom.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/parametros.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/phi.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/res.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/28_06_2022_19_31/theta.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/anomaly_final.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/decl.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/decl.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/final_2d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/final_3d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/final_ind.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/frist_ind.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/gamma.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/gamma.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/hist.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/incl.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/incl.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/inicial_2d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/inicial_3d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/intermediate_ind.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/mom.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/parametros.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/phi.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/res.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/29_06_2022_10_26/theta.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_sintetico/Dique_inclinado/Curva_L_teste_2/result_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Logfile/27_06_2022_22_54/data_mag.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/tests/Logfile/27_06_2022_22_54/parametros.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/modules/debugger_ga.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/modules/Operators_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/codes/modules/Operators_array.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/modules/genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/codes/modules/genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/modules/graphs_and_dist.py" beforeDir="false" afterPath="$PROJECT_DIR$/codes/modules/graphs_and_dist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/modules/plot_3D.py" beforeDir="false" afterPath="$PROJECT_DIR$/codes/modules/plot_3D.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/10_05_2022_21_47/decl.png" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/10_05_2022_21_47/decl.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/modelo_dipping_dike.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/modelo_dipping_dike.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/tests/number_of_the_dipole.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/number_of_the_dipole.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/plot_curve_L.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/plot_curve_L.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +28,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1guKQ5cyAqMxgxyITlo0ep5AP7X" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -78,7 +42,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Python.genetic_algorithm_class">
+  <component name="RunManager" selected="Python.debugger_ga">
     <configuration name="Curve_L" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Inversao_magnetica" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -92,6 +56,48 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/codes/modules/Curve_L.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="debugger_ga" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Inversao_magnetica" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/codes/modules" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/codes/modules/debugger_ga.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="genetic_algorithm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Inversao_magnetica" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/codes/modules" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/codes/modules/genetic_algorithm.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -142,55 +148,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_operators_11_02_2021" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Inversao_magnetica" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/codes/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/codes/tests/test_operators_11_02_2021.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test_uniform_crossover" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Inversao_magnetica" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/codes/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/codes/tests/test_uniform_crossover.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.debugger_ga" />
+        <item itemvalue="Python.genetic_algorithm" />
         <item itemvalue="Python.genetic_algorithm_class" />
         <item itemvalue="Python.Curve_L" />
         <item itemvalue="Python.graphs_and_dist" />
-        <item itemvalue="Python.test_operators_11_02_2021" />
-        <item itemvalue="Python.test_uniform_crossover" />
       </list>
     </recent_temporary>
   </component>
@@ -218,6 +182,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/codes/modules/debugger_ga.py</url>
+          <line>139</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

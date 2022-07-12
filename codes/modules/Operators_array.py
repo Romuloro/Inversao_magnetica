@@ -187,7 +187,7 @@ def elitismo(pop, filhos, fit_cada, n_fica=10):
     fit_cada = np.array(fit_cada)
     df = pd.DataFrame(fit_cada)
     x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
-    piores = x.index[n_fica:]
+    piores = x.index[(len(pop) - len(filhos)):]
     for index, pos in enumerate(piores): #Substituir os piores indivíduos pelos filhos
         n_pop[pos] = filhos[index]
     n_pop = List(n_pop)
@@ -203,16 +203,16 @@ def crossover_polyamory(pais_torneio):
     mae = np.array(pais_torneio[n_filhos:len(pais_torneio)])
     # Sorteio das probabilidades de forma randômica.
     #prob_pai, prob_mae, den = aux_operators_array.definition_prob(pais_torneio, escolhidos, fit, n_filhos)
-    probs = np.random.rand(2,3)
 
     for j in range(n_filhos):
+        probs = np.random.rand(2, 2)
         num0 = (probs[0,0] * pai[j] + probs[0,1] * mae[j])
         filho0 = num0 / (probs[0,0] + probs[0,1]) # Cálculo do filho
         #print('Filho=', j, filho)
-        num1 = (probs[1,0] * pai[j] + probs[1,1] * mae[j])
+        num1 = (probs[1,0] * inv_pai[j] + probs[1,1] * mae[j])
         filho1 = num1 / (probs[1,0] + probs[1,1]) # Cálculo do filho
         
-        num2 = (probs[0,0] * inv_pai[j] + probs[0,1] * mae[j])
+        '''num2 = (probs[0,0] * inv_pai[j] + probs[0,1] * mae[j])
         filho2 = num2 / (probs[0,0] + probs[0,1])
         
         num3 = (probs[1,0] * inv_pai[j] + probs[1,1] * mae[j])
@@ -234,9 +234,9 @@ def crossover_polyamory(pais_torneio):
         filho8 = num8 / (probs[1,1] + probs[1,2])
         
         num9 = (probs[0,2] * pai[j] + probs[1,2] * mae[j])
-        filho9 = num9 / (probs[0,2] + probs[1,2])
+        filho9 = num9 / (probs[0,2] + probs[1,2])'''
         
-        filhos += [filho0, filho1, filho2, filho3, filho4, filho5, filho6, filho7, filho8, filho9]
+        filhos += [filho0, filho1 ]#, filho2, filho3, filho4, filho5, filho6, filho7, filho8, filho9]
 
     return filhos
 
