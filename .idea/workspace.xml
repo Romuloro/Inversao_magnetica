@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a8ede8e-a48a-4224-ab26-14435290650c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/codes/modules/debugger_ga.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/modules/Operators_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/codes/modules/Operators_array.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/modules/genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/codes/modules/genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/modules/plot_3D.py" beforeDir="false" afterPath="$PROJECT_DIR$/codes/modules/plot_3D.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/10_05_2022_21_47/decl.png" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/Dissertacao/Test_real/Morro_do_forno/10_05_2022_21_47/decl.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/tests/number_of_the_dipole.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/codes/tests/number_of_the_dipole.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="1a8ede8e-a48a-4224-ab26-14435290650c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
