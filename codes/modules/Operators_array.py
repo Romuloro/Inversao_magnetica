@@ -79,7 +79,7 @@ def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
     return fit_cada, anomalia
 
 
-def tournament_selection(pop, fit_cada, p_pop = 0.5, n_pai = 0.4):
+def tournament_selection(pop, fit_cada, p_pop = 0.3, n_pai = 0.3):
     """
     Função com o objetivo de selecionar os futuros pais, pelo dinâmica do Torneio.
 
