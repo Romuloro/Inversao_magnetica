@@ -47,8 +47,8 @@ population = {'ymax': 3000,
               'inclmin': -5.0,
               'declmax': 5.0,
               'declmin': -5.0,
-              'mmax': 7.0e9/5,
-              'mmin': 1.0e9/5,
+              'mmax': 1.0e10/5,
+              'mmin': 3.0e9/5,
               'homogeneo': True
               }
 
@@ -65,8 +65,8 @@ filhos_mut = {'ymax': 3000,
               'inclmin': -5.0,
               'declmax': 5.0,
               'declmin': -5.0,
-              'magmax': 7.0e9/5,
-              'magmin': 1.0e9/5,
+              'magmax': 1.0e10/5,
+              'magmin': 3.0e9/5,
               'homogeneo': True
               }
 
@@ -78,7 +78,7 @@ populacao = Operators_array.create_population(**population)
 
 
 n = 5000
-lamb = 9.0e1
+lamb = 8.50e1
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
