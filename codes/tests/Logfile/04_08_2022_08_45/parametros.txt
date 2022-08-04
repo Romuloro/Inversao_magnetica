@@ -1,0 +1,9 @@
+ 0
+"Data da Modelagem" 04_08_2022_08_45
+"Tipo de Modelagem" "Modelagem de prisma"
+"números de corpos" 4
+"Coordenadas do prisma 1 (x1, x2, y1, y2, z1, z2)" "[-250.0, 250.0, -1000.0, 1000.0, 100.0, 1500.0]"
+inclinação positivo
+"Informação da fonte (Mag, Incl, Decl)" "[6.0, -33.0, -44.0]"
+"Informação regional (Camp.Geomag, Incl, Decl)" "[5.0, 70.0]"
+"Noise nT" 2.5
