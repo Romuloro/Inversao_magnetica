@@ -345,11 +345,13 @@ def final_fit(X, Y, Z, I, D, pop, tfa_n_dip, lamb):
     gamma = []
     fit_, anomaly = fit_value(X, Y, Z, I, D, pop, tfa_n_dip)
     theta, MST = graphs_and_dist.theta_value(pop)
+    shape = shape_anomaly(X, Y, Z, I, D,tfa_n_dip, pop)
     for i in range(len(pop)):
         #final_fit = fit_[i] + lamb * theta[i]
-        fit_gamma.append(fit_[i] + (lamb * (theta[i])))
+        fit_gamma.append(fit_[i] + shape[i] + (lamb * (theta[i])))
         #gamma.append(fit_[i] + (lamb * (theta[i])))
-    return fit_gamma, anomaly, MST, theta, fit_
+    
+    return fit_gamma, anomaly, MST, theta, fit_, shape
 
 
 
@@ -407,3 +409,27 @@ def constraint_violation(phi, theta, populacao):
             choose.append(populacao[i_phi])
     
     return choose
+
+
+def shape_value (dado_referencia, pop):
+    sm_1, sm_2, sm = 0.0,0.0,0.0
+    sm_1 = dado_referencia * pop
+    sh_1 = np.sum(sm_1)
+    sm_2 = dado_referencia**2
+    sh_2 = np.sum(sm_2)
+    
+    alf = sh_1/sh_2
+    
+    sm = np.sum((alf*dado_referencia) - pop)**2
+    
+    fit_sm = np.sqrt(sm)
+    return fit_sm
+
+def shape_anomaly(X, Y, Z, I, D, dado_referencia, pop):
+    fit_sm = []
+    anomalia = aux_operators_array.caculation_anomaly(X, Y, Z, I, D, pop) #Cálculo da anomalia
+    for k in range(len(pop)):
+        fit_sm.append(shape_value(dado_referencia, anomalia[k]))
+    
+    return fit_sm
+    
