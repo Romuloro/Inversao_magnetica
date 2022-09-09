@@ -14,7 +14,7 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 
-os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile/04_08_2022_08_45')
+os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile/09_09_2022_14_36')
 data_cubo = pd.read_table('data_mag.csv', sep=',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
@@ -35,38 +35,38 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 # plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 
-population = {'ymax': 6000.00,
-               'ymin': -6000.00,
-               'xmax': 6000.00,
-               'xmin': -6000.00,
+population = {'ymax': 3000.00,
+               'ymin': -3000.00,
+               'xmax': 3000.00,
+               'xmin': -3000.00,
               'zlim': 0.0,
-              'z_min': 750.0,
-              'n_dip': 5,
+              'z_min': 2000.0,
+              'n_dip': 15,
               'n_pop': 100,
-              'inclmax': -28.0,
-              'inclmin': -38.0,
-              'declmax': -39.0,
-              'declmin': -49.0,
-              'mmax': 9.5e9,
-              'mmin': 6.0e9,
+              'inclmax': 90.0,
+              'inclmin': 80.0,
+              'declmax': 5.0,
+              'declmin': -5.0,
+              'mmax': 1.5e10/15,
+              'mmin': 9.5e9/15,
               'homogeneo': True
               }
 
-I, D =  5.0, 70.0
+I, D =  90.0, 0.0
 
-filhos_mut = {'ymax': 6000.00,
-               'ymin': -6000.00,
-               'xmax': 6000.00,
-               'xmin': -6000.00,
+filhos_mut = {'ymax': 3000.00,
+               'ymin': -3000.00,
+               'xmax': 3000.00,
+               'xmin': -3000.00,
               'zlim': 0.0,
-              'z_min': 750.0,
+              'z_min': 2000.0,
               'n': 1,
-              'inclmax': -28.0,
-              'inclmin': -38.0,
-              'declmax': -39.0,
-              'declmin': -49.0,
-              'magmax': 9.5e9,
-              'magmin': 6.5e9,
+              'inclmax': 90.0,
+              'inclmin': 80.0,
+              'declmax': 5.0,
+              'declmin': -5.0,
+              'magmax': 1.5e10/15,
+              'magmin': 9.5e9/15,
               'homogeneo': True
               }
 
@@ -77,8 +77,8 @@ populacao = Operators_array.create_population(**population)
 # print("\n")
 
 
-n = 5000
-lamb = 9.0e1
+n = 3000
+lamb = 9.0e-1
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
@@ -86,7 +86,7 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
     val_fit = List()
     val_phi = List()
-    val_shape = List()
+    #val_shape = List()
     ind_better = List()
     anomaly_better = List()
     # final_pop = List()
@@ -117,7 +117,7 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
         diversity_incl.append(std_incl)
         diversity_decl.append(std_decl)
         diversity_mom.append(std_mom)
-        gama, anomaly, MST, theta, phi, shape = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb=lamb)
+        gama, anomaly, MST, theta, phi = Operators_array.final_fit(X, Y, Z, I, D, populacao, anomaly_cubo, lamb=lamb)
         #phi, anomaly = Operators_array.fit_value(X, Y, Z, I, D, populacao, anomaly_cubo)
         #theta, MST = graphs_and_dist.theta_value(populacao)
         
@@ -128,7 +128,7 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
         val_fit.append(min(gama))
         val_theta.append(min(theta))
         val_phi.append(min(phi))
-        val_shape.append(min(shape))
+        #val_shape.append(min(shape))
         incl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 0])
         decl_better.append(populacao[min_fit][len(ind_better[0]) - 1, 1])
         mom_better.append(populacao[min_fit][len(ind_better[0]) - 1, 2])
@@ -143,6 +143,6 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
         populacao = Operators_array.elitismo(populacao, filho_, gama, n_fica=10)
         # populacao = Operators_array.elitismo_c_violation(populacao, filho_, theta, n_fica = 5)
 
-    return populacao, anomaly_better, ind_better, val_fit, val_phi, val_theta, incl_better, decl_better, mom_better, diversity_x, diversity_y, diversity_z, diversity_incl, diversity_decl, diversity_mom, z_better, val_shape
+    return populacao, anomaly_better, ind_better, val_fit, val_phi, val_theta, incl_better, decl_better, mom_better, diversity_x, diversity_y, diversity_z, diversity_incl, diversity_decl, diversity_mom, z_better
 
 #populacao, anomaly_better, ind_better, val_fit, val_phi, val_theta, incl_better, decl_better, mom_better, diversity_x, diversity_y, diversity_z, diversity_incl, diversity_decl, diversity_mom = ga.ga(lamb, n, anomaly_cubo, filhos_mut, population)
