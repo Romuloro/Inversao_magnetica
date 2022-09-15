@@ -430,3 +430,62 @@ def my_wavenumber(x, y):
     # Return the final output
     return numpy.meshgrid(kx, ky)
 
+def my_theta(inc, dec, u, v, azim = 0.):    
+    '''
+    Return the operators for magnetization and field directions.
+    
+    Inputs:
+    angle - numpy 1D array - inclination and declination
+    u - float - number of points in x direction
+    v - float - number of points in y direction
+    
+    Output:
+    theta - complex - magnetization projection as a complex number
+    '''
+    
+    # Calculate the modulus for k value. In this case: k = kz
+    k = (u**2 + v**2)**(0.5)
+    
+    # Calcutaing the projections
+    x, y, z = my_dircos(inc, dec, azim) 
+    theta = z + ((x*u + y*v)/k)*1j
+    
+    # Return the final output:
+    return theta
+
+def my_dircos(inc, dec, azm = 0.):
+    '''
+    This function calculates the cossines projected values on directions using inclination 
+    and declination values. Here, we do not considerate an azimuth as a zero value, but as 
+    an input value.    
+    
+    Inputs:
+    theta_inc - inclination angle
+    theta_dec - declination angle 
+    Outputs:
+    dirA - projected cossine A
+    dirB - projected cossine B
+    dirC - projected cossine C    
+    '''  
+    # Use the function to convert some values
+    Inc = my_deg2rad(inc)
+    Dec = my_deg2rad(dec)
+    Azm = my_deg2rad(azm)
+    # Calculates the projected cossine values
+    xdir = numpy.cos(Inc)*numpy.cos(Dec - Azm)
+    ydir = numpy.cos(Inc)*numpy.sin(Dec - Azm)
+    zdir = numpy.sin(Inc)
+    # Return the final output
+    return xdir, ydir, zdir
+
+def my_deg2rad(angle):
+    '''
+    It converts an angle value in degrees to radian.     
+    
+    Input:
+    angle - float - number or list of angle in degrees    
+    Output:
+    argument - float - angle in radian    
+    '''
+    # Return the final output
+    return (angle/180.)*numpy.pi

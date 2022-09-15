@@ -147,6 +147,15 @@ def normalize(function):
         n_f.append(normal_f)
     return n_f
 
+def mean_z(ind):
+    pop_len = len(ind)
+    #print(ind)
+    z_ = np.zeros((pop_len-1, 1))
+    for i in range(pop_len-1):
+        z_[i] = ind[i,2]
+    mean_z = np.mean(z_)
+    return mean_z
+
 
 @jit(nopython=True)
 def deversity_calculate(populacao, param):

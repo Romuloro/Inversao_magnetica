@@ -79,7 +79,7 @@ def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
     return fit_cada, anomalia
 
 
-def tournament_selection(pop, fit_cada, p_pop = 0.5, n_pai = 0.4):
+def tournament_selection(pop, fit_cada, p_pop = 0.3, n_pai = 0.3):
     """
     Função com o objetivo de selecionar os futuros pais, pelo dinâmica do Torneio.
 
@@ -187,7 +187,7 @@ def elitismo(pop, filhos, fit_cada, n_fica=10):
     fit_cada = np.array(fit_cada)
     df = pd.DataFrame(fit_cada)
     x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
-    piores = x.index[n_fica:]
+    piores = x.index[(len(pop) - len(filhos)):]
     for index, pos in enumerate(piores): #Substituir os piores indivíduos pelos filhos
         n_pop[pos] = filhos[index]
     n_pop = List(n_pop)
@@ -203,16 +203,16 @@ def crossover_polyamory(pais_torneio):
     mae = np.array(pais_torneio[n_filhos:len(pais_torneio)])
     # Sorteio das probabilidades de forma randômica.
     #prob_pai, prob_mae, den = aux_operators_array.definition_prob(pais_torneio, escolhidos, fit, n_filhos)
-    probs = np.random.rand(2,3)
 
     for j in range(n_filhos):
+        probs = np.random.rand(2, 2)
         num0 = (probs[0,0] * pai[j] + probs[0,1] * mae[j])
         filho0 = num0 / (probs[0,0] + probs[0,1]) # Cálculo do filho
         #print('Filho=', j, filho)
-        num1 = (probs[1,0] * pai[j] + probs[1,1] * mae[j])
+        num1 = (probs[1,0] * inv_pai[j] + probs[1,1] * mae[j])
         filho1 = num1 / (probs[1,0] + probs[1,1]) # Cálculo do filho
         
-        num2 = (probs[0,0] * inv_pai[j] + probs[0,1] * mae[j])
+        '''num2 = (probs[0,0] * inv_pai[j] + probs[0,1] * mae[j])
         filho2 = num2 / (probs[0,0] + probs[0,1])
         
         num3 = (probs[1,0] * inv_pai[j] + probs[1,1] * mae[j])
@@ -234,9 +234,9 @@ def crossover_polyamory(pais_torneio):
         filho8 = num8 / (probs[1,1] + probs[1,2])
         
         num9 = (probs[0,2] * pai[j] + probs[1,2] * mae[j])
-        filho9 = num9 / (probs[0,2] + probs[1,2])
+        filho9 = num9 / (probs[0,2] + probs[1,2])'''
         
-        filhos += [filho0, filho1, filho2, filho3, filho4, filho5, filho6, filho7, filho8, filho9]
+        filhos += [filho0, filho1 ]#, filho2, filho3, filho4, filho5, filho6, filho7, filho8, filho9]
 
     return filhos
 
@@ -345,10 +345,12 @@ def final_fit(X, Y, Z, I, D, pop, tfa_n_dip, lamb):
     gamma = []
     fit_, anomaly = fit_value(X, Y, Z, I, D, pop, tfa_n_dip)
     theta, MST = graphs_and_dist.theta_value(pop)
+    #shape = shape_anomaly(X, Y, Z, I, D,tfa_n_dip, pop)
     for i in range(len(pop)):
         #final_fit = fit_[i] + lamb * theta[i]
         fit_gamma.append(fit_[i] + (lamb * (theta[i])))
         #gamma.append(fit_[i] + (lamb * (theta[i])))
+    
     return fit_gamma, anomaly, MST, theta, fit_
 
 
@@ -407,3 +409,27 @@ def constraint_violation(phi, theta, populacao):
             choose.append(populacao[i_phi])
     
     return choose
+
+
+def shape_value (dado_referencia, pop):
+    sm_1, sm_2, sm = 0.0,0.0,0.0
+    sm_1 = dado_referencia * pop
+    sh_1 = np.sum(sm_1)
+    sm_2 = dado_referencia**2
+    sh_2 = np.sum(sm_2)
+    
+    alf = sh_1/sh_2
+    
+    sm = np.sum((alf*dado_referencia) - pop)**2
+    
+    fit_sm = np.sqrt(sm)
+    return fit_sm
+
+def shape_anomaly(X, Y, Z, I, D, dado_referencia, pop):
+    fit_sm = []
+    anomalia = aux_operators_array.caculation_anomaly(X, Y, Z, I, D, pop) #Cálculo da anomalia
+    for k in range(len(pop)):
+        fit_sm.append(shape_value(dado_referencia, anomalia[k]))
+    
+    return fit_sm
+    

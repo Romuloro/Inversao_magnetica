@@ -62,7 +62,7 @@ def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind, incl, decl, gamma,
     data_e_hora = dicionario.get('Data da Modelagem')
     #----------------------------------------------------------------------------------------------------#
     #Criando a posta
-    os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Dissertacao/Test_real/Morro_do_forno')
+    os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Dissertacao/Test_sintetico/Dique_inclinado')
     pasta = []
     endereco = './'
     pasta.extend([endereco, data_e_hora])

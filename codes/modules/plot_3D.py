@@ -165,7 +165,7 @@ def create_aquisicao(nx, ny, xmin, xmax, ymin, ymax, z, color):
     plt.figure(figsize=(12,12))
     plt.title('Levantamento aéreo')
     plt.plot(X,Y, '.r')
-    plt.show()
+    #plt.show()
     
     return x, y, X, Y, Z
 
