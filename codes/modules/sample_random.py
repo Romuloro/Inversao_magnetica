@@ -67,7 +67,8 @@ def sample_random_normal_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n):
     resultadoz= List()
     mu_x, sigma_x = 0, xmax/4.4
     mu_y, sigma_y = 0, ymax/4.4
-    mu_z, sigma_z = 0, zlim/4.4
+    mu_z = (zlim + z_min)/2
+    sigma_z = round(((abs(zlim) - mu_z)/4.4),2)
 #---------------------------------------------------------------------------------------------------------------------#
     for i in range(n):
         sorted_x1, sorted_y1,sorted_z1 = (np.random.normal(mu_x, sigma_x),
@@ -160,12 +161,12 @@ def sample_random_normal_mag(inclmax, inclmin, declmax, declmin, magmax, magmin,
     magmax = magmax #+ porc*magmax
     magmin = magmin #- porc*magmin
     #print(magmax, magmin)
-    mu_incl = np.mean([inclmax, inclmin])
-    sigma_incl = round(((np.mean([inclmax, inclmin]) - inclmax)/4.4),2)
-    mu_decl = np.mean([declmax, declmin])
-    sigma_decl = round(((np.mean([declmax, declmin]) - declmax)/4.4),2)
-    mu_mag = np.mean([magmax, magmin])
-    sigma_mag = round(((np.mean([magmax, magmin]) - magmax)/4.4),2)
+    mu_incl = (inclmax + inclmin)/2
+    sigma_incl = round(((abs(inclmax) - abs(mu_incl))/4.4),2)
+    mu_decl = (declmax + declmin)/2
+    sigma_decl = round(((abs(declmax) - abs(mu_decl))/4.4),2)
+    mu_mag = (magmax + magmin)/2
+    sigma_mag = round(((abs(magmax) - abs(mu_mag))/4.4),2)
 #---------------------------------------------------------------------------------------------------------------------#
     if homogeneo == True:
         sorted_incl, sorted_decl, sorted_mag =(np.random.normal(mu_incl, sigma_incl),
