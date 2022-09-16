@@ -57,6 +57,47 @@ def create_population(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, dec
         return print('Por favor. Coloque o número de indivíduos maior ou igual a 10')
 
 
+@jit(nopython=True)
+def create_population_normal(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, mmax, mmin, n_dip, n_pop, homogeneo):
+    """
+    Função com o objetivo de criar uma população com n indivíduos randômicos, que estaram de acordo com os parâmetros
+    escolhidos.
+
+    :param xmax: O valor máximo da coordenada X.
+    :param ymax: O valor máximo da coordenada Y.
+    :param zlim: O valor máximo da coordenada Z.
+    :param xmin: O valor minímo da coordenada X.
+    :param ymin: O valor minímo da coordenada Y.
+    :param z_min: O valor minímo da coordenada Z.
+    :param n_pop: O número de indivíduos desejados na população.
+    :param n_dip: O número de dipolos desejados para cada indivíduo.
+    :param inclmax: Valor máximo da inclianção magnética.
+    :param inclmin: Valor mínimo da inclianção magnética.
+    :param declmax: Valor máximo da inclianção magnética.
+    :param declmin: Valor mínimo da declianção magnética.
+    :param magmax: Valor máximo da magnetização.
+    :param magmin: Valor mínimo da magnetização.
+    :param homogeneo: True para valores de inclinação, declinação e magnetização iguais para as n dipolos.
+                      False é a opção default, onde os valores de inclinação, declinação e magnetização é criada de
+                      forma randômica.
+
+    :return pop: Lista com n indivíduos/dipolos criados de forma randômica.
+    """
+    if n_pop >= 1:
+        pop = List()
+        n_par = 3
+        for j in range(n_pop):
+            cood = np.zeros((n_dip+1, n_par))
+            coodX, coodY, coodZ = sample_random.sample_random_normal_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n_dip)
+            incl, decl, m = sample_random.sample_random_normal_mag(inclmax, inclmin, declmax, declmin, mmax, mmin, 1, homogeneo)
+            for i in range(n_dip):
+                cood[i][0], cood[i][1], cood[i][2] = coodX[i], coodY[i], coodZ[i]
+            cood[n_dip][0], cood[n_dip][1], cood[n_dip][2] = incl[0], decl[0], m[0]
+            pop.append(cood)
+        return pop
+    else:
+        return print('Por favor. Coloque o número de indivíduos maior ou igual a 10')
+
 
 def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
     """
@@ -126,7 +167,6 @@ def tournament_selection(pop, fit_cada, p_pop = 0.3, n_pai = 0.3):
             chosen.append(escolhido)
 
     return chosen, select
-
 
 '''
 def crossover_elitista(pais_torneio, escolhidos, fit):
@@ -330,6 +370,37 @@ def mutacao_multi_vhomo(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inc
                         filho[index][round][param] = coodZ[0]
                     else:
                         incl, decl, mag = sample_random.sample_random_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo)
+                    if param == 3:
+                        filho[index][len(filho[0])-1][0] = incl[0]
+                    elif param == 4:
+                        filho[index][len(filho[0])-1][1] = decl[0]
+                    elif param == 5:
+                        filho[index][len(filho[0])-1][2] = mag[0]
+
+    return filho
+
+def mutacao_multi_vhomo_normal(filho, xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo, prob_mut = 0.05):
+
+    #prob_mut = 0.05
+    n_dip = len(filho[0]) - 1
+    n_param = 6
+    for index, rand_mut in enumerate(filho): #Index = qual será o indivíduo que será mutado.
+        rand_mut = random.random()
+        if prob_mut > rand_mut:
+            dip_select = random.sample(range(0,(len(filho[0]) - 2)), k=(int(n_dip/2))) #Seleção qual dipolo será mutado.
+            param_select = random.sample(range(0, (len(filho[0][0]) + 3)), k=(int(n_param/2))) #Selecão qual parâmetro será mutado.
+            for round in dip_select:
+                for param in param_select:
+                    if param <= 2:
+                        coodX, coodY, coodZ = sample_random.sample_random_normal_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n)
+                    if param == 0:
+                        filho[index][round][param] = coodX[0]
+                    elif param == 1:
+                        filho[index][round][param] = coodY[0]
+                    elif param == 2:
+                        filho[index][round][param] = coodZ[0]
+                    else:
+                        incl, decl, mag = sample_random.sample_random_normal_mag(inclmax, inclmin, declmax, declmin, magmax, magmin, n, homogeneo)
                     if param == 3:
                         filho[index][len(filho[0])-1][0] = incl[0]
                     elif param == 4:
