@@ -77,7 +77,7 @@ populacao = Operators_array.create_population(**population)
 # print("\n")
 
 
-n = 3000
+n = 300
 lamb = 8.0e-1
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
@@ -137,9 +137,9 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
         pais_, select = Operators_array.tournament_selection(populacao, gama) #Operators_array.tournament_selection_ranking_diversit(populacao, normal_gama)
         filho_ = Operators_array.crossover_polyamory(pais_)  # Operators_array.uniform_crossover(pais_)
         if (t >= 5) and (val_fit[t] == val_fit[t - 5]):
-            filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut, prob_mut=0.4)  # aumenta mut para X
+            filho_ = Operators_array.mutacao_multi_vhomo_normal(filho_, **filhos_mut, prob_mut=0.4)  # aumenta mut para X
         else:
-            filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut)  # manter mut em 0.05
+            filho_ = Operators_array.mutacao_multi_vhomo_normal(filho_, **filhos_mut)  # manter mut em 0.05
         populacao = Operators_array.elitismo(populacao, filho_, gama, n_fica=10)
         # populacao = Operators_array.elitismo_c_violation(populacao, filho_, theta, n_fica = 5)
 
