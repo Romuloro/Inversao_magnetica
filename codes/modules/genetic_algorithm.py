@@ -82,7 +82,8 @@ lamb = 8.0e-1
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
-    populacao = Operators_array.create_population(**population)
+    #populacao = Operators_array.create_population(**population)
+    populacao = Operators_array.create_population_normal(**population)
 
     val_fit = List()
     val_phi = List()

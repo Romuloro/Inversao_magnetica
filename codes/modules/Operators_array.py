@@ -57,6 +57,47 @@ def create_population(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, dec
         return print('Por favor. Coloque o número de indivíduos maior ou igual a 10')
 
 
+@jit(nopython=True)
+def create_population_normal(xmax, xmin, ymax, ymin, zlim, z_min, inclmax, inclmin, declmax, declmin, mmax, mmin, n_dip, n_pop, homogeneo):
+    """
+    Função com o objetivo de criar uma população com n indivíduos randômicos, que estaram de acordo com os parâmetros
+    escolhidos.
+
+    :param xmax: O valor máximo da coordenada X.
+    :param ymax: O valor máximo da coordenada Y.
+    :param zlim: O valor máximo da coordenada Z.
+    :param xmin: O valor minímo da coordenada X.
+    :param ymin: O valor minímo da coordenada Y.
+    :param z_min: O valor minímo da coordenada Z.
+    :param n_pop: O número de indivíduos desejados na população.
+    :param n_dip: O número de dipolos desejados para cada indivíduo.
+    :param inclmax: Valor máximo da inclianção magnética.
+    :param inclmin: Valor mínimo da inclianção magnética.
+    :param declmax: Valor máximo da inclianção magnética.
+    :param declmin: Valor mínimo da declianção magnética.
+    :param magmax: Valor máximo da magnetização.
+    :param magmin: Valor mínimo da magnetização.
+    :param homogeneo: True para valores de inclinação, declinação e magnetização iguais para as n dipolos.
+                      False é a opção default, onde os valores de inclinação, declinação e magnetização é criada de
+                      forma randômica.
+
+    :return pop: Lista com n indivíduos/dipolos criados de forma randômica.
+    """
+    if n_pop >= 1:
+        pop = List()
+        n_par = 3
+        for j in range(n_pop):
+            cood = np.zeros((n_dip+1, n_par))
+            coodX, coodY, coodZ = sample_random.sample_random_normal_coordinated(xmax, xmin, ymax, ymin, zlim, z_min, n_dip)
+            incl, decl, m = sample_random.sample_random_normal_mag(inclmax, inclmin, declmax, declmin, mmax, mmin, 1, homogeneo)
+            for i in range(n_dip):
+                cood[i][0], cood[i][1], cood[i][2] = coodX[i], coodY[i], coodZ[i]
+            cood[n_dip][0], cood[n_dip][1], cood[n_dip][2] = incl[0], decl[0], m[0]
+            pop.append(cood)
+        return pop
+    else:
+        return print('Por favor. Coloque o número de indivíduos maior ou igual a 10')
+
 
 def fit_value(X, Y, Z, I, D, pop, tfa_n_dip):
     """
@@ -126,7 +167,6 @@ def tournament_selection(pop, fit_cada, p_pop = 0.3, n_pai = 0.3):
             chosen.append(escolhido)
 
     return chosen, select
-
 
 '''
 def crossover_elitista(pais_torneio, escolhidos, fit):
