@@ -78,7 +78,7 @@ populacao = Operators_array.create_population(**population)
 
 
 n = 3000
-lamb = 8.0e-1
+lamb = 1.5e0
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
