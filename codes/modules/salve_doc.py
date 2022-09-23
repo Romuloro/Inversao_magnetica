@@ -128,7 +128,7 @@ def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind, incl, decl, gamma,
     
     pastac9.extend('/mom.csv')
     pasta11 = ''.join(pastac9)
-    theta.to_csv(pasta10, index = False, header = False)
+    mom.to_csv(pasta11, index = False, header = False)
 
 
 def reshape_matrix(X, Y, Z, ACTn, nx, ny):
