@@ -47,8 +47,8 @@ population = {'ymax': 3000.00,
               'inclmin': 80.0,
               'declmax': 5.0,
               'declmin': -5.0,
-              'mmax': 1.25e10/15,
-              'mmin': 8.5e9/15,
+              'mmax': 1.5e10/15,
+              'mmin': 9.5e9/15,
               'homogeneo': True
               }
 
@@ -65,8 +65,8 @@ filhos_mut = {'ymax': 3000.00,
               'inclmin': 80.0,
               'declmax': 5.0,
               'declmin': -5.0,
-              'magmax': 1.25e10/15,
-              'magmin': 8.5e9/15,
+              'magmax': 1.5e10/15,
+              'magmin': 9.5e9/15,
               'homogeneo': True
               }
 
@@ -78,7 +78,7 @@ ini = time.time()
 
 
 n = 3000
-lamb = 7.5e-3
+lamb = 1.5e0
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
