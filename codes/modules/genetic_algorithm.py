@@ -77,8 +77,8 @@ ini = time.time()
 # print("\n")
 
 
-n = 3000
-lamb = 1.5e0
+n = 5000
+lamb = 7.5e0
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
