@@ -43,7 +43,7 @@ def create_diretorio(dicionario, matriz):
 
 
 
-def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind, incl, decl, gamma, theta, phi):
+def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind, incl, decl, gamma, theta, phi, mom, final_anomaly):
     '''
     Função com a finalidade de criar um diretório no qual serão armazenados os dados de cada parte do processo. Também a criação de um  arquivo .txt com os parametros utilizados e de um documento .csv com os resultados.
     dicionario = dicionário com todos as entradas organizadas da seguinte forma.
@@ -74,6 +74,8 @@ def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind, incl, decl, gamma,
     pastac6 = pasta.copy()
     pastac7 = pasta.copy()
     pastac8 = pasta.copy()
+    pastac9 = pasta.copy()
+    pastac10 = pasta.copy()
     pasta1 = ''.join(pasta)
     os.mkdir(pasta1)
     #----------------------------------------------------------------------------------------------------#
@@ -88,6 +90,7 @@ def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind, incl, decl, gamma,
     f_ind = pd.DataFrame(data = f_ind)
     incl = pd.DataFrame(data = incl)
     decl = pd.DataFrame(data = decl)
+    mom = pd.DataFrame(data = mom)
     gamma = pd.DataFrame(data = gamma)
     theta = pd.DataFrame(data = theta)
     phi = pd.DataFrame(data = phi)
@@ -123,6 +126,14 @@ def create_diretorio_dipolos(dicionario, o_ind, i_ind, f_ind, incl, decl, gamma,
     pastac8.extend('/theta.csv')
     pasta10 = ''.join(pastac8)
     theta.to_csv(pasta10, index = False, header = False)
+    
+    pastac9.extend('/mom.csv')
+    pasta11 = ''.join(pastac9)
+    mom.to_csv(pasta11, index = False, header = False)
+    
+    pastac10.extend('/result_anomaly.csv')
+    pasta12 = ''.join(pastac10)
+    final_anomaly.to_csv(pasta12, index = False, header = False)
 
 
 def reshape_matrix(X, Y, Z, ACTn, nx, ny):
