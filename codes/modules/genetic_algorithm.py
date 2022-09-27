@@ -44,11 +44,11 @@ population = {'ymax': 3000.00,
               'n_dip': 15,
               'n_pop': 100,
               'inclmax': -30.0,
-              'inclmin': -43.0,
-              'declmax': -11.0,
-              'declmin': -21.0,
-              'mmax': 1.25e10/15,
-              'mmin': 9.0e9/15,
+              'inclmin': -45.0,
+              'declmax': -10.0,
+              'declmin': -20.0,
+              'mmax': 9.9e9/15,
+              'mmin': 8.0e9/15,
               'homogeneo': True
               }
 
@@ -62,11 +62,11 @@ filhos_mut = {'ymax': 3000.00,
               'z_min': 2000.0,
               'n': 1,
               'inclmax': -30.0,
-              'inclmin': -43.0,
-              'declmax': -11.0,
-              'declmin': -21.0,
-              'magmax': 1.25e10/15,
-              'magmin': 9.0e9/15,
+              'inclmin': -45.0,
+              'declmax': -10.0,
+              'declmin': -20.0,
+              'magmax': 9.9e9/15,
+              'magmin': 8.0e9/15,
               'homogeneo': True
               }
 
