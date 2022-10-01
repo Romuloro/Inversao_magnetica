@@ -489,3 +489,27 @@ def my_deg2rad(angle):
     '''
     # Return the final output
     return (angle/180.)*numpy.pi
+
+def my_regional(field, inc, dec, azm = 0.):
+    '''
+    It calculates the regional magnetic field in x, y and z directions.
+    It uses values of a reference magnetic field, the inclination and the magnetic declination.
+    
+    Inputs: 
+    field - float - regional magnetic intensity
+    inc - float - magnetic field inclination value
+    dec - float - magnetic field declination value
+    azm - float - magnetic field azimuth value (default = zero)
+    
+    Outputs:
+    fx - float or 1D array - field in x direction
+    fy - float or 1D array - field in y direction
+    fz - float or 1D array - field in z direction
+    '''
+    # Computes the projected cossine
+    xdir, ydir, zdir = my_dircos(inc, dec, azm)    
+    # Compute all components
+    fx, fy, fz = field*xdir, field*ydir, field*zdir
+    # Set F as array and return the output
+    return fx, fy, fz
+
