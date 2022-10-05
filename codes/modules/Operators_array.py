@@ -227,7 +227,7 @@ def elitismo(pop, filhos, fit_cada, n_fica=10):
     fit_cada = np.array(fit_cada)
     df = pd.DataFrame(fit_cada)
     x = df.sort_values(0, ascending=True) #Ordenar os valores de acordo com o menor fit.
-    piores = x.index[(n_fica):]
+    piores = x.index[(len(pop) - n_fica):]
     #print(len(piores))
     for index, pos in enumerate(piores): #Substituir os piores indivíduos pelos filhos
         n_pop[pos] = filhos[index]

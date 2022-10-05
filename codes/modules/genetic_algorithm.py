@@ -15,7 +15,7 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Dissertacao/Test_real/Morro_do_forno')
-data_cubo = pd.read_table('Data_mag_morro_do_forno_up_400.csv', sep=',')
+data_cubo = pd.read_table('Data_mag_morro_do_forno_residuo.csv', sep=',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
 momento = 3.8e10 / 20  # 3.8X10^10/ndip
@@ -35,38 +35,38 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 # plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 
-population = {'ymax': 808500,
-               'ymin': 806000,
-               'xmax': 7.459e6,
-               'xmin': 7.457e6,
+population = {'ymax': 806121.4525237556,
+               'ymin': 808123.9134269459,
+               'xmax': 7459125.587992033,
+               'xmin': 7456645.991552823,
               'zlim': 0.0,
-              'z_min': 2000.0,
-              'n_dip': 15,
+              'z_min': 1000.0,
+              'n_dip': 10,
               'n_pop': 100,
               'inclmax': 10.0,
               'inclmin': -20.0,
-              'declmax': -2.0,
+              'declmax': 35.0,
               'declmin': -30.0,
-              'mmax': 8.5e9/15,
-              'mmin': 3.5e9/15,
+              'mmax': 1.5e9/10,
+              'mmin': 5.5e8/10,
               'homogeneo': True
               }
 
 I, D =  -36.346, -21.826
 
-filhos_mut = {'ymax': 808500,
-               'ymin': 806000,
-               'xmax': 7.459e6,
-               'xmin': 7.457e6,
+filhos_mut = {'ymax': 806121.4525237556,
+               'ymin': 808123.9134269459,
+               'xmax': 7459125.587992033,
+               'xmin': 7456645.991552823,
               'zlim': 0.0,
-              'z_min': 2000.0,
+              'z_min': 1000.0,
               'n': 1,
               'inclmax': 10.0,
               'inclmin': -20.0,
-              'declmax': -2.0,
+              'declmax': 35.0,
               'declmin': -30.0,
-              'magmax': 8.5e9/15,
-              'magmin': 3.5e9/15,
+              'magmax': 1.5e9/10,
+              'magmin': 5.5e8/10,
               'homogeneo': True
               }
 
@@ -77,8 +77,8 @@ ini = time.time()
 # print("\n")
 
 
-n = 500
-lamb = 2.0e1
+n = 250
+lamb = 0.0
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
@@ -141,7 +141,7 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
             filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut, prob_mut=0.4)  # aumenta mut para X
         else:
             filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut)  # manter mut em 0.05
-        populacao = Operators_array.elitismo(populacao, filho_, gama, n_fica=80)
+        populacao = Operators_array.elitismo(populacao, filho_, gama, n_fica=10)
         # populacao = Operators_array.elitismo_c_violation(populacao, filho_, theta, n_fica = 5)
 
     return populacao, anomaly_better, ind_better, val_fit, val_phi, val_theta, incl_better, decl_better, mom_better, diversity_x, diversity_y, diversity_z, diversity_incl, diversity_decl, diversity_mom, z_better
