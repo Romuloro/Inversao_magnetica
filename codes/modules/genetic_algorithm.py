@@ -35,38 +35,38 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 # plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 
-population = {'ymax': 806121.4525237556,
-               'ymin': 808123.9134269459,
+population = {'ymax': 806098.9197191803,              
+               'ymin': 806128.2105502966,
                'xmax': 7459125.587992033,
                'xmin': 7456645.991552823,
               'zlim': 0.0,
               'z_min': 1000.0,
               'n_dip': 10,
               'n_pop': 100,
-              'inclmax': 10.0,
+              'inclmax': 20.0,
               'inclmin': -20.0,
-              'declmax': 35.0,
-              'declmin': -30.0,
-              'mmax': 1.5e9/10,
-              'mmin': 5.5e8/10,
+              'declmax': 65.0,
+              'declmin': -60.0,
+              'mmax': 1.2e9/10,
+              'mmin': 8.5e8/10,
               'homogeneo': True
               }
 
 I, D =  -36.346, -21.826
 
-filhos_mut = {'ymax': 806121.4525237556,
-               'ymin': 808123.9134269459,
+filhos_mut = {'ymax': 806098.9197191803,              
+               'ymin': 806128.2105502966,
                'xmax': 7459125.587992033,
                'xmin': 7456645.991552823,
               'zlim': 0.0,
               'z_min': 1000.0,
               'n': 1,
-              'inclmax': 10.0,
+              'inclmax': 20.0,
               'inclmin': -20.0,
-              'declmax': 35.0,
-              'declmin': -30.0,
-              'magmax': 1.5e9/10,
-              'magmin': 5.5e8/10,
+              'declmax': 65.0,
+              'declmin': -60.0,
+              'magmax': 1.2e9/10,
+              'magmin': 8.5e8/10,
               'homogeneo': True
               }
 
@@ -78,7 +78,7 @@ ini = time.time()
 
 
 n = 250
-lamb = 0.0
+lamb = 0.1
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
