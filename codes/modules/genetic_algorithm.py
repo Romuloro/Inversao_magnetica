@@ -35,38 +35,38 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 # plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 
-population = {'ymax': 807660.7341896289,
-               'ymin': 805576.8664180683,
-               'xmax': 7459094.213347077,
-               'xmin': 7457806.362873518,
+population = {'ymax': 808648.2967912531,
+               'ymin': data_cubo['East(m)'].min(),
+               'xmax': 7459476.747998359,
+               'xmin': 7457200.02118714,
               'zlim': 0.0,
               'z_min': 1000.0,
-              'n_dip': 10,
+              'n_dip': 30,
               'n_pop': 100,
-              'inclmax': -35.0,
-              'inclmin': -50.0,
-              'declmax': -25.0,
-              'declmin': -60.0,
-              'mmax': 1.25e9/10,
-              'mmin': 5.0e8/10,
+              'inclmax': -20.0,
+              'inclmin': -30.0,
+              'declmax': -30.0,
+              'declmin': -45.0,
+              'mmax': 1.5e9/30,
+              'mmin': 8.0e8/30,
               'homogeneo': True
               }
 
 I, D =  -36.346, -21.826
 
-filhos_mut = {'ymax': 807660.7341896289,
-               'ymin': 805576.8664180683,
-               'xmax': 7459094.213347077,
-               'xmin': 7457806.362873518,
+filhos_mut = {'ymax': 808648.2967912531,
+               'ymin': data_cubo['East(m)'].min(),
+               'xmax': 7459476.747998359,
+               'xmin': 7457200.02118714,
               'zlim': 0.0,
               'z_min': 1000.0,
               'n': 1,
-              'inclmax': -35.0,
-              'inclmin': -50.0,
-              'declmax': -25.0,
-              'declmin': -60.0,
-              'magmax': 1.25e9/10,
-              'magmin': 5.0e8/10,
+              'inclmax': -20.0,
+              'inclmin': -30.0,
+              'declmax': -30.0,
+              'declmin': -45.0,
+              'magmax': 1.5e9/30,
+              'magmin': 8.0e8/30,
               'homogeneo': True
               }
 
@@ -77,7 +77,7 @@ ini = time.time()
 # print("\n")
 
 
-n = 10000
+n = 1000
 lamb = 0.0e0
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
@@ -143,6 +143,9 @@ def ga(lamb, n, anomaly_cubo, filhos_mut, population):
             filho_ = Operators_array.mutacao_multi_vhomo(filho_, **filhos_mut)  # manter mut em 0.05
         populacao = Operators_array.elitismo(populacao, filho_, gama, n_fica=10)
         # populacao = Operators_array.elitismo_c_violation(populacao, filho_, theta, n_fica = 5)
+    
+    final = time.time()
+    print(f"o tempo é:", "{:.2f}".format(final - ini), "segundos")
 
     return populacao, anomaly_better, ind_better, val_fit, val_phi, val_theta, incl_better, decl_better, mom_better, diversity_x, diversity_y, diversity_z, diversity_incl, diversity_decl, diversity_mom, z_better
 
