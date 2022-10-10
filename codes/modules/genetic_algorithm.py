@@ -15,7 +15,7 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Dissertacao/Test_real/Morro_do_forno')
-data_cubo = pd.read_table('Data_mag_morro_do_forno_residuo.csv', sep=',')
+data_cubo = pd.read_table('Data_mag_morro_do_forno_up_400.csv', sep=',')
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
 momento = 3.8e10 / 20  # 3.8X10^10/ndip
@@ -40,15 +40,15 @@ population = {'ymax': 808648.2967912531,
                'xmax': 7459476.747998359,
                'xmin': 7457200.02118714,
               'zlim': 0.0,
-              'z_min': 1000.0,
-              'n_dip': 30,
+              'z_min': 2000.0,
+              'n_dip': 10,
               'n_pop': 100,
-              'inclmax': -20.0,
-              'inclmin': -30.0,
-              'declmax': -30.0,
+              'inclmax': 30.0,
+              'inclmin': 0.0,
+              'declmax': 45.0,
               'declmin': -45.0,
-              'mmax': 1.5e9/30,
-              'mmin': 8.0e8/30,
+              'mmax': 2.5e9/10,
+              'mmin': 1.5e9/10,
               'homogeneo': True
               }
 
@@ -59,14 +59,14 @@ filhos_mut = {'ymax': 808648.2967912531,
                'xmax': 7459476.747998359,
                'xmin': 7457200.02118714,
               'zlim': 0.0,
-              'z_min': 1000.0,
+              'z_min': 2000.0,
               'n': 1,
-              'inclmax': -20.0,
-              'inclmin': -30.0,
-              'declmax': -30.0,
+              'inclmax': 30.0,
+              'inclmin': 0.0,
+              'declmax': 45.0,
               'declmin': -45.0,
-              'magmax': 1.5e9/30,
-              'magmin': 8.0e8/30,
+              'magmax': 2.5e9/10,
+              'magmin': 1.5e9/10,
               'homogeneo': True
               }
 
@@ -77,8 +77,8 @@ ini = time.time()
 # print("\n")
 
 
-n = 1000
-lamb = 0.0e0
+n = 500
+lamb = 0.0
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 

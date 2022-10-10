@@ -14,7 +14,7 @@ import genetic_algorithm as top
 def curve_L():   
     lamb = top.lamb
     n = top.n
-    n_ga = 7
+    n_ga = 8
     anomaly_cubo = top.anomaly_cubo
     filhos_mut = top.filhos_mut
     population = top.population
