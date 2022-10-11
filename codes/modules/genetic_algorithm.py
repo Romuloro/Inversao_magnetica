@@ -15,7 +15,8 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Dissertacao/Test_real/Morro_do_forno')
-data_cubo = pd.read_table('Data_mag_morro_do_forno_up_400.csv', sep=',')
+data_cubo = pd.read_table('Data_mag_morro_do_forno_up_1000.csv', sep=',')
+print(data_cubo)
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
 momento = 3.8e10 / 20  # 3.8X10^10/ndip
@@ -40,15 +41,15 @@ population = {'ymax': 808648.2967912531,
                'xmax': 7459476.747998359,
                'xmin': 7457200.02118714,
               'zlim': 0.0,
-              'z_min': 2000.0,
-              'n_dip': 10,
+              'z_min': 1000.0,
+              'n_dip': 30,
               'n_pop': 100,
-              'inclmax': 30.0,
-              'inclmin': 0.0,
-              'declmax': 45.0,
+              'inclmax': -25.0,
+              'inclmin': -35.0,
+              'declmax': -30.0,
               'declmin': -45.0,
-              'mmax': 2.5e9/10,
-              'mmin': 1.5e9/10,
+              'mmax': 1.5e9/30,
+              'mmin': 8.0e8/30,
               'homogeneo': True
               }
 
@@ -61,12 +62,12 @@ filhos_mut = {'ymax': 808648.2967912531,
               'zlim': 0.0,
               'z_min': 2000.0,
               'n': 1,
-              'inclmax': 30.0,
-              'inclmin': 0.0,
-              'declmax': 45.0,
+              'inclmax': -25.0,
+              'inclmin': -35.0,
+              'declmax': -30.0,
               'declmin': -45.0,
-              'magmax': 2.5e9/10,
-              'magmin': 1.5e9/10,
+              'magmax': 1.5e9/30,
+              'magmin': 8.0e8/30,
               'homogeneo': True
               }
 
