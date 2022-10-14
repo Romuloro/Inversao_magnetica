@@ -15,8 +15,8 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Dissertacao/Test_real/Morro_do_forno')
-data_cubo = pd.read_table('Data_mag_morro_do_forno_up_1000.csv', sep=',')
-print(data_cubo)
+data_cubo = pd.read_table('Data_mag_morro_do_forno_residuo.csv', sep=',')
+#print(data_cubo)
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
 momento = 3.8e10 / 20  # 3.8X10^10/ndip
@@ -42,14 +42,14 @@ population = {'ymax': 808648.2967912531,
                'xmin': 7457200.02118714,
               'zlim': 0.0,
               'z_min': 1000.0,
-              'n_dip': 30,
+              'n_dip': 15,
               'n_pop': 100,
               'inclmax': -25.0,
               'inclmin': -35.0,
               'declmax': -30.0,
               'declmin': -45.0,
-              'mmax': 1.5e9/30,
-              'mmin': 8.0e8/30,
+              'mmax': 1.5e9/15,
+              'mmin': 8.0e8/15,
               'homogeneo': True
               }
 
@@ -66,8 +66,8 @@ filhos_mut = {'ymax': 808648.2967912531,
               'inclmin': -35.0,
               'declmax': -30.0,
               'declmin': -45.0,
-              'magmax': 1.5e9/30,
-              'magmin': 8.0e8/30,
+              'magmax': 1.5e9/15,
+              'magmin': 8.0e8/15,
               'homogeneo': True
               }
 
@@ -78,8 +78,8 @@ ini = time.time()
 # print("\n")
 
 
-n = 500
-lamb = 0.0
+n = 5000
+lamb = 4.7e0
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
