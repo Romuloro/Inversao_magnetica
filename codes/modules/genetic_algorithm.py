@@ -14,8 +14,8 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 
-os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile/04_08_2022_08_45')
-data_cubo = pd.read_table('data_mag.csv', sep=',')
+os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Dissertacao/Test_real/Morro_do_forno')
+data_cubo = pd.read_table('Data_mag_morro_do_forno_2.csv', sep=',')
 #print(data_cubo)
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
@@ -36,38 +36,38 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 # plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 
-population = {'ymax': 3000.0,
-               'ymin': -3000.0,
-               'xmax': 3000.0,
-               'xmin': -3000.0,
+population = {'ymax': 808135.2623934571,
+              'ymin': 805197.8905905574,
+              'xmax': 7459144.337008946,
+              'xmin': 7457200.02118714,
               'zlim': 0.0,
-              'z_min': 2000.0,
-              'n_dip': 15,
+              'z_min': 1500.0,
+              'n_dip': 10,
               'n_pop': 100,
-              'inclmax': -30.0,
-              'inclmin': -50.0,
-              'declmax': -10.0,
-              'declmin': -60.0,
-              'mmax': 1.0e10/15,
-              'mmin': 9.0e9/15,
+              'inclmax': 10.0,
+              'inclmin': -30.0,
+              'declmax': 0.0,
+              'declmin': -67.0,
+              'mmax': 1.0e10/10,
+              'mmin': 9.0e9/10,
               'homogeneo': True
               }
 
-I, D =  5.0, 70.0
+I, D =  -36.346, -21.826
 
-filhos_mut = {'ymax': 3000.0,
-               'ymin': -3000.0,
-               'xmax': 3000.0,
-               'xmin': -3000.0,
+filhos_mut = {'ymax': 808135.2623934571,
+              'ymin': 805197.8905905574,
+              'xmax': 7459144.337008946,
+              'xmin': 7457200.02118714,
               'zlim': 0.0,
-              'z_min': 2000.0,
+              'z_min': 1500.0,
               'n': 1,
-              'inclmax': -30.0,
-              'inclmin': -50.0,
-              'declmax': -10.0,
-              'declmin': -60.0,
-              'magmax': 1.0e10/15,
-              'magmin': 9.0e9/15,
+              'inclmax': 10.0,
+              'inclmin': -30.0,
+              'declmax': 0.0,
+              'declmin': -67.0,
+              'magmax': 1.0e10/10,
+              'magmin': 9.0e9/10,
               'homogeneo': True
               }
 
@@ -78,8 +78,8 @@ ini = time.time()
 # print("\n")
 
 
-n = 3000
-lamb = 1.5e0
+n = 1000
+lamb = 0.0e0
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
 
