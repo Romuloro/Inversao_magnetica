@@ -14,7 +14,7 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 
-os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile/16_11_2022_10_08')
+os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Logfile/18_11_2022_15_37')
 data_cubo = pd.read_table('data_mag.csv', sep=',')
 #print(data_cubo)
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
@@ -40,16 +40,16 @@ population = {'ymax': 4000.0,
               'ymin': -4000.0,
               'xmax': 4000.0,
               'xmin': -4000.0,
-              'zlim': 0.0,
-              'z_min': 1500.0,
+              'zlim': 500.0,
+              'z_min': 3000.0,
               'n_dip': 15,
               'n_pop': 100,
-              'inclmax': 50.0,
-              'inclmin': 30.0,
-              'declmax': -5.0,
-              'declmin': -35.0,
-              'mmax': 3.0e10/15,
-              'mmin': 2.5e10/15,
+              'inclmax': 48.0,
+              'inclmin': 35.0,
+              'declmax': -8.0,
+              'declmin': -28.0,
+              'mmax': 2.7e10/15,
+              'mmin': 2.2e10/15,
               'homogeneo': True
               }
 
@@ -59,15 +59,15 @@ filhos_mut = {'ymax': 4000.0,
               'ymin': -4000.0,
               'xmax': 4000.0,
               'xmin': -4000.0,
-              'zlim': 0.0,
-              'z_min': 1500.0,
+              'zlim': 500.0,
+              'z_min': 3000.0,
               'n': 1,
-              'inclmax': 50.0,
-              'inclmin': 30.0,
-              'declmax': -5.0,
-              'declmin': -35.0,
-              'magmax': 3.0e10/15,
-              'magmin': 2.5e10/15,
+              'inclmax': 48.0,
+              'inclmin': 35.0,
+              'declmax': -8.0,
+              'declmin': -28.0,
+              'magmax': 2.7e10/15,
+              'magmin': 2.2e10/15,
               'homogeneo': True
               }
 
@@ -78,7 +78,7 @@ ini = time.time()
 # print("\n")
 
 
-n = 2000
+n = 3000
 lamb = 0.0e0
 
 def ga(lamb, n, anomaly_cubo, filhos_mut, population):
