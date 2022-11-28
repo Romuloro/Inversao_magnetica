@@ -15,7 +15,7 @@ import plot_3D, auxiliars, salve_doc, sphere, sample_random, Operators_array, au
 
 
 os.chdir('/home/romulo/my_project_dir/Inversao_magnetica/codes/tests/Dissertacao/Test_real/Morro_do_forno')
-data_cubo = pd.read_table('Data_mag_morro_do_forno_2.csv', sep=',')
+data_cubo = pd.read_table('Data_mag_morro_do_forno_up_400.csv', sep=',')
 #print(data_cubo)
 anomaly_cubo = np.reshape(np.array(data_cubo['Anomalia Magnética(nT)']), (20,20))
 
@@ -36,38 +36,38 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 # plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 
-population = {'ymax': 808648.2967912531,
+population = {'ymax': data_cubo['East(m)'].max(),
               'ymin': data_cubo['East(m)'].min(),
-              'xmax': 7459476.747998359,
-              'xmin': 7457200.02118714,
+              'xmax': data_cubo['North(m)'].max(),
+              'xmin': data_cubo['North(m)'].min(),
               'zlim': 0.0,
-              'z_min': 1200.0,
+              'z_min': 2000.0,
               'n_dip': 15,
               'n_pop': 100,
-              'inclmax': -10.0,
-              'inclmin': -32.0,
+              'inclmax': 0.0,
+              'inclmin': -20.0,
               'declmax': 0.0,
-              'declmin': -30.0,
-              'mmax': 4.5e9/15,
-              'mmin': 2.9e9/15,
+              'declmin': 30.0,
+              'mmax': 9.0e9/15,
+              'mmin': 2.0e9/15,
               'homogeneo': True
               }
 
 I, D =  -36.346, -21.826
 
-filhos_mut = {'ymax': 808648.2967912531,
-              'ymin': 805045.8551999719,
-              'xmax': 7459476.747998359,
-              'xmin': 7457200.02118714,
+filhos_mut = {'ymax': data_cubo['East(m)'].max(),
+              'ymin': data_cubo['East(m)'].min(),
+              'xmax': data_cubo['North(m)'].max(),
+              'xmin': data_cubo['North(m)'].min(),
               'zlim': 0.0,
-              'z_min': 1200.0,
+              'z_min': 2000.0,
               'n': 1,
-              'inclmax': -10.0,
-              'inclmin': -32.0,
+              'inclmax': 0.0,
+              'inclmin': -20.0,
               'declmax': 0.0,
-              'declmin': -30.0,
-              'magmax': 4.5e9/15,
-              'magmin': 2.9e9/15,
+              'declmin': 30.0,
+              'magmax': 9.0e9/15,
+              'magmin': 2.0e9/15,
               'homogeneo': True
               }
 
