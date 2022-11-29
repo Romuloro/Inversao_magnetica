@@ -36,38 +36,38 @@ x, y, X, Y, Z = plot_3D.create_aquisicao(**acquisition)
 
 # plot_3D.modelo_anomalia_3D(Y, X, tfa_n_bolinhas, coodY, coodX, coodZ, mag)
 
-population = {'ymax': data_cubo['East(m)'].max(),
-              'ymin': data_cubo['East(m)'].min(),
-              'xmax': data_cubo['North(m)'].max(),
-              'xmin': data_cubo['North(m)'].min(),
+population = {'ymax': 808648.2967912531,
+              'ymin': 806000.8551999719,
+              'xmax': 7459000.0,
+              'xmin': 7457200.02118714,
               'zlim': 0.0,
               'z_min': 2000.0,
-              'n_dip': 15,
+              'n_dip': 10,
               'n_pop': 100,
-              'inclmax': 0.0,
-              'inclmin': -20.0,
-              'declmax': 0.0,
-              'declmin': 30.0,
-              'mmax': 9.0e9/15,
-              'mmin': 2.0e9/15,
+              'inclmax': 40.0,
+              'inclmin': 20.0,
+              'declmax': -20.0,
+              'declmin': -60.0,
+              'mmax': 5.5e10/10,
+              'mmin': 1.0e10/10,
               'homogeneo': True
               }
 
 I, D =  -36.346, -21.826
 
-filhos_mut = {'ymax': data_cubo['East(m)'].max(),
-              'ymin': data_cubo['East(m)'].min(),
-              'xmax': data_cubo['North(m)'].max(),
-              'xmin': data_cubo['North(m)'].min(),
+filhos_mut = {'ymax': 808648.2967912531,
+              'ymin': 806000.8551999719,
+              'xmax': 7459000.0,
+              'xmin': 7457200.02118714,
               'zlim': 0.0,
               'z_min': 2000.0,
               'n': 1,
-              'inclmax': 0.0,
-              'inclmin': -20.0,
-              'declmax': 0.0,
-              'declmin': 30.0,
-              'magmax': 9.0e9/15,
-              'magmin': 2.0e9/15,
+              'inclmax': 40.0,
+              'inclmin': 20.0,
+              'declmax': -20.0,
+              'declmin': -60.0,
+              'magmax': 5.5e10/10,
+              'magmin': 1.0e10/10,
               'homogeneo': True
               }
 
